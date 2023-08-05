@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>UICommon/FooterPhone.qml</file>
+        <file>UICommon/HeaderPhone.qml</file>
+        <file>Screens/MainScreenPhone.qml</file>
     </qresource>
 </RCC>

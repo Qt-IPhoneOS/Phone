@@ -12,7 +12,7 @@ public:
     ~PhoneEngine();
 
 public:
-    PhoneEngine& getInstance();
+    PhoneEngine &getInstance();
 
     void init();
     void registerContext();

@@ -1,11 +1,14 @@
 import QtQuick 2.15
+import QtQuick.Controls 2.15
+import "UICommon"
 
 Item {
-    width: 1700
-    height: 800
-    Rectangle {
-        anchors.fill: parent
-        color: "red"
+    id: rootItem
+    width: 393
+    height: 852
+
+    Loader {
+        id: loaderMainScreen
     }
 
 
