@@ -1,8 +1,12 @@
 <RCC>
-    <qresource prefix="/">
-        <file>main.qml</file>
+    <qresource prefix="/RESOURCES">
         <file>UICommon/FooterPhone.qml</file>
         <file>UICommon/HeaderPhone.qml</file>
         <file>Screens/MainScreenPhone.qml</file>
+        <file>UICommon/CItems/ButtonWidget.qml</file>
+        <file>Images/back_arrow_icon.png</file>
+        <file>Images/plus_icon.png</file>
+        <file>Images/search_icon.png</file>
+        <file>Images/delete_icon.png</file>
     </qresource>
 </RCC>

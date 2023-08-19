@@ -3,19 +3,21 @@
 
 #include <QObject>
 #include <QtQuick/QQuickView>
+#include <QQmlContext>
+#include "Models/phonemodel.h"
 
 class PhoneEngine : public QObject
 {
     Q_OBJECT
-public:
+private:
     explicit PhoneEngine(QObject* parent = nullptr);
     ~PhoneEngine();
 
 public:
-    PhoneEngine &getInstance();
+    static PhoneEngine &getInstance();
 
     void init();
-    void registerContext();
+    void registerContext(QQuickView* view, PhoneModel* model);
     void show(QQuickView* view);
 
 private:

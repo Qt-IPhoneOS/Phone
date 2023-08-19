@@ -6,9 +6,9 @@
 int main(int argc, char* argv[]) {
 
     QGuiApplication app(argc, argv);
-    PhoneEngine phoneEngine;
     QQuickView m_view;
-
-    phoneEngine.show(&m_view);
+    PhoneModel model;
+    PhoneEngine::getInstance().registerContext(&m_view, &model);
+    PhoneEngine::getInstance().show(&m_view);
     return app.exec();
 }

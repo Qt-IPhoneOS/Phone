@@ -7,7 +7,7 @@
 
 class PhoneInstance {
 public:
-    PhoneInstance();
+    PhoneInstance(const QString& name, const QString& phoneNumber, const QString& avatar, const QString& gender);
     ~PhoneInstance();
 
 public:
@@ -20,10 +20,14 @@ public:
     QString getAvatar() const;
     void setAvartar(const QString& avatarResource);
 
+    QString getGender() const;
+    void setGender(const QString& gender);
+
 private:
     QString m_sName {""};
     QString m_sPhoneNumber {""};
     QString m_sAvatar {""};
+    QString m_sGender {""};
 };
 
 
@@ -36,10 +40,8 @@ public:
     ~PhoneModel();
 
 public:
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
 
     enum PhoneInfoID {
         NAME = Qt::UserRole + 1,

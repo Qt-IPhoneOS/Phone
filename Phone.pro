@@ -1,13 +1,13 @@
-QT += quick
-QT += gui
-QT += core
+QT += quick gui core
+TEMPLATE = app
+
+TARGET = Phone
+
 SOURCES += \
     Common/phoneenums.cpp \
     Models/phonemodel.cpp \
     main.cpp \
     phoneengine.cpp
-
-DISTFILES +=
 
 RESOURCES += \
     Resources.qrc
