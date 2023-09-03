@@ -6,4 +6,3 @@ cd build
 make
 ./Phone
 
-#thaivd
