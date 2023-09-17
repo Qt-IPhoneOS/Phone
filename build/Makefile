@@ -53,17 +53,23 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Common/phoneenums.cpp \
-		../Models/phonemodel.cpp \
+		../Controllers/phonecontroller.cpp \
+		../Models/PhoneProperties/phoneinfo.cpp \
+		../Models/contactlistmodel.cpp \
 		../main.cpp \
 		../phoneengine.cpp qrc_Resources.cpp \
-		moc_phonemodel.cpp \
+		moc_phonecontroller.cpp \
+		moc_contactlistmodel.cpp \
 		moc_phoneengine.cpp
 OBJECTS       = phoneenums.o \
-		phonemodel.o \
+		phonecontroller.o \
+		phoneinfo.o \
+		contactlistmodel.o \
 		main.o \
 		phoneengine.o \
 		qrc_Resources.o \
-		moc_phonemodel.o \
+		moc_phonecontroller.o \
+		moc_contactlistmodel.o \
 		moc_phoneengine.o
 DIST          = /home/thai99/Qt/6.4.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/thai99/Qt/6.4.2/gcc_64/mkspecs/common/unix.conf \
@@ -345,9 +351,13 @@ DIST          = /home/thai99/Qt/6.4.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/thai99/Qt/6.4.2/gcc_64/mkspecs/features/yacc.prf \
 		/home/thai99/Qt/6.4.2/gcc_64/mkspecs/features/lex.prf \
 		../../Phone.pro ../Common/phoneenums.h \
-		../Models/phonemodel.h \
+		../Controllers/phonecontroller.h \
+		../Models/PhoneProperties/phoneinfo.h \
+		../Models/contactlistmodel.h \
 		../phoneengine.h ../Common/phoneenums.cpp \
-		../Models/phonemodel.cpp \
+		../Controllers/phonecontroller.cpp \
+		../Models/PhoneProperties/phoneinfo.cpp \
+		../Models/contactlistmodel.cpp \
 		../main.cpp \
 		../phoneengine.cpp
 QMAKE_TARGET  = Phone
@@ -954,8 +964,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/thai99/Qt/6.4.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Common/phoneenums.h ../Models/phonemodel.h ../phoneengine.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Common/phoneenums.cpp ../Models/phonemodel.cpp ../main.cpp ../phoneengine.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Common/phoneenums.h ../Controllers/phonecontroller.h ../Models/PhoneProperties/phoneinfo.h ../Models/contactlistmodel.h ../phoneengine.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Common/phoneenums.cpp ../Controllers/phonecontroller.cpp ../Models/PhoneProperties/phoneinfo.cpp ../Models/contactlistmodel.cpp ../main.cpp ../phoneengine.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -984,14 +994,17 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_Resources.cpp
 qrc_Resources.cpp: ../Resources.qrc \
 		/home/thai99/Qt/6.4.2/gcc_64/libexec/rcc \
+		../Images/user_image.jpg \
 		../Images/back_arrow_icon.png \
+		../Images/icons8-star-50.png \
 		../Images/delete_icon.png \
 		../Images/plus_icon.png \
 		../Images/search_icon.png \
-		../UICommon/FooterPhone.qml \
-		../UICommon/HeaderPhone.qml \
-		../UICommon/CItems/ButtonWidget.qml \
-		../Screens/MainScreenPhone.qml
+		../Commons/PHONE_HEADER.qml \
+		../Commons/qmldir \
+		../Commons/PHONE_FOOTER.qml \
+		../Commons/CItems/ButtonWidget.qml \
+		../Screens/PHONE_MAIN_SCREEN.qml
 	/home/thai99/Qt/6.4.2/gcc_64/libexec/rcc -name Resources --no-zstd ../Resources.qrc -o qrc_Resources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -1000,10 +1013,10 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/thai99/Qt/6.4.2/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -std=gnu++1z -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /home/thai99/Qt/6.4.2/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_phonemodel.cpp moc_phoneengine.cpp
+compiler_moc_header_make_all: moc_phonecontroller.cpp moc_contactlistmodel.cpp moc_phoneengine.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_phonemodel.cpp moc_phoneengine.cpp
-moc_phonemodel.cpp: ../Models/phonemodel.h \
+	-$(DEL_FILE) moc_phonecontroller.cpp moc_contactlistmodel.cpp moc_phoneengine.cpp
+moc_phonecontroller.cpp: ../Controllers/phonecontroller.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QObject \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobject.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobjectdefs.h \
@@ -1089,11 +1102,106 @@ moc_phonemodel.cpp: ../Models/phonemodel.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qshareddata_impl.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qset.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Models/contactlistmodel.h \
+		../Models/PhoneProperties/phoneinfo.h \
 		../Common/phoneenums.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt \
 		moc_predefs.h \
 		/home/thai99/Qt/6.4.2/gcc_64/libexec/moc
-	/home/thai99/Qt/6.4.2/gcc_64/libexec/moc $(DEFINES) --include /home/thai99/WORKSPACE/MY_PROJECT/App_Phone/Telephone-OS/Phone/build/moc_predefs.h -I/home/thai99/Qt/6.4.2/gcc_64/mkspecs/linux-g++ -I/home/thai99/WORKSPACE/MY_PROJECT/App_Phone/Telephone-OS/Phone -I/home/thai99/Qt/6.4.2/gcc_64/include -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQuick -I/home/thai99/Qt/6.4.2/gcc_64/include/QtOpenGL -I/home/thai99/Qt/6.4.2/gcc_64/include/QtGui -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQmlModels -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQml -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQmlIntegration -I/home/thai99/Qt/6.4.2/gcc_64/include/QtNetwork -I/home/thai99/Qt/6.4.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Models/phonemodel.h -o moc_phonemodel.cpp
+	/home/thai99/Qt/6.4.2/gcc_64/libexec/moc $(DEFINES) --include /home/thai99/WORKSPACE/MY_PROJECT/App_Phone/Telephone-OS/Phone/build/moc_predefs.h -I/home/thai99/Qt/6.4.2/gcc_64/mkspecs/linux-g++ -I/home/thai99/WORKSPACE/MY_PROJECT/App_Phone/Telephone-OS/Phone -I/home/thai99/Qt/6.4.2/gcc_64/include -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQuick -I/home/thai99/Qt/6.4.2/gcc_64/include/QtOpenGL -I/home/thai99/Qt/6.4.2/gcc_64/include/QtGui -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQmlModels -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQml -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQmlIntegration -I/home/thai99/Qt/6.4.2/gcc_64/include/QtNetwork -I/home/thai99/Qt/6.4.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Controllers/phonecontroller.h -o moc_phonecontroller.cpp
+
+moc_contactlistmodel.cpp: ../Models/contactlistmodel.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QObject \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobject.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qglobal.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qconfig.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtconfigmacros.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtcoreexports.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qlogging.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qflags.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompare_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qforeach.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtmetamacros.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstring.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qchar.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qpair.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydatapointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydataops.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearrayalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearrayview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringfwd.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qanystringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qutf8stringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringtokenizer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qlist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiterator.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompare.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qscopeguard.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qdatastream.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiodevicebase.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiterable.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmetacontainer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainerinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtaggedpointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmath.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbindingstorage.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QAbstractListModel \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qhash.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qvariant.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qdebug.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtextstream.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringconverter_base.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qshareddata.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmap.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qshareddata_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qset.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Models/PhoneProperties/phoneinfo.h \
+		../Common/phoneenums.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt \
+		moc_predefs.h \
+		/home/thai99/Qt/6.4.2/gcc_64/libexec/moc
+	/home/thai99/Qt/6.4.2/gcc_64/libexec/moc $(DEFINES) --include /home/thai99/WORKSPACE/MY_PROJECT/App_Phone/Telephone-OS/Phone/build/moc_predefs.h -I/home/thai99/Qt/6.4.2/gcc_64/mkspecs/linux-g++ -I/home/thai99/WORKSPACE/MY_PROJECT/App_Phone/Telephone-OS/Phone -I/home/thai99/Qt/6.4.2/gcc_64/include -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQuick -I/home/thai99/Qt/6.4.2/gcc_64/include/QtOpenGL -I/home/thai99/Qt/6.4.2/gcc_64/include/QtGui -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQmlModels -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQml -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQmlIntegration -I/home/thai99/Qt/6.4.2/gcc_64/include/QtNetwork -I/home/thai99/Qt/6.4.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Models/contactlistmodel.h -o moc_contactlistmodel.cpp
 
 moc_phoneengine.cpp: ../phoneengine.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QObject \
@@ -1262,11 +1370,13 @@ moc_phoneengine.cpp: ../phoneengine.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtQml/qqmlerror.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtQml/QQmlContext \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtQml/qqmlcontext.h \
-		../Models/phonemodel.h \
+		../Models/contactlistmodel.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QAbstractListModel \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../Models/PhoneProperties/phoneinfo.h \
 		../Common/phoneenums.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt \
+		../Controllers/phonecontroller.h \
 		moc_predefs.h \
 		/home/thai99/Qt/6.4.2/gcc_64/libexec/moc
 	/home/thai99/Qt/6.4.2/gcc_64/libexec/moc $(DEFINES) --include /home/thai99/WORKSPACE/MY_PROJECT/App_Phone/Telephone-OS/Phone/build/moc_predefs.h -I/home/thai99/Qt/6.4.2/gcc_64/mkspecs/linux-g++ -I/home/thai99/WORKSPACE/MY_PROJECT/App_Phone/Telephone-OS/Phone -I/home/thai99/Qt/6.4.2/gcc_64/include -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQuick -I/home/thai99/Qt/6.4.2/gcc_64/include/QtOpenGL -I/home/thai99/Qt/6.4.2/gcc_64/include/QtGui -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQmlModels -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQml -I/home/thai99/Qt/6.4.2/gcc_64/include/QtQmlIntegration -I/home/thai99/Qt/6.4.2/gcc_64/include/QtNetwork -I/home/thai99/Qt/6.4.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../phoneengine.h -o moc_phoneengine.cpp
@@ -1315,7 +1425,7 @@ phoneenums.o: ../Common/phoneenums.cpp ../Common/phoneenums.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtmetamacros.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o phoneenums.o ../Common/phoneenums.cpp
 
-phonemodel.o: ../Models/phonemodel.cpp ../Models/phonemodel.h \
+phonecontroller.o: ../Controllers/phonecontroller.cpp ../Controllers/phonecontroller.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QObject \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobject.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobjectdefs.h \
@@ -1401,9 +1511,178 @@ phonemodel.o: ../Models/phonemodel.cpp ../Models/phonemodel.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qshareddata_impl.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qset.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Models/contactlistmodel.h \
+		../Models/PhoneProperties/phoneinfo.h \
 		../Common/phoneenums.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o phonemodel.o ../Models/phonemodel.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o phonecontroller.o ../Controllers/phonecontroller.cpp
+
+phoneinfo.o: ../Models/PhoneProperties/phoneinfo.cpp ../Models/PhoneProperties/phoneinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QObject \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobject.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qglobal.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qconfig.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtconfigmacros.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtcoreexports.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qlogging.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qflags.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompare_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qforeach.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtmetamacros.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstring.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qchar.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qpair.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydatapointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydataops.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearrayalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearrayview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringfwd.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qanystringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qutf8stringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringtokenizer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qlist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiterator.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompare.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qscopeguard.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qdatastream.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiodevicebase.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiterable.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmetacontainer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainerinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtaggedpointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmath.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbindingstorage.h \
+		../Common/phoneenums.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o phoneinfo.o ../Models/PhoneProperties/phoneinfo.cpp
+
+contactlistmodel.o: ../Models/contactlistmodel.cpp ../Models/contactlistmodel.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QObject \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobject.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qglobal.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qconfig.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtconfigmacros.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtcoreexports.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qlogging.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qflags.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompare_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qforeach.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtmetamacros.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstring.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qchar.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qpair.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydatapointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qarraydataops.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearrayalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearrayview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringfwd.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qanystringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qutf8stringview.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringtokenizer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qlist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiterator.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcompare.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qscopeguard.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qdatastream.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiodevicebase.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qiterable.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmetacontainer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontainerinfo.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtaggedpointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmath.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qbindingstorage.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QAbstractListModel \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qhash.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qvariant.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qdebug.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qtextstream.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qstringconverter_base.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qshareddata.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qmap.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qshareddata_impl.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qset.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Models/PhoneProperties/phoneinfo.h \
+		../Common/phoneenums.h \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt \
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QDebug
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactlistmodel.o ../Models/contactlistmodel.cpp
 
 main.o: ../main.cpp /home/thai99/Qt/6.4.2/gcc_64/include/QtQuick/QQuickView \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtQuick/qquickview.h \
@@ -1594,11 +1873,13 @@ main.o: ../main.cpp /home/thai99/Qt/6.4.2/gcc_64/include/QtQuick/QQuickView \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qlocale.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtGui/qguiapplication_platform.h \
 		../phoneengine.h \
-		../Models/phonemodel.h \
+		../Models/contactlistmodel.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QAbstractListModel \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../Models/PhoneProperties/phoneinfo.h \
 		../Common/phoneenums.h \
-		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt \
+		../Controllers/phonecontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
 phoneengine.o: ../phoneengine.cpp ../phoneengine.h \
@@ -1768,18 +2049,23 @@ phoneengine.o: ../phoneengine.cpp ../phoneengine.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtQml/qqmlerror.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtQml/QQmlContext \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtQml/qqmlcontext.h \
-		../Models/phonemodel.h \
+		../Models/contactlistmodel.h \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/QAbstractListModel \
 		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../Models/PhoneProperties/phoneinfo.h \
 		../Common/phoneenums.h \
-		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt
+		/home/thai99/Qt/6.4.2/gcc_64/include/QtCore/Qt \
+		../Controllers/phonecontroller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o phoneengine.o ../phoneengine.cpp
 
 qrc_Resources.o: qrc_Resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_Resources.o qrc_Resources.cpp
 
-moc_phonemodel.o: moc_phonemodel.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_phonemodel.o moc_phonemodel.cpp
+moc_phonecontroller.o: moc_phonecontroller.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_phonecontroller.o moc_phonecontroller.cpp
+
+moc_contactlistmodel.o: moc_contactlistmodel.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_contactlistmodel.o moc_contactlistmodel.cpp
 
 moc_phoneengine.o: moc_phoneengine.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_phoneengine.o moc_phoneengine.cpp

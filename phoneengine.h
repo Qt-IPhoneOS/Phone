@@ -4,7 +4,8 @@
 #include <QObject>
 #include <QtQuick/QQuickView>
 #include <QQmlContext>
-#include "Models/phonemodel.h"
+#include <Models/contactlistmodel.h>
+#include <Controllers/phonecontroller.h>
 
 class PhoneEngine : public QObject
 {
@@ -17,8 +18,10 @@ public:
     static PhoneEngine &getInstance();
 
     void init();
-    void registerContext(QQuickView* view, PhoneModel* model);
+    void registerGlobalContext(QQuickView* view);
     void show(QQuickView* view);
+
+    QAbstractListModel& getContactList();
 
 private:
     QString m_sNameApp {""};

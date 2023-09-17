@@ -5,7 +5,9 @@ TARGET = Phone
 
 SOURCES += \
     Common/phoneenums.cpp \
-    Models/phonemodel.cpp \
+    Controllers/phonecontroller.cpp \
+    Models/PhoneProperties/phoneinfo.cpp \
+    Models/contactlistmodel.cpp \
     main.cpp \
     phoneengine.cpp
 
@@ -14,5 +16,7 @@ RESOURCES += \
 
 HEADERS += \
     Common/phoneenums.h \
-    Models/phonemodel.h \
+    Controllers/phonecontroller.h \
+    Models/PhoneProperties/phoneinfo.h \
+    Models/contactlistmodel.h \
     phoneengine.h

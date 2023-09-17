@@ -3,11 +3,9 @@
 PhoneEngine::PhoneEngine(QObject* parent)
     : QObject(parent)
 {
-
 }
 
 PhoneEngine::~PhoneEngine() {
-
 }
 
 PhoneEngine &PhoneEngine::getInstance()
@@ -21,13 +19,16 @@ void PhoneEngine::init()
 
 }
 
-void PhoneEngine::registerContext(QQuickView* view, PhoneModel* model)
+void PhoneEngine::registerGlobalContext(QQuickView* view)
 {
-    view->rootContext()->setContextProperty("modelPhone", model);
+    view->rootContext()->setContextProperty("ContactList", PhoneController::getInstance().contactList());
+    view->rootContext()->setContextProperty("PhoneController", &PhoneController::getInstance());
 }
 
 void PhoneEngine::show(QQuickView *view)
 {
-    view->setSource(QUrl("qrc:/RESOURCES/Screens/MainScreenPhone.qml"));
+    view->setWidth(428);
+    view->setHeight(926);
+    view->setSource(QUrl("qrc:/Resources/Screens/PHONE_MAIN_SCREEN.qml"));
     view->show();
 }
