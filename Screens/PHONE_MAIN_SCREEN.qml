@@ -2,24 +2,17 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import Qt5Compat.GraphicalEffects
 
-import "../Commons" as CommonComponent
+import "../Common" as CommonComponent
+import "../JS/def_colors.js" as COLOR
 
 Item {
     id: rootItem
     width: 428
     height: 926
 
-    Component.onCompleted: {
-        console.log("THAIVDVDVDVD")
-//        var listTemp = PhoneController.listGroupName
-//        for(let i = 0; i < listTemp.size(); ++i) {
-
-//        }
-    }
-
     Rectangle {
         anchors.fill: parent
-        color: "#000000"
+        color: COLOR.whileColor
     }
     Item {
         id: headerTab
@@ -38,7 +31,7 @@ Item {
                 id: backIcon
                 width: 30
                 height: parent.height
-                source: "qrc:/Resources/Images/back_arrow_icon.png"
+                source: "qrc:/Assets/back_arrow_icon.png"
             }
             Text {
                 height: parent.height
@@ -48,7 +41,7 @@ Item {
                     top: parent.top
                     topMargin: 2
                 }
-                color: "#0D7FFA"
+                color: COLOR.blueColorText
                 text: "Lists"
                 font.pixelSize: 21
             }
@@ -62,7 +55,7 @@ Item {
         }
         Image {
             id: plusIcon
-            source: "qrc:/Resources/Images/plus_icon.png"
+            source: "qrc:/Assets/plus_icon.png"
             height: parent.height
             width: 30
             anchors.right: parent.right
@@ -74,7 +67,7 @@ Item {
         height: 50
         x: 10
         y: 150
-        color: "#FDFDFD"
+        color: COLOR.blackColor
         font {
             pixelSize: 30
             weight: 600
@@ -90,7 +83,7 @@ Item {
             topMargin: 10
             horizontalCenter: parent.horizontalCenter
         }
-        color: "#1C1C1E"
+        color: "#EEEEF0"
         radius: 10
 
         Image {
@@ -103,7 +96,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
 
-            source: "qrc:/Resources/Images/search_icon.png"
+            source: "qrc:/Assets/search_icon.png"
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
@@ -115,10 +108,10 @@ Item {
         TextField {
             id: textInput
             placeholderText: "Search"
-            placeholderTextColor: "#AEAEB0"
+            placeholderTextColor: COLOR.grayTextColor
             width: parent.width - 60
             height: parent.height
-            color: "#FFFFFF"
+            color: COLOR.whileColor
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
@@ -126,7 +119,7 @@ Item {
                 anchors.fill: parent
                 Rectangle {
                     anchors.fill: parent
-                    color: "#1C1C1E"
+                    color: "#EEEEF0"
                 }
             }
             onAccepted: {
@@ -138,7 +131,7 @@ Item {
             width: 15
             height: 15
             visible: textInput.cursorPosition >= 1
-            source: "qrc:/Resources/Images/delete_icon.png"
+            source: "qrc:/Assets/delete_icon.png"
             anchors {
                 right: parent.right
                 rightMargin: 5
@@ -164,7 +157,7 @@ Item {
             left: parent.left
             leftMargin: 14
         }
-        color: "#242424"
+        color: "#EEEEF0"
     }
 
     Item {
@@ -186,7 +179,7 @@ Item {
                 verticalCenter: parent.verticalCenter
                 left: parent.left
             }
-            source: "qrc:/Resources/Images/user_image.jpg"
+            source: "qrc:/Assets/user_image.jpg"
             layer.enabled: rounded
             layer.effect: OpacityMask {
                 maskSource: Item {
@@ -204,7 +197,7 @@ Item {
         Text {
             id: userName
             text: "VoThai"
-            color: "#FDFDFD"
+            color: COLOR.blackColor
             font {
                 pixelSize: 16
                 weight: 500
@@ -219,7 +212,7 @@ Item {
         Text {
             id: subUserName
             text: "My Card"
-            color: "#AEAEB0"
+            color: "#8E8E8E"
             font {
                 pixelSize: 10
                 weight: 380
@@ -238,7 +231,7 @@ Item {
         id: listContactPhone
         width: 390
         height: 828
-        model: ContactList
+        model: ContactModel
         anchors {
             horizontalCenter: parent.horizontalCenter
             top: userInforContainer.bottom
@@ -250,7 +243,7 @@ Item {
             height: 50
             Text {
                 id: nameContact
-                color: "#FFFFFF"
+                color: COLOR.blackColor
                 text: model.NameContact
                 font {
                     weight: 500
@@ -265,7 +258,24 @@ Item {
                     top: nameContact.bottom
                     topMargin: 10
                 }
-                color: "#242424"
+                color: "#EEEEF0"
+            }
+        }
+        section {
+            property: "section"
+            criteria: ViewSection.FullString
+            delegate: Item {
+                id: itemPhoneContact
+                width: parent.width
+                height: 50
+                Text {
+                    id: nameContact
+                    color: COLOR.grayTextColor
+                    text: model.Section
+                    font {
+                        weight: 500
+                    }
+                }
             }
         }
     }
@@ -273,6 +283,12 @@ Item {
     QtObject {
         id: _priCtrlGroupName
         property var listGroupName: ["A", "B", "C"]
+
+        function convertIntToChar(argument) {
+            var temp = argument + 65
+            var text = codePointAt(temp)
+            return text
+        }
     }
 
     Column {
@@ -294,7 +310,7 @@ Item {
                 Text {
                     width: parent.width
                     height: 10
-                    text: "A"
+                    text: _priCtrlGroupName.convertIntToChar(index)
                     color: "#0D7FFA"
                     font {
                         pixelSize: 10
@@ -309,10 +325,5 @@ Item {
         width: rootItem.width
         height: 100
         anchors.bottom: parent.bottom
-        Rectangle {
-            anchors.fill: parent
-            color: "red"
-            opacity: 0.5
-        }
     }
 }

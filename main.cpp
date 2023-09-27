@@ -1,13 +1,14 @@
 #include <QtQuick/QQuickView>
 #include <QtQml/QQmlContext>
 #include <QGuiApplication>
-#include "phoneengine.h"
+#include "PhoneEngine.h"
 
 int main(int argc, char* argv[]) {
 
     QGuiApplication app(argc, argv);
-    QQuickView m_view;
-    PhoneEngine::getInstance().registerGlobalContext(&m_view);
-    PhoneEngine::getInstance().show(&m_view);
+    PhoneEngine* engine = new PhoneEngine();
+    engine->initialized();
+    engine->registerGlobalContext();
+    engine->createWindow();
     return app.exec();
 }

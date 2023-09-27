@@ -1,15 +1,11 @@
 <RCC>
     <qresource prefix="/Resources">
         <file>Screens/PHONE_MAIN_SCREEN.qml</file>
-        <file>Commons/PHONE_FOOTER.qml</file>
-        <file>Commons/PHONE_HEADER.qml</file>
-        <file>Commons/CItems/ButtonWidget.qml</file>
-        <file>Images/back_arrow_icon.png</file>
-        <file>Images/plus_icon.png</file>
-        <file>Images/search_icon.png</file>
-        <file>Images/delete_icon.png</file>
-        <file>Images/icons8-star-50.png</file>
-        <file>Commons/qmldir</file>
-        <file>Images/user_image.jpg</file>
+        <file>Common/PHONE_FOOTER.qml</file>
+        <file>Common/PHONE_HEADER.qml</file>
+        <file>Common/CItems/ButtonWidget.qml</file>
+        <file>Common/qmldir</file>
+        <file>Common/CItems/CMouseArea.qml</file>
+        <file>JS/def_colors.js</file>
     </qresource>
 </RCC>

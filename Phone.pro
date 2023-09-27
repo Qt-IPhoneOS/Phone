@@ -4,19 +4,20 @@ TEMPLATE = app
 TARGET = Phone
 
 SOURCES += \
-    Common/phoneenums.cpp \
-    Controllers/phonecontroller.cpp \
-    Models/PhoneProperties/phoneinfo.cpp \
-    Models/contactlistmodel.cpp \
-    main.cpp \
-    phoneengine.cpp
+    AppWindow/AppMain.cpp \
+    Model/ContactModel.cpp \
+    Model/PhoneProperties/PhoneInfo.cpp \
+    Controller/ContactController.cpp \
+    PhoneEngine.cpp \
+    main.cpp
 
 RESOURCES += \
+    Images.qrc \
     Resources.qrc
 
 HEADERS += \
-    Common/phoneenums.h \
-    Controllers/phonecontroller.h \
-    Models/PhoneProperties/phoneinfo.h \
-    Models/contactlistmodel.h \
-    phoneengine.h
+    AppWindow/AppMain.h \
+    Controller/ContactController.h \
+    Model/ContactModel.h \
+    Model/PhoneProperties/PhoneInfo.h \
+    PhoneEngine.h
