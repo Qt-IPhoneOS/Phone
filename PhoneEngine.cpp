@@ -1,30 +1,33 @@
 #include "PhoneEngine.h"
+#include "Commons/CommonDefine.h"
 
 PhoneEngine::PhoneEngine(QObject* parent)
     : QObject(parent)
     , mAppMain(&AppMain::getInstance())
+    , mAdapterController(&AdapterController::getInstance())
 {
-    mContactController = new ContactController();
+
 }
 
 PhoneEngine::~PhoneEngine() {
-
+    delete mAppMain;
+    delete mAdapterController;
 }
 
 void PhoneEngine::initialized()
 {
-    AppMain::getInstance();
+    this->registerGlobalContext();
     mAppMain->initWindow();
 }
 
 void PhoneEngine::registerGlobalContext()
 {
-    mAppMain->getQmlContext()->setContextProperty("ContactModel", mContactController->contactListModel());
-    mAppMain->getQmlContext()->setContextProperty("ContactController", mContactController);
-
+    qWarning() << "Register Context";
+    mAppMain->getQmlContext()->setContextProperty("ContactModel", mAdapterController->getController(xhtdrlx::TypeController::CONTACT));
 }
 
 void PhoneEngine::createWindow()
 {
+    qWarning() << "Show hrereeeeeee";
     AppMain::getInstance().show();
 }

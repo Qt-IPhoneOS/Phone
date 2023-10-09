@@ -1,14 +1,17 @@
 QT += quick gui core
 TEMPLATE = app
-
 TARGET = Phone
 
 SOURCES += \
     AppWindow/AppMain.cpp \
-    Model/ContactModel.cpp \
-    Model/PhoneProperties/PhoneInfo.cpp \
-    Controller/ContactController.cpp \
+    PhoneController/AdapterController.cpp \
+    PhoneController/Controllers/FavouriteController.cpp \
+    PhoneController/Controllers/KeypadController.cpp \
+    PhoneController/Controllers/RecentController.cpp \
+    PhoneController/Controllers/ContactController.cpp \
     PhoneEngine.cpp \
+    PhoneProperties/Common/PhoneInstance.cpp \
+    PhoneProperties/PhoneModel.cpp \
     main.cpp
 
 RESOURCES += \
@@ -17,7 +20,14 @@ RESOURCES += \
 
 HEADERS += \
     AppWindow/AppMain.h \
-    Controller/ContactController.h \
-    Model/ContactModel.h \
-    Model/PhoneProperties/PhoneInfo.h \
-    PhoneEngine.h
+    Commons/CommonDefine.h \
+    PhoneController/AdapterController.h \
+    PhoneController/Controllers/ContactController.h \
+    PhoneController/Controllers/FavouriteController.h \
+    PhoneController/Controllers/KeypadController.h \
+    PhoneController/Controllers/Common/PhoneController.h \
+    PhoneController/Controllers/RecentController.h \
+    PhoneProperties/Common/PhoneInstance.h \
+    PhoneEngine.h \
+    PhoneProperties/PhoneModel.h
+

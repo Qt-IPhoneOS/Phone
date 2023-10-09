@@ -1,26 +1,23 @@
-#ifndef CONTACTMODEL_H
-#define CONTACTMODEL_H
+#ifndef PHONEMODEL_H
+#define PHONEMODEL_H
 
 #include <QObject>
 #include <QAbstractListModel>
-#include "PhoneProperties/PhoneInfo.h"
+#include "Common/PhoneInstance.h"
 
-#define ASCII_A 65
-#define ASCII_Z 90
-
-class ContactModel : public QAbstractListModel
+class PhoneModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit ContactModel(QObject* parent = nullptr);
-    ~ContactModel();
+    explicit PhoneModel(QObject* parent = nullptr);
+    ~PhoneModel();
 
 public:
     Q_INVOKABLE int rowCount(const QModelIndex& parent = QModelIndex()) const final override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const final override;
 
     enum ContactRole {
-        NameContact = Qt::UserRole + 1,
+        Name = Qt::UserRole + 1,
         PhoneNumber,
         Avartar,
         Notes,
@@ -29,7 +26,7 @@ public:
 
     QHash<int,QByteArray> roleNames() const override {
         QHash<int, QByteArray> roles;
-        roles[ContactRole::NameContact] = "NameContact";
+        roles[ContactRole::Name] = "Name";
         roles[ContactRole::PhoneNumber] = "PhoneNumber";
         roles[ContactRole::Avartar] = "AvatarSource";
         roles[ContactRole::Notes] = "NoteContent";
@@ -43,16 +40,4 @@ private:
     QList<ContactInfo> mContact;
 };
 
-
-class GroundOfName : public QAbstractListModel
-{
-    Q_OBJECT
-public:
-    GroundOfName(QObject* parent = nullptr);
-    ~GroundOfName();
-
-private:
-
-};
-
-#endif // CONTACTMODEL_H
+#endif // PHONEMODEL_H

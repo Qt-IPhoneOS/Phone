@@ -1,11 +1,17 @@
 <RCC>
     <qresource prefix="/Resources">
-        <file>Screens/PHONE_MAIN_SCREEN.qml</file>
-        <file>Common/PHONE_FOOTER.qml</file>
-        <file>Common/PHONE_HEADER.qml</file>
-        <file>Common/CItems/ButtonWidget.qml</file>
-        <file>Common/qmldir</file>
-        <file>Common/CItems/CMouseArea.qml</file>
+        <file>Screens/MainPhoneScreen.qml</file>
+        <file>Screens/Common/PhoneFooter.qml</file>
+        <file>Screens/Common/PhoneHeader.qml</file>
+        <file>Screens/Common/CItems/ButtonWidget.qml</file>
+        <file>Screens/Common/qmldir</file>
+        <file>Screens/Common/CItems/CMouseArea.qml</file>
         <file>JS/def_colors.js</file>
+        <file>Screens/ScreenComponents/ContactScreen.qml</file>
+        <file>Screens/ScreenComponents/KeypadScreen.qml</file>
+        <file>Screens/ScreenComponents/FavouriteScreen.qml</file>
+        <file>Screens/ScreenComponents/RecentScreen.qml</file>
+        <file>Screens/Common/CItems/IconButton.qml</file>
+        <file>Screens/ScreenComponents/ContactComponents/ContactInstanceScreen.qml</file>
     </qresource>
 </RCC>

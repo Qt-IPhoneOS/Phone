@@ -1,14 +1,15 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import Qt5Compat.GraphicalEffects
-
 import "../Common" as CommonComponent
-import "../JS/def_colors.js" as COLOR
+import "../../JS/def_colors.js" as COLOR
 
 Item {
     id: rootItem
-    width: 428
-    height: 926
+
+    Component.onCompleted: {
+        console.log("heheheeee")
+    }
 
     Rectangle {
         anchors.fill: parent
@@ -172,7 +173,6 @@ Item {
         Image {
             id: userImage
             property bool rounded: true
-            property bool adapt: true
             width: 50
             height: 50
             anchors {
@@ -187,8 +187,8 @@ Item {
                     height: userImage.height
                     Rectangle {
                         anchors.centerIn: parent
-                        width: userImage.adapt ? userImage.width : Math.userImage(userImage.width, userImage.height)
-                        height: userImage.adapt ? userImage.height : userImage.width
+                        width: userImage.width
+                        height: userImage.height
                         radius: Math.min(userImage.width, userImage.height)
                     }
                 }
@@ -231,12 +231,13 @@ Item {
         id: listContactPhone
         width: 390
         height: 828
-        model: ContactModel
+        model: ContactModel.contactListModel
         anchors {
             horizontalCenter: parent.horizontalCenter
             top: userInforContainer.bottom
             topMargin: 10
         }
+
         delegate: Item {
             id: itemPhoneContact
             width: parent.width
@@ -244,16 +245,19 @@ Item {
             Text {
                 id: nameContact
                 color: COLOR.blackColor
-                text: model.NameContact
+                text: Name
                 font {
                     weight: 500
                 }
+
             }
             Rectangle {
                 id: separateCol1
                 width: parent.width
                 height: 1
                 radius: 5
+
+
                 anchors {
                     top: nameContact.bottom
                     topMargin: 10
@@ -262,8 +266,8 @@ Item {
             }
         }
         section {
-            property: "section"
-            criteria: ViewSection.FullString
+            property: "text"
+            criteria: ViewSection.FirstCharacter
             delegate: Item {
                 id: itemPhoneContact
                 width: parent.width
@@ -271,7 +275,7 @@ Item {
                 Text {
                     id: nameContact
                     color: COLOR.grayTextColor
-                    text: model.Section
+                    text: text
                     font {
                         weight: 500
                     }
@@ -282,12 +286,10 @@ Item {
 
     QtObject {
         id: _priCtrlGroupName
-        property var listGroupName: ["A", "B", "C"]
 
-        function convertIntToChar(argument) {
-            var temp = argument + 65
-            var text = codePointAt(temp)
-            return text
+        function convertIntToChar(integer) {
+            let character = integer + 65
+            return String.fromCharCode(character)
         }
     }
 
@@ -303,27 +305,27 @@ Item {
         }
         Repeater {
             id: repeaterCharacter
-            model: 35
+            model: 26
             Item {
                 width: parent.width
                 height: 10
                 Text {
-                    width: parent.width
+                    id: groupName
                     height: 10
+                    anchors.horizontalCenter: parent.horizontalCenter
                     text: _priCtrlGroupName.convertIntToChar(index)
                     color: "#0D7FFA"
                     font {
                         pixelSize: 10
                     }
                 }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log(groupName.text)
+                    }
+                }
             }
         }
-    }
-
-    CommonComponent.PHONE_FOOTER {
-        id: footerPhone
-        width: rootItem.width
-        height: 100
-        anchors.bottom: parent.bottom
     }
 }

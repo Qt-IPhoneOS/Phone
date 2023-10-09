@@ -1,14 +1,13 @@
 #include "ContactController.h"
 
-ContactController::ContactController(QObject* parent)
-    : QObject(parent)
+ContactController::ContactController()
 {
-    mContactModel = new ContactModel;
+    mContactModel = new PhoneModel;
     this->setContactListModel(qobject_cast<QAbstractListModel*>(mContactModel));
 }
 
 ContactController::~ContactController() {
-
+    delete mContactModel;
 }
 
 QAbstractListModel *ContactController::contactListModel() const

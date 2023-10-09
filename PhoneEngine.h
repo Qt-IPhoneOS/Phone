@@ -4,9 +4,9 @@
 #include <QObject>
 #include <QtQuick/QQuickView>
 #include <QQmlContext>
-#include "Model/ContactModel.h"
+#include "PhoneProperties/PhoneModel.h"
 #include "AppWindow/AppMain.h"
-#include "Controller/ContactController.h"
+#include "PhoneController/AdapterController.h"
 
 class PhoneEngine : public QObject
 {
@@ -22,7 +22,7 @@ public:
 
 private:
     AppMain* mAppMain {nullptr};
-    ContactController* mContactController {nullptr};
+    AdapterController* mAdapterController {nullptr};
 };
 
 #endif // PHONEENGINE_H

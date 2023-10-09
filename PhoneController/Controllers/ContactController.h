@@ -3,14 +3,16 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-#include "../Model/ContactModel.h"
+#include "../../PhoneProperties/PhoneModel.h"
+#include <QAbstractListModel>
+#include "Common/PhoneController.h"
 
-class ContactController : public QObject
+class ContactController : public PhoneController
 {
     Q_OBJECT
     Q_PROPERTY(QAbstractListModel* contactListModel READ contactListModel WRITE setContactListModel NOTIFY contactListModelChanged)
 public:
-    explicit ContactController(QObject* parent = nullptr);
+    explicit ContactController();
     ~ContactController();
 
 public:
@@ -22,7 +24,7 @@ signals:
     void contactListModelChanged();
 
 private:
-    ContactModel* mContactModel {nullptr};
+    PhoneModel* mContactModel {nullptr};
     QAbstractListModel *mContactListModel {nullptr};
 };
 

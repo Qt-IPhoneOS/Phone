@@ -8,5 +8,13 @@
         <file>Assets/user_image.jpg</file>
         <file>Assets/keypad_nonactive.png</file>
         <file>Assets/keypad_active.png</file>
+        <file>Assets/recent_icon_normal.png</file>
+        <file>Assets/favourite_icon_active.png</file>
+        <file>Assets/favourite_icon_normal.png</file>
+        <file>Assets/recent_icon_active.png</file>
+        <file>Assets/contact_icon_active.png</file>
+        <file>Assets/contact_icon_normal.png</file>
+        <file>Assets/voicemail_icon_active.png</file>
+        <file>Assets/voicemail_icon_normal.png</file>
     </qresource>
 </RCC>

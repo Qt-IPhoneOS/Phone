@@ -21,9 +21,9 @@ public:
     QQmlEngine* getQQmlEngine() { return mEngine; }
 
 private:
-    QQuickView*         mView       {nullptr};
-    QQmlContext*        mContext    {nullptr};
-    QQmlEngine*         mEngine     {nullptr};
+    QQuickView*         mView {nullptr};
+    QQmlContext*        mContext {nullptr};
+    QQmlEngine*         mEngine {nullptr};
 
 private:
     explicit AppMain(QObject *parent = nullptr);
