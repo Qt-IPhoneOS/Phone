@@ -1,13 +1,12 @@
 #ifndef COMMONDEFINE_H
 #define COMMONDEFINE_H
 
-namespace xhtdrlx {
-    enum TypeController {
-        CONTACT = 0,
-        FAVOURITE,
-        KEYPAD,
-        RECENT
-    };
-}
+enum class TypeController {
+    Contact = 0,
+    Favourite,
+    Keypad,
+    Recent
+};
+
 
 #endif // COMMONDEFINE_H

@@ -4,13 +4,11 @@
 PhoneEngine::PhoneEngine(QObject* parent)
     : QObject(parent)
     , mAppMain(&AppMain::getInstance())
-    , mAdapterController(&AdapterController::getInstance())
 {
-
+    mAdapterController = new AdapterController();
 }
 
 PhoneEngine::~PhoneEngine() {
-    delete mAppMain;
     delete mAdapterController;
 }
 
@@ -22,12 +20,10 @@ void PhoneEngine::initialized()
 
 void PhoneEngine::registerGlobalContext()
 {
-    qWarning() << "Register Context";
-    mAppMain->getQmlContext()->setContextProperty("ContactModel", mAdapterController->getController(xhtdrlx::TypeController::CONTACT));
+    mAppMain->getQmlContext()->setContextProperty("ContactModel", mAdapterController->getController(TypeController::Contact));
 }
 
 void PhoneEngine::createWindow()
 {
-    qWarning() << "Show hrereeeeeee";
     AppMain::getInstance().show();
 }

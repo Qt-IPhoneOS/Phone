@@ -3,38 +3,31 @@
 
 AdapterController::AdapterController()
 {
-    qWarning() << "Constructor AdapterController";
-    mListController[xhtdrlx::TypeController::CONTACT] = new ContactController();
-    mListController[xhtdrlx::TypeController::FAVOURITE] = new FavouriteController();
-    mListController[xhtdrlx::TypeController::KEYPAD] = new KeypadController();
-    mListController[xhtdrlx::TypeController::RECENT] = new RecentController();
+    mListController[TypeController::Contact] = new ContactController();
+    mListController[TypeController::Favourite] = new FavouriteController();
+    mListController[TypeController::Keypad] = new KeypadController();
+    mListController[TypeController::Recent] = new RecentController();
 }
 
 AdapterController::~AdapterController()
 {
-    qWarning() << "Destructor";
+
 }
 
-AdapterController &AdapterController::getInstance()
-{
-    static AdapterController instance;
-    return instance;
-}
-
-PhoneController *AdapterController::getController(xhtdrlx::TypeController type)
+PhoneController *AdapterController::getController(TypeController type)
 {
     switch (type) {
-    case xhtdrlx::TypeController::CONTACT:
-        return mListController[xhtdrlx::TypeController::CONTACT];
+    case TypeController::Contact:
+        return mListController[TypeController::Contact];
         break;
-    case xhtdrlx::TypeController::FAVOURITE:
-        return mListController[xhtdrlx::TypeController::FAVOURITE];
+    case TypeController::Favourite:
+        return mListController[TypeController::Favourite];
         break;
-    case xhtdrlx::TypeController::RECENT:
-        return mListController[xhtdrlx::TypeController::KEYPAD];
+    case TypeController::Keypad:
+        return mListController[TypeController::Keypad];
         break;
-    case xhtdrlx::TypeController::KEYPAD:
-        return mListController[xhtdrlx::TypeController::RECENT];
+    case TypeController::Recent:
+        return mListController[TypeController::Recent];
         break;
     default:
         break;

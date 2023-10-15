@@ -4,7 +4,6 @@
 PhoneModel::PhoneModel(QObject* parent)
     : QAbstractListModel(parent)
 {
-    qWarning() << "Constructor PhoneModel";
     mContact.append(ContactInfo("Vo Dinh Thai", "0963474377", "qrc:/Screen/Images/icons8-star-50.png", "Call me now"));
     mContact.append(ContactInfo("Vo Dinh Quoc", "0963474377", "qrc:/Screen/Images/icons8-star-50.png", "Call me later"));
     mContact.append(ContactInfo("Truong Quang Bao","0963474377", "qrc:/Screen/Images/icons8-star-50.png", "Call me later"));
@@ -23,7 +22,6 @@ int PhoneModel::rowCount(const QModelIndex &parent) const
 
 QVariant PhoneModel::data(const QModelIndex &index, int role) const
 {
-    qWarning() << "ThaiVD == data";
     if (!index.isValid())
         return QVariant();
     const ContactInfo &item = mContact[index.row()];

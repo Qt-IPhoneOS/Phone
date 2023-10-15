@@ -15,19 +15,16 @@ class AdapterController : public QObject
     Q_OBJECT
 
 public:
+    AdapterController();
     ~AdapterController();
-    static AdapterController& getInstance();
-
-
 
 public:
-    PhoneController* getController(xhtdrlx::TypeController type);
+    PhoneController* getController(TypeController type);
 
 private:
-    QHash<xhtdrlx::TypeController, PhoneController*> mListController;
+    QHash<TypeController, PhoneController*> mListController;
 
 private:
-    AdapterController();
 };
 
 #endif // ADAPTERCONTROLLER_H
