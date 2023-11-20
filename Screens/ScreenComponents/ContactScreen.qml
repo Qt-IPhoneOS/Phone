@@ -1,6 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import Qt5Compat.GraphicalEffects
+//import Qt5Compat.GraphicalEffects
 import "../Common" as CommonComponent
 import "../../JS/def_colors.js" as COLOR
 
@@ -180,19 +180,19 @@ Item {
                 left: parent.left
             }
             source: "qrc:/Assets/user_image.jpg"
-            layer.enabled: rounded
-            layer.effect: OpacityMask {
-                maskSource: Item {
-                    width: userImage.width
-                    height: userImage.height
-                    Rectangle {
-                        anchors.centerIn: parent
-                        width: userImage.width
-                        height: userImage.height
-                        radius: Math.min(userImage.width, userImage.height)
-                    }
-                }
-            }
+            //layer.enabled: rounded
+//            layer.effect: OpacityMask {
+//                maskSource: Item {
+//                    width: userImage.width
+//                    height: userImage.height
+//                    Rectangle {
+//                        anchors.centerIn: parent
+//                        width: userImage.width
+//                        height: userImage.height
+//                        radius: Math.min(userImage.width, userImage.height)
+//                    }
+//                }
+//            }
         }
         Text {
             id: userName

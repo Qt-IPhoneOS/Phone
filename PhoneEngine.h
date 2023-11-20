@@ -2,7 +2,7 @@
 #define PHONEENGINE_H
 
 #include <QObject>
-#include <QtQuick/QQuickView>
+#include <QQuickView>
 #include <QQmlContext>
 #include "PhoneProperties/PhoneModel.h"
 #include "AppWindow/AppMain.h"
@@ -16,12 +16,13 @@ public:
     ~PhoneEngine();
 
 public:
+    bool createWindow();
     void initialized();
-    void registerGlobalContext();
-    void createWindow();
+    void registerContextProperty();
+    void registerEnumType();
 
 private:
-    AppMain* mAppMain {nullptr};
+    QQuickView* mView {nullptr};
     AdapterController* mAdapterController {nullptr};
 };
 

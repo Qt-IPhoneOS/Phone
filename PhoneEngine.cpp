@@ -3,27 +3,50 @@
 
 PhoneEngine::PhoneEngine(QObject* parent)
     : QObject(parent)
-    , mAppMain(&AppMain::getInstance())
 {
     mAdapterController = new AdapterController();
 }
 
-PhoneEngine::~PhoneEngine() {
+PhoneEngine::~PhoneEngine()
+{
     delete mAdapterController;
 }
 
 void PhoneEngine::initialized()
 {
-    this->registerGlobalContext();
-    mAppMain->initWindow();
+    if (createWindow())
+    {
+        //        mSettingController->initialized();
+        //mWifiController->init();
+    }
 }
 
-void PhoneEngine::registerGlobalContext()
+void PhoneEngine::registerContextProperty()
 {
-    mAppMain->getQmlContext()->setContextProperty("ContactModel", mAdapterController->getController(TypeController::Contact));
+    mView->rootContext()->setContextProperty("ContactModel", mAdapterController->getController(TypeController::Contact));
 }
 
-void PhoneEngine::createWindow()
+bool PhoneEngine::createWindow()
 {
-    AppMain::getInstance().show();
+    if (nullptr == mView) {
+        mView = new QQuickView();
+    }
+
+    if (mView == nullptr)
+        return false;
+
+    registerContextProperty();
+    registerEnumType();
+
+    mView->setWidth(700);
+    mView->setHeight(1100);
+    mView->setSource(QUrl("qrc:/Resources/Screens/MainPhoneScreen.qml"));
+    mView->show();
+
+    return true;
+}
+
+void PhoneEngine::registerEnumType()
+{
+    //qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
 }
