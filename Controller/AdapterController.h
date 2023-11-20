@@ -2,13 +2,13 @@
 #define ADAPTERCONTROLLER_H
 
 #include <QObject>
+#include <Enums.h>
+#include <QMap>
+#include <QHash>
 #include "Controllers/ContactController.h"
 #include "Controllers/FavouriteController.h"
 #include "Controllers/KeypadController.h"
 #include "Controllers/RecentController.h"
-#include "../Commons/CommonDefine.h"
-#include <QMap>
-#include <QHash>
 
 class AdapterController : public QObject
 {
@@ -19,10 +19,10 @@ public:
     ~AdapterController();
 
 public:
-    PhoneController* getController(TypeController type);
+    PhoneController* getController(Enums::TypeController type);
 
 private:
-    QHash<TypeController, PhoneController*> mListController;
+    QHash<Enums::TypeController, PhoneController*> mListController;
 
 private:
 };

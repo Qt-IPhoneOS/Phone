@@ -3,10 +3,10 @@
 
 AdapterController::AdapterController()
 {
-    mListController[TypeController::Contact] = new ContactController();
-    mListController[TypeController::Favourite] = new FavouriteController();
-    mListController[TypeController::Keypad] = new KeypadController();
-    mListController[TypeController::Recent] = new RecentController();
+    mListController[Enums::Contact] = new ContactController();
+    mListController[Enums::Favourite] = new FavouriteController();
+    mListController[Enums::Keypad] = new KeypadController();
+    mListController[Enums::Recent] = new RecentController();
 }
 
 AdapterController::~AdapterController()
@@ -14,20 +14,20 @@ AdapterController::~AdapterController()
 
 }
 
-PhoneController *AdapterController::getController(TypeController type)
+PhoneController *AdapterController::getController(Enums::TypeController type)
 {
     switch (type) {
-    case TypeController::Contact:
-        return mListController[TypeController::Contact];
+    case Enums::Contact:
+        return mListController[Enums::Contact];
         break;
-    case TypeController::Favourite:
-        return mListController[TypeController::Favourite];
+    case Enums::Favourite:
+        return mListController[Enums::Favourite];
         break;
-    case TypeController::Keypad:
-        return mListController[TypeController::Keypad];
+    case Enums::Keypad:
+        return mListController[Enums::Keypad];
         break;
-    case TypeController::Recent:
-        return mListController[TypeController::Recent];
+    case Enums::Recent:
+        return mListController[Enums::Recent];
         break;
     default:
         break;

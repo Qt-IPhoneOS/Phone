@@ -1,5 +1,4 @@
 #include "PhoneEngine.h"
-#include "Commons/CommonDefine.h"
 
 PhoneEngine::PhoneEngine(QObject* parent)
     : QObject(parent)
@@ -23,7 +22,7 @@ void PhoneEngine::initialized()
 
 void PhoneEngine::registerContextProperty()
 {
-    mView->rootContext()->setContextProperty("ContactModel", mAdapterController->getController(TypeController::Contact));
+    mView->rootContext()->setContextProperty("ContactModel", mAdapterController->getController(Enums::Contact));
 }
 
 bool PhoneEngine::createWindow()
@@ -48,5 +47,5 @@ bool PhoneEngine::createWindow()
 
 void PhoneEngine::registerEnumType()
 {
-    //qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
+    qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
 }

@@ -33,6 +33,7 @@ HEADERS += \
     Controller/Controllers/KeypadController.h \
     Controller/Controllers/Common/PhoneController.h \
     Controller/Controllers/RecentController.h \
+    Controller/Enums.h \
     PhoneProperties/Common/PhoneInstance.h \
     Controller/PhoneEngine.h \
     PhoneProperties/PhoneModel.h
