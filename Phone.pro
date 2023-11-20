@@ -7,6 +7,7 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../UICommon \
                $$PWD/../UICommon/Feature \
                $$PWD/Controller \
+               $$PWD/Model \
                $$PWD/../../Services/include
                $$PWD/../../Services/include/Common
 
@@ -17,8 +18,8 @@ SOURCES += \
     Controller/Controllers/RecentController.cpp \
     Controller/Controllers/ContactController.cpp \
     Controller/PhoneEngine.cpp \
-    PhoneProperties/Common/PhoneInstance.cpp \
-    PhoneProperties/PhoneModel.cpp \
+    Model/Common/PhoneInstance.cpp \
+    Model/PhoneModel.cpp \
     main.cpp
 
 RESOURCES += \
@@ -34,7 +35,7 @@ HEADERS += \
     Controller/Controllers/Common/PhoneController.h \
     Controller/Controllers/RecentController.h \
     Controller/Enums.h \
-    PhoneProperties/Common/PhoneInstance.h \
+    Model/Common/PhoneInstance.h \
     Controller/PhoneEngine.h \
-    PhoneProperties/PhoneModel.h
+    Model/PhoneModel.h
 

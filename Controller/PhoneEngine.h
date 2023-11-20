@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QQuickView>
 #include <QQmlContext>
-#include "PhoneProperties/PhoneModel.h"
+#include "PhoneModel.h"
 #include "Controller/AdapterController.h"
 
 class PhoneEngine : public QObject

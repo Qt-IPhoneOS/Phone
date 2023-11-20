@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-#include "../../PhoneProperties/PhoneModel.h"
+#include <PhoneModel.h>
 #include <QAbstractListModel>
 #include "Common/PhoneController.h"
 
