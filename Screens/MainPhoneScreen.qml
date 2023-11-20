@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 //import QtGraphicalEffects 1.15
 
 import "Common" as CommonComponent
-import "../JS/def_colors.js" as COLOR
+import "JS/def_colors.js" as COLOR
 
 Item {
     id: rootItem

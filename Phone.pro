@@ -3,12 +3,11 @@ TEMPLATE = app
 TARGET = Phone
 
 SOURCES += \
-    AppWindow/AppMain.cpp \
-    PhoneController/AdapterController.cpp \
-    PhoneController/Controllers/FavouriteController.cpp \
-    PhoneController/Controllers/KeypadController.cpp \
-    PhoneController/Controllers/RecentController.cpp \
-    PhoneController/Controllers/ContactController.cpp \
+    Controller/AdapterController.cpp \
+    Controller/Controllers/FavouriteController.cpp \
+    Controller/Controllers/KeypadController.cpp \
+    Controller/Controllers/RecentController.cpp \
+    Controller/Controllers/ContactController.cpp \
     PhoneEngine.cpp \
     PhoneProperties/Common/PhoneInstance.cpp \
     PhoneProperties/PhoneModel.cpp \
@@ -19,14 +18,13 @@ RESOURCES += \
     Resources.qrc
 
 HEADERS += \
-    AppWindow/AppMain.h \
     Commons/CommonDefine.h \
-    PhoneController/AdapterController.h \
-    PhoneController/Controllers/ContactController.h \
-    PhoneController/Controllers/FavouriteController.h \
-    PhoneController/Controllers/KeypadController.h \
-    PhoneController/Controllers/Common/PhoneController.h \
-    PhoneController/Controllers/RecentController.h \
+    Controller/AdapterController.h \
+    Controller/Controllers/ContactController.h \
+    Controller/Controllers/FavouriteController.h \
+    Controller/Controllers/KeypadController.h \
+    Controller/Controllers/Common/PhoneController.h \
+    Controller/Controllers/RecentController.h \
     PhoneProperties/Common/PhoneInstance.h \
     PhoneEngine.h \
     PhoneProperties/PhoneModel.h

@@ -1,9 +1,8 @@
 import QtQuick
 import QtQuick.Controls
-import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts
 import "../../Common" as CommonComponent
-import "../../../JS/def_colors.js" as COLOR
+import "../../JS/def_colors.js" as COLOR
 import "../../Common/CItems" as CItems
 
 Item {
