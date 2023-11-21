@@ -14,7 +14,7 @@ AdapterController::~AdapterController()
 
 }
 
-PhoneController *AdapterController::getController(Enums::TypeController type)
+AbstractController *AdapterController::getController(Enums::TypeController type)
 {
     switch (type) {
     case Enums::Contact:

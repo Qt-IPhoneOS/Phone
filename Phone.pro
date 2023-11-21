@@ -29,10 +29,10 @@ RESOURCES += \
 HEADERS += \
     Commons/CommonDefine.h \
     Controller/AdapterController.h \
+    Controller/Common/AbstractController.h \
     Controller/Contact/ContactController.h \
     Controller/Favourite/FavouriteController.h \
     Controller/Keypad/KeypadController.h \
-    Controller/Common/PhoneController.h \
     Controller/Recent/RecentController.h \
     Controller/Common/Enums.h \
     Model/Common/PhoneInstance.h \

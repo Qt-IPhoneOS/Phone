@@ -19,10 +19,10 @@ public:
     ~AdapterController();
 
 public:
-    PhoneController* getController(Enums::TypeController type);
+    AbstractController* getController(Enums::TypeController type);
 
 private:
-    QHash<Enums::TypeController, PhoneController*> mListController;
+    QHash<Enums::TypeController, AbstractController*> mListController;
 
 private:
 };

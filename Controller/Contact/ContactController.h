@@ -5,9 +5,9 @@
 #include <QAbstractListModel>
 #include <PhoneModel.h>
 #include <QAbstractListModel>
-#include "Common/PhoneController.h"
+#include "Common/AbstractController.h"
 
-class ContactController : public PhoneController
+class ContactController : public AbstractController
 {
     Q_OBJECT
     Q_PROPERTY(QAbstractListModel* contactListModel READ contactListModel WRITE setContactListModel NOTIFY contactListModelChanged)

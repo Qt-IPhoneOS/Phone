@@ -5,9 +5,9 @@
 #include <QAbstractListModel>
 #include <PhoneModel.h>
 #include <QAbstractListModel>
-#include "Common/PhoneController.h"
+#include "Common/AbstractController.h"
 
-class RecentController : public PhoneController
+class RecentController : public AbstractController
 {
     Q_OBJECT
 public:

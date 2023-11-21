@@ -1,14 +1,14 @@
-#ifndef PHONECONTROLLER_H
-#define PHONECONTROLLER_H
+#ifndef ABSTRACTCONTROLLER_H
+#define ABSTRACTCONTROLLER_H
 
 #include <QObject>
 #include <QAbstractListModel>
 
-class PhoneController : public QObject
+class AbstractController : public QObject
 {
     Q_OBJECT
 public:
-    virtual ~PhoneController();
+    virtual ~AbstractController();
 
 public:
 //    virtual void dialOut() = 0;
@@ -18,9 +18,9 @@ public:
 
 };
 
-inline PhoneController::~PhoneController()
+inline AbstractController::~AbstractController()
 {
 
 }
 
-#endif // PHONECONTROLLER_H
+#endif // ABSTRACTCONTROLLER_H
