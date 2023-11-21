@@ -2,13 +2,13 @@
 #define ADAPTERCONTROLLER_H
 
 #include <QObject>
-#include <Enums.h>
+#include <Common/Enums.h>
 #include <QMap>
 #include <QHash>
-#include "Controllers/ContactController.h"
-#include "Controllers/FavouriteController.h"
-#include "Controllers/KeypadController.h"
-#include "Controllers/RecentController.h"
+#include <Contact/ContactController.h>
+#include <Favourite/FavouriteController.h>
+#include <Keypad/KeypadController.h>
+#include <Recent/RecentController.h>
 
 class AdapterController : public QObject
 {

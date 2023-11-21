@@ -13,10 +13,10 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
 
 SOURCES += \
     Controller/AdapterController.cpp \
-    Controller/Controllers/FavouriteController.cpp \
-    Controller/Controllers/KeypadController.cpp \
-    Controller/Controllers/RecentController.cpp \
-    Controller/Controllers/ContactController.cpp \
+    Controller/Favourite/FavouriteController.cpp \
+    Controller/Keypad/KeypadController.cpp \
+    Controller/Recent/RecentController.cpp \
+    Controller/Contact/ContactController.cpp \
     Controller/PhoneEngine.cpp \
     Model/Common/PhoneInstance.cpp \
     Model/PhoneModel.cpp \
@@ -29,12 +29,12 @@ RESOURCES += \
 HEADERS += \
     Commons/CommonDefine.h \
     Controller/AdapterController.h \
-    Controller/Controllers/ContactController.h \
-    Controller/Controllers/FavouriteController.h \
-    Controller/Controllers/KeypadController.h \
-    Controller/Controllers/Common/PhoneController.h \
-    Controller/Controllers/RecentController.h \
-    Controller/Enums.h \
+    Controller/Contact/ContactController.h \
+    Controller/Favourite/FavouriteController.h \
+    Controller/Keypad/KeypadController.h \
+    Controller/Common/PhoneController.h \
+    Controller/Recent/RecentController.h \
+    Controller/Common/Enums.h \
     Model/Common/PhoneInstance.h \
     Controller/PhoneEngine.h \
     Model/PhoneModel.h
