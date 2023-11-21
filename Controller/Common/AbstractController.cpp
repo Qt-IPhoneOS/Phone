@@ -9,3 +9,8 @@ AbstractController::~AbstractController()
 {
 
 }
+
+bool AbstractController::onShowScreen()
+{
+    return true;
+}

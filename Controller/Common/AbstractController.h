@@ -11,10 +11,7 @@ public:
     AbstractController();
     virtual ~AbstractController();
 
-//    virtual void dialOut() = 0;
-//    virtual void sendMessage(QString message) = 0;
-//    virtual void videoCall() = 0;
-//    virtual void sendMail() = 0;
+    virtual bool onShowScreen();
 
 };
 

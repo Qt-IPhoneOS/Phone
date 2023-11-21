@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 //import QtGraphicalEffects 1.15
 
-import "Common" as CommonComponent
+import "Common"
 import "JS/def_colors.js" as COLOR
 
 Item {
@@ -19,7 +19,7 @@ Item {
 //        source: "qrc:/Resources/Screens/ScreenComponents/ContactComponents/ContactInstanceScreen.qml"
     }
 
-    CommonComponent.PhoneFooter {
+    PhoneFooter {
         id: footerPhone
         width: parent.width
         height: 60

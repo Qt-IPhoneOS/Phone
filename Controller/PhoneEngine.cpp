@@ -22,7 +22,7 @@ void PhoneEngine::initialized()
 
 void PhoneEngine::registerContextProperty()
 {
-    mView->rootContext()->setContextProperty("ContactModel", mAdapterController->getController(Enums::Contact));
+    mView->rootContext()->setContextProperty("ContactModel", mAdapterController->getController<ContactController>(Enums::ContactType));
 }
 
 bool PhoneEngine::createWindow()

@@ -7,12 +7,12 @@ public:
     {
     }
 
-    enum TypeController {
-        Contact = 0,
-        Favourite,
-        Keypad,
-        Recent
+    enum PhoneType {
+        ContactType = 0,
+        FavouriteType,
+        KeypadType,
+        RecentType
     };
 
-    Q_ENUM(TypeController)
+    Q_ENUM(PhoneType)
 };

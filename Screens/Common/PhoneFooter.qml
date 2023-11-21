@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import "CItems" as CItem
+import "CItems"
 
 Rectangle {
     id: rootItem
@@ -17,7 +17,7 @@ Rectangle {
         anchors.fill: parent
 
         spacing: 0
-        CItem.IconButton {
+        IconButton {
             id: favouriteIcon
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -28,7 +28,7 @@ Rectangle {
                 rootItem.typeOfScreen(0)
             }
         }
-        CItem.IconButton {
+        IconButton {
             id: recentsIcon
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -39,7 +39,7 @@ Rectangle {
                 rootItem.typeOfScreen(1)
             }
         }
-        CItem.IconButton {
+        IconButton {
             id: contactsIcon
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -50,7 +50,7 @@ Rectangle {
                 rootItem.typeOfScreen(2)
             }
         }
-        CItem.IconButton {
+        IconButton {
             id: keypadIcon
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -61,7 +61,7 @@ Rectangle {
                 rootItem.typeOfScreen(3)
             }
         }
-        CItem.IconButton {
+        IconButton {
             id: voicemailIcon
             Layout.fillWidth: true
             Layout.fillHeight: true
