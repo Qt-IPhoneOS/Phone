@@ -13,6 +13,7 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
 
 SOURCES += \
     Controller/AdapterController.cpp \
+    Controller/Common/AbstractController.cpp \
     Controller/Favourite/FavouriteController.cpp \
     Controller/Keypad/KeypadController.cpp \
     Controller/Recent/RecentController.cpp \
