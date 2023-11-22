@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/Resources">
-        <file>Screens/MainPhoneScreen.qml</file>
+        <file>Screens/MainView.qml</file>
         <file>Screens/Common/PhoneFooter.qml</file>
         <file>Screens/Common/PhoneHeader.qml</file>
         <file>Screens/Common/CItems/ButtonWidget.qml</file>

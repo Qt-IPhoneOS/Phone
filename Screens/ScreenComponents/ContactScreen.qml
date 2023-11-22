@@ -5,10 +5,8 @@ import "../JS/def_colors.js" as COLOR
 
 Item {
     id: rootItem
-
-    Component.onCompleted: {
-        console.log("heheheeee")
-    }
+    width: ScreenWidth
+    height: ScreenHeight
 
     Rectangle {
         anchors.fill: parent

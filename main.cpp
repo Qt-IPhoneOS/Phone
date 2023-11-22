@@ -8,6 +8,5 @@ int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
     PhoneEngine* engine = new PhoneEngine();
     engine->initialized();
-    engine->createWindow();
     return app.exec();
 }

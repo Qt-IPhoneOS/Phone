@@ -4,6 +4,16 @@ PhoneEngine::PhoneEngine(QObject* parent)
     : QObject(parent)
 {
     mAdapterController = new AdapterController();
+    mScreenNavigator = ScreenNagivator::instance();
+    mContactController = mAdapterController->getController<ContactController>(Enums::ContactType);
+
+    std::unordered_map<uchar, QString> screens = {
+        {Enums::ContactScreen, CONTACTSCREENSOURCE},
+        {Enums::FavouritesScreen, FAVOURITESCREENSOURCE},
+        {Enums::RecentsScreen, RECENTSCREENSOURCE},
+        {Enums::KeyPadScreen, KEYPADSCREENSOURCE},
+        {Enums::VoiceMailScreen, VOICEMAILSCREENSOURCE}
+    };
 }
 
 PhoneEngine::~PhoneEngine()
@@ -15,32 +25,24 @@ void PhoneEngine::initialized()
 {
     if (createWindow())
     {
-        //        mSettingController->initialized();
-        //mWifiController->init();
+        mScreenNavigator->showScreen(Enums::FavouritesScreen);
     }
 }
 
 void PhoneEngine::registerContextProperty()
 {
-    mView->rootContext()->setContextProperty("ContactModel", mAdapterController->getController<ContactController>(Enums::ContactType));
+    mScreenNavigator->getViewer()->rootContext()->setContextProperty("ContactModel", mContactController);
 }
 
 bool PhoneEngine::createWindow()
 {
-    if (nullptr == mView) {
-        mView = new QQuickView();
-    }
-
-    if (mView == nullptr)
+    if (mScreenNavigator->getViewer() == nullptr)
         return false;
 
     registerContextProperty();
     registerEnumType();
 
-    mView->setWidth(700);
-    mView->setHeight(1100);
-    mView->setSource(QUrl("qrc:/Resources/Screens/MainPhoneScreen.qml"));
-    mView->show();
+    mScreenNavigator->createView();
 
     return true;
 }

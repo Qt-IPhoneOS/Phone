@@ -19,6 +19,7 @@ SOURCES += \
     Controller/Recent/RecentController.cpp \
     Controller/Contact/ContactController.cpp \
     Controller/PhoneEngine.cpp \
+    Controller/ScreenNavigator/ScreenNavigator.cpp \
     Model/Common/PhoneInstance.cpp \
     Model/PhoneModel.cpp \
     main.cpp
@@ -31,11 +32,13 @@ HEADERS += \
     Commons/CommonDefine.h \
     Controller/AdapterController.h \
     Controller/Common/AbstractController.h \
+    Controller/Common/PhoneDefines.h \
     Controller/Contact/ContactController.h \
     Controller/Favourite/FavouriteController.h \
     Controller/Keypad/KeypadController.h \
     Controller/Recent/RecentController.h \
     Controller/Common/Enums.h \
+    Controller/ScreenNavigator/ScreenNavigator.h \
     Model/Common/PhoneInstance.h \
     Controller/PhoneEngine.h \
     Model/PhoneModel.h

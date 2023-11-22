@@ -7,16 +7,14 @@ import "JS/def_colors.js" as COLOR
 
 Item {
     id: rootItem
-    width: 428
-    height: 886
+    width: ScreenWidth
+    height: ScreenHeight
 
     Loader {
         id: loaderMainScreenPhone
-        width: 428
-        height: 826
+        anchors.fill: parent
         active: true
-        source: "qrc:/Resources/Screens/ScreenComponents/ContactScreen.qml"
-//        source: "qrc:/Resources/Screens/ScreenComponents/ContactComponents/ContactInstanceScreen.qml"
+        source: ScreenSource
     }
 
     PhoneFooter {

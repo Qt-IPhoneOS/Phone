@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QQuickView>
 #include <QQmlContext>
+#include <unordered_map>
+#include "ScreenNavigator/ScreenNavigator.h"
+#include "Common/PhoneDefines.h"
 #include "PhoneModel.h"
 #include "AdapterController.h"
 
@@ -23,6 +26,8 @@ public:
 private:
     QQuickView* mView {nullptr};
     AdapterController* mAdapterController {nullptr};
+    ScreenNagivator* mScreenNavigator;
+    ContactController* mContactController {nullptr};
 };
 
 #endif // PHONEENGINE_H

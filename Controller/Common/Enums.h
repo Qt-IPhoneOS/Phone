@@ -14,5 +14,14 @@ public:
         RecentType
     };
 
+    enum ScreenDefine {
+        ContactScreen,
+        FavouritesScreen,
+        RecentsScreen,
+        KeyPadScreen,
+        VoiceMailScreen
+    };
+
     Q_ENUM(PhoneType)
+    Q_ENUM(ScreenDefine)
 };
