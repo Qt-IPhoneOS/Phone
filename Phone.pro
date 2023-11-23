@@ -2,10 +2,16 @@ QT += quick gui core
 TEMPLATE = app
 TARGET = Phone
 
+LIBS += -L$$PWD/../../Executable \
+        -lmiddlewarelayer \
+        -luicommon \
+        -lservice
+
 INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../../MiddlewareLayer/Common \
                $$PWD/../UICommon \
                $$PWD/../UICommon/Feature \
+               $$PWD/../UICommon/ScreenManager \
                $$PWD/Controller \
                $$PWD/Model \
                $$PWD/../../Services/include
@@ -19,8 +25,6 @@ SOURCES += \
     Controller/Recent/RecentController.cpp \
     Controller/Contact/ContactController.cpp \
     Controller/PhoneEngine.cpp \
-    Controller/ScreenNavigator/ScreenInfo.cpp \
-    Controller/ScreenNavigator/ScreenNavigator.cpp \
     Model/Common/PhoneInstance.cpp \
     Model/PhoneModel.cpp \
     main.cpp
@@ -39,8 +43,6 @@ HEADERS += \
     Controller/Keypad/KeypadController.h \
     Controller/Recent/RecentController.h \
     Controller/Common/Enums.h \
-    Controller/ScreenNavigator/ScreenInfo.h \
-    Controller/ScreenNavigator/ScreenNavigator.h \
     Model/Common/PhoneInstance.h \
     Controller/PhoneEngine.h \
     Model/PhoneModel.h

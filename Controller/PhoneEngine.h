@@ -5,7 +5,7 @@
 #include <QQuickView>
 #include <QQmlContext>
 #include <unordered_map>
-#include "ScreenNavigator/ScreenNavigator.h"
+#include <ScreenNavigator.h>
 #include "Common/PhoneDefines.h"
 #include "PhoneModel.h"
 #include "AdapterController.h"
