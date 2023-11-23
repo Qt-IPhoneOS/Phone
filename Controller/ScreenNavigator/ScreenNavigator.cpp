@@ -36,7 +36,8 @@ void ScreenNagivator::showScreen(uchar screen)
     {
         if (item.first == screen)
         {
-            this->updateProperty("ScreenSource", item.second);
+            ScreenInfo* screen = item.second;
+            this->updateProperty("ScreenSource", screen->getSource());
         }
     }
 }
@@ -58,17 +59,13 @@ void ScreenNagivator::updateProperty(const QString &str, const QVariant &val)
     mContext->setContextProperty(str, val);
 }
 
-void ScreenNagivator::registerScreenProperties(const std::unordered_map<uchar, QString> &properties)
+void ScreenNagivator::registerScreen(const uchar &screenId, const QString& name, const QString &url)
 {
-    mScreenProperties = properties;
-}
-
-void ScreenNagivator::registerScreen(const uchar &screenId, const QString &url)
-{
-    if (mScreenProperties.find(screenId) == mScreenProperties.end())
+    if (mScreenProperties.find(screenId) != mScreenProperties.end())
         return;
 
-    mScreenProperties[screenId] = url;
+    ScreenInfo* screen = new ScreenInfo(name, url);
+    mScreenProperties[screenId] = screen;
 }
 
 ScreenNagivator* ScreenNagivator::instance()

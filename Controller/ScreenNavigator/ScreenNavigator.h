@@ -6,6 +6,7 @@
 #include <QQmlContext>
 #include <QQmlComponent>
 #include <QQmlEngine>
+#include "ScreenInfo.h"
 
 class ScreenNagivator : public QObject
 {
@@ -21,8 +22,7 @@ public:
     void registerProperty(const QString& str, const QVariant&);
     void updateProperty(const QString&, const QVariant&);
 
-    void registerScreenProperties(const std::unordered_map<uchar, QString>&);
-    void registerScreen(const uchar& screenId, const QString& url);
+    void registerScreen(const uchar& screenId, const QString& name, const QString& url);
 
 private:
     ScreenNagivator();
@@ -31,7 +31,7 @@ private:
     QQmlContext* mContext {nullptr};
     QQmlEngine mEngine;
     QVector<QString> mContextProperties;
-    std::unordered_map<uchar, QString> mScreenProperties;
+    std::unordered_map<uchar, ScreenInfo*> mScreenProperties;
 };
 
 #endif // SCREENNAVIGATOR_H

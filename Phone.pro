@@ -19,6 +19,7 @@ SOURCES += \
     Controller/Recent/RecentController.cpp \
     Controller/Contact/ContactController.cpp \
     Controller/PhoneEngine.cpp \
+    Controller/ScreenNavigator/ScreenInfo.cpp \
     Controller/ScreenNavigator/ScreenNavigator.cpp \
     Model/Common/PhoneInstance.cpp \
     Model/PhoneModel.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     Controller/Keypad/KeypadController.h \
     Controller/Recent/RecentController.h \
     Controller/Common/Enums.h \
+    Controller/ScreenNavigator/ScreenInfo.h \
     Controller/ScreenNavigator/ScreenNavigator.h \
     Model/Common/PhoneInstance.h \
     Controller/PhoneEngine.h \
