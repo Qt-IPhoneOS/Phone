@@ -14,6 +14,8 @@ PhoneEngine::PhoneEngine(QObject* parent)
         {Enums::KeyPadScreen, KEYPADSCREENSOURCE},
         {Enums::VoiceMailScreen, VOICEMAILSCREENSOURCE}
     };
+
+    mScreenNavigator->registerScreenProperties(screens);
 }
 
 PhoneEngine::~PhoneEngine()
@@ -25,7 +27,7 @@ void PhoneEngine::initialized()
 {
     if (createWindow())
     {
-        mScreenNavigator->showScreen(Enums::FavouritesScreen);
+        mScreenNavigator->showScreen(Enums::ContactScreen);
     }
 }
 

@@ -21,7 +21,8 @@ public:
     void registerProperty(const QString& str, const QVariant&);
     void updateProperty(const QString&, const QVariant&);
 
-    void setScreenProperties(const std::unordered_map<uchar, QString>&);
+    void registerScreenProperties(const std::unordered_map<uchar, QString>&);
+    void registerScreen(const uchar& screenId, const QString& url);
 
 private:
     ScreenNagivator();

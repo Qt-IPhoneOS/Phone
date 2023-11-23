@@ -58,9 +58,17 @@ void ScreenNagivator::updateProperty(const QString &str, const QVariant &val)
     mContext->setContextProperty(str, val);
 }
 
-void ScreenNagivator::setScreenProperties(const std::unordered_map<uchar, QString> &properties)
+void ScreenNagivator::registerScreenProperties(const std::unordered_map<uchar, QString> &properties)
 {
     mScreenProperties = properties;
+}
+
+void ScreenNagivator::registerScreen(const uchar &screenId, const QString &url)
+{
+    if (mScreenProperties.find(screenId) == mScreenProperties.end())
+        return;
+
+    mScreenProperties[screenId] = url;
 }
 
 ScreenNagivator* ScreenNagivator::instance()
