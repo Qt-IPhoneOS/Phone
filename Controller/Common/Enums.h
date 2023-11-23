@@ -15,11 +15,11 @@ public:
     };
 
     enum ScreenDefine {
-        ContactScreen,
-        FavouritesScreen,
-        RecentsScreen,
-        KeyPadScreen,
-        VoiceMailScreen
+        PHO_Contact,
+        PHO_Favourites,
+        PHO_Recents,
+        PHO_KeyPad,
+        PHO_VoiceMail
     };
 
     Q_ENUM(PhoneType)

@@ -7,11 +7,11 @@ PhoneEngine::PhoneEngine(QObject* parent)
     mScreenNavigator = ScreenNagivator::instance();
     mContactController = mAdapterController->getController<ContactController>(Enums::ContactType);
 
-    mScreenNavigator->registerScreen(Enums::ContactScreen, "PHO_Contact", CONTACTSCREENSOURCE);
-    mScreenNavigator->registerScreen(Enums::FavouritesScreen, "PHO_Favourite", FAVOURITESCREENSOURCE);
-    mScreenNavigator->registerScreen(Enums::RecentsScreen, "PHO_Recent", RECENTSCREENSOURCE);
-    mScreenNavigator->registerScreen(Enums::KeyPadScreen, "PHO_Keypad", KEYPADSCREENSOURCE);
-    mScreenNavigator->registerScreen(Enums::VoiceMailScreen, "PHO_VoiceMail", VOICEMAILSCREENSOURCE);
+    mScreenNavigator->registerScreen(Enums::PHO_Contact, "PHO_Contact", CONTACTSCREENSOURCE);
+    mScreenNavigator->registerScreen(Enums::PHO_Favourites, "PHO_Favourites", FAVOURITESCREENSOURCE);
+    mScreenNavigator->registerScreen(Enums::PHO_Recents, "PHO_Recents", RECENTSCREENSOURCE);
+    mScreenNavigator->registerScreen(Enums::PHO_KeyPad, "PHO_KeyPad", KEYPADSCREENSOURCE);
+    mScreenNavigator->registerScreen(Enums::PHO_VoiceMail, "PHO_VoiceMail", VOICEMAILSCREENSOURCE);
 }
 
 PhoneEngine::~PhoneEngine()
@@ -23,7 +23,7 @@ void PhoneEngine::initialized()
 {
     if (createWindow())
     {
-        mScreenNavigator->showScreen(Enums::ContactScreen);
+        mScreenNavigator->showScreen(Enums::PHO_Contact);
     }
 }
 

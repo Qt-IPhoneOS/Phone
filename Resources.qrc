@@ -6,10 +6,10 @@
         <file>Screens/Common/CItems/ButtonWidget.qml</file>
         <file>Screens/Common/qmldir</file>
         <file>Screens/Common/CItems/CMouseArea.qml</file>
-        <file>Screens/ScreenComponents/ContactScreen.qml</file>
-        <file>Screens/ScreenComponents/KeypadScreen.qml</file>
-        <file>Screens/ScreenComponents/FavouriteScreen.qml</file>
-        <file>Screens/ScreenComponents/RecentScreen.qml</file>
+        <file>Screens/ScreenComponents/PHO_Contact.qml</file>
+        <file>Screens/ScreenComponents/PHO_KeyPad.qml</file>
+        <file>Screens/ScreenComponents/PHO_Favourites.qml</file>
+        <file>Screens/ScreenComponents/PHO_Recents.qml</file>
         <file>Screens/Common/CItems/IconButton.qml</file>
         <file>Screens/ScreenComponents/ContactComponents/ContactInstanceScreen.qml</file>
         <file>Screens/JS/def_colors.js</file>
