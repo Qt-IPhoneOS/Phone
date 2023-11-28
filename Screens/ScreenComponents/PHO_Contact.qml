@@ -8,7 +8,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: COLOR.whileColor
+        color: "#f0f2f5"
     }
     Item {
         id: headerTab
