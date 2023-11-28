@@ -5,8 +5,6 @@ import "../JS/def_colors.js" as COLOR
 
 Item {
     id: rootItem
-    width: ScreenWidth
-    height: ScreenHeight
 
     Rectangle {
         anchors.fill: parent
