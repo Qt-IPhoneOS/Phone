@@ -1,6 +1,6 @@
 import QtQuick 2.15
 
-Rectangle {
+Item {
     id: rootItem
     property string sourceNormal: ""
     property string sourcePressed: ""
@@ -8,8 +8,8 @@ Rectangle {
     property int buttonWidth: 75
     property int buttonHeight: 25
 
-    property int iconWidth: 25
-    property int iconHeight: 25
+    property int iconWidth: 30
+    property int iconHeight: 30
 
     property string titleIcon: ""
     property string textColor: "#7F7F81"
@@ -24,8 +24,8 @@ Rectangle {
         id: iconImage
         width: titleIcon.visible ? rootItem.iconWidth : rootItem.buttonWidth
         height: titleIcon.visible ? rootItem.iconHeight : rootItem.buttonWidth
+        y: 7
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
         source: rootItem.sourceNormal
         states: [
             State {
@@ -58,6 +58,8 @@ Rectangle {
         text: rootItem.titleIcon
         color: rootItem.textColor
         font.pixelSize: 10
+        anchors.top: iconImage.bottom
+        anchors.topMargin: 3
         clip: true
         anchors {
             top: iconImage.bottom

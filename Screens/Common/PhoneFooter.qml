@@ -5,16 +5,18 @@ import "CItems"
 
 Rectangle {
     id: rootItem
-    gradient: Gradient {
-        GradientStop { position: 0.6; color: "#F5F5F5" }
-        GradientStop { position: 1; color: "transparent" }
-    }
+    color: "#e3e3e3"
 
     signal typeOfScreen(int index)
+
+    Underline {
+        color: "#D3D3D3"
+    }
 
     RowLayout {
         id: listIconFooter
         anchors.fill: parent
+        anchors.verticalCenter: parent.verticalCenter
 
         spacing: 0
         IconButton {

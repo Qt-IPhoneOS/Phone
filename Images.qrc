@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>Assets/back_arrow_icon.png</file>
         <file>Assets/delete_icon.png</file>
         <file>Assets/icons8-star-50.png</file>
         <file>Assets/plus_icon.png</file>
@@ -16,5 +15,6 @@
         <file>Assets/contact_icon_normal.png</file>
         <file>Assets/voicemail_icon_active.png</file>
         <file>Assets/voicemail_icon_normal.png</file>
+        <file>Assets/back_button.png</file>
     </qresource>
 </RCC>
