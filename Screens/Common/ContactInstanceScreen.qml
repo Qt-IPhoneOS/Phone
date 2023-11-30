@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "../../Common" as CommonComponent
-import "../../JS/def_colors.js" as COLOR
-import "../../Common/CItems" as CItems
+import "../Common" as CommonComponent
+import "../JS/def_colors.js" as COLOR
+import "../Common/CItems" as CItems
 
 Item {
     id: specificContact

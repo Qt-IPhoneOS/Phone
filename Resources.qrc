@@ -8,14 +8,10 @@
         <file>Screens/Common/CItems/CMouseArea.qml</file>
         <file>Screens/Common/CItems/IconButton.qml</file>
         <file>Screens/JS/def_colors.js</file>
-        <file>Screens/Common/BackButton.qml</file>
-        <file>Screens/Common/HeaderScreen.qml</file>
         <file>Screens/PHO_Contact.qml</file>
         <file>Screens/PHO_Favourites.qml</file>
         <file>Screens/PHO_KeyPad.qml</file>
         <file>Screens/PHO_Recents.qml</file>
         <file>Screens/Common/ContactInstanceScreen.qml</file>
-        <file>Screens/Common/Underline.qml</file>
-        <file>Screens/Common/SearchInput.qml</file>
     </qresource>
 </RCC>

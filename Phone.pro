@@ -17,6 +17,7 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../../Services/include
                $$PWD/../../Services/include/Common
 
+
 SOURCES += \
     Controller/AdapterController.cpp \
     Controller/Common/AbstractController.cpp \

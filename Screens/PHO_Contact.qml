@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "Common"
 import "JS/def_colors.js" as COLOR
+import Components
 
 Item {
     id: rootItem
