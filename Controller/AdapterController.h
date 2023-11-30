@@ -9,6 +9,8 @@
 #include <Keypad/KeypadController.h>
 #include <Recent/RecentController.h>
 #include <Common/AbstractController.h>
+#include <PhoneBook/PhoneBookAdapter.h>
+#include <SIM/SIMAdapter.h>
 
 class AdapterController : public QObject
 {
