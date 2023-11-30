@@ -7,6 +7,18 @@ import QML.Components
 Item {
     id: rootItem
 
+    QtObject {
+        id: constant
+
+        readonly property string listStr: "Lists"
+        readonly property string contactStr: "Contacts"
+        readonly property string myCardStr: "My Card"
+        readonly property string meStr: "Me"
+
+        readonly property int horizontalCenterScreen: 70
+        readonly property int imageSize: 65
+    }
+
     Rectangle {
         anchors.fill: parent
         color: "#f0f2f5"
@@ -14,15 +26,12 @@ Item {
 
     HeaderScreen {
         width: parent.width
-        backBtnText: "Lists"
-        onBack: {
-
-        }
+        backBtnText: constant.listStr
     }
 
     Item {
         id: content
-        width: parent.width - 70
+        width: parent.width - constant.horizontalCenterScreen
         anchors.horizontalCenter: parent.horizontalCenter
 
         Text {
@@ -33,7 +42,7 @@ Item {
                 pixelSize: 30
                 weight: 600
             }
-            text: "Contacts"
+            text: constant.contactStr
         }
 
         SearchInput {
@@ -58,8 +67,8 @@ Item {
             Image {
                 id: userImage
                 property bool rounded: true
-                width: 65
-                height: 65
+                width: constant.imageSize
+                height: constant.imageSize
 
                 source: "qrc:/Assets/user_image.jpg"
 
@@ -79,7 +88,7 @@ Item {
             }
             Text {
                 id: userName
-                text: "Me"
+                text: constant.meStr
                 color: COLOR.blackColor
                 font {
                     pixelSize: 20
@@ -94,7 +103,7 @@ Item {
             }
             Text {
                 id: subUserName
-                text: "My Card"
+                text: constant.myCardStr
                 color: "#8E8E8E"
                 font {
                     pixelSize: 13
