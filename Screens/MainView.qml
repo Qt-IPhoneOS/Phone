@@ -24,27 +24,4 @@ Item {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
     }
-
-//    Connections {
-//        target: footerPhone
-//        function onTypeOfScreen(indx) {
-//            switch(indx) {
-//            case 0:
-//                loaderMainScreenPhone.source = "qrc:/Resources/Screens/ScreenComponents/FavouriteScreen.qml"
-//                break
-//            case 1:
-//                loaderMainScreenPhone.source = "qrc:/Resources/Screens/ScreenComponents/RecentScreen.qml"
-//                break
-//            case 2:
-//                loaderMainScreenPhone.source = "qrc:/Resources/Screens/ScreenComponents/ContactScreen.qml"
-//                break
-//            case 3:
-//                loaderMainScreenPhone.source = "qrc:/Resources/Screens/ScreenComponents/KeypadScreen.qml"
-//                break
-//            case 4:
-//                loaderMainScreenPhone.source = "qrc:/Resources/Screens/ScreenComponents/FavouriteScreen.qml"
-//                break
-//            }
-//        }
-//    }
 }

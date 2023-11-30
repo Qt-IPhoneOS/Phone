@@ -4,7 +4,6 @@
         <file>Screens/Common/PhoneFooter.qml</file>
         <file>Screens/Common/PhoneHeader.qml</file>
         <file>Screens/Common/CItems/ButtonWidget.qml</file>
-        <file>Screens/Common/qmldir</file>
         <file>Screens/Common/CItems/CMouseArea.qml</file>
         <file>Screens/Common/CItems/IconButton.qml</file>
         <file>Screens/JS/def_colors.js</file>
