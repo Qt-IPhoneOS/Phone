@@ -10,3 +10,9 @@ AdapterController::~AdapterController()
 
 }
 
+void AdapterController::initialize()
+{
+    PhoneBookAdapter::instance().connect();
+    SIMAdapter::instance().connect();
+}
+

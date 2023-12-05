@@ -32,6 +32,8 @@ public:
         return ins;
     }
 
+    void initialize();
+
 private:
     std::unordered_map<Enums::PhoneType, AbstractController*> mControllers;
     Enums::PhoneType mCurrentType {Enums::ContactType};

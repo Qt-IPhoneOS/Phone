@@ -24,6 +24,8 @@ void PhoneEngine::initialized()
     if (createWindow())
     {
         mScreenNavigator->showScreen(Enums::PHO_Contact);
+
+        mAdapterController->initialize();
     }
 }
 
