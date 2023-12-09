@@ -3,11 +3,9 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-#include <PhoneModel.h>
-#include <QAbstractListModel>
-#include "Common/AbstractController.h"
+#include <ContactModel.h>
 
-class FavouriteController : public AbstractController
+class FavouriteController : public QObject
 {
     Q_OBJECT
 public:

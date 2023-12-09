@@ -3,15 +3,29 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-#include <PhoneModel.h>
-#include <QAbstractListModel>
-#include "Common/AbstractController.h"
+#include <HistoryModel.h>
 
-class RecentController : public AbstractController
+class RecentController : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QAbstractListModel* dataModel READ dataModel WRITE setDataModel NOTIFY dataModelChanged)
+
 public:
-    RecentController();
+    explicit RecentController();
+    ~RecentController();
+
+    QAbstractListModel *dataModel() const;
+    void setDataModel(QAbstractListModel *model);
+
+public:
+    void setRecentsList(const QVector<HistoryInstance*>& list);
+
+signals:
+    void dataModelChanged();
+
+private:
+    HistoryModel* mHistoryModel {nullptr};
+    QAbstractListModel *mDataModel {nullptr};
 };
 
 #endif // RECENTCONTROLLER_H

@@ -2,15 +2,12 @@
     <qresource prefix="/Resources">
         <file>Screens/MainView.qml</file>
         <file>Screens/Common/PhoneFooter.qml</file>
-        <file>Screens/Common/PhoneHeader.qml</file>
-        <file>Screens/Common/CItems/ButtonWidget.qml</file>
-        <file>Screens/Common/CItems/CMouseArea.qml</file>
-        <file>Screens/Common/CItems/IconButton.qml</file>
+        <file>Screens/Common/IconButton.qml</file>
         <file>Screens/JS/def_colors.js</file>
         <file>Screens/PHO_Contact.qml</file>
         <file>Screens/PHO_Favourites.qml</file>
         <file>Screens/PHO_KeyPad.qml</file>
         <file>Screens/PHO_Recents.qml</file>
-        <file>Screens/Common/ContactInstanceScreen.qml</file>
+        <file>Screens/PHO_VoiceMail.qml</file>
     </qresource>
 </RCC>

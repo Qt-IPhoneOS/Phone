@@ -1,14 +1,12 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import Enums 1.0
 import QML.Components
-import "CItems"
 
 Rectangle {
     id: rootItem
     color: "#e3e3e3"
-
-    signal typeOfScreen(int index)
 
     Underline {
         color: "#D3D3D3"
@@ -26,9 +24,9 @@ Rectangle {
             Layout.fillHeight: true
             titleIcon: "Favourites"
             sourceNormal: "qrc:/Assets/favourite_icon_normal.png"
-            sourcePressed: "qrc:/Assets/favourite_icon_active.png"
+            sourcePressed: AppEngine.screenActive === Enums.PHO_Favourites ? "qrc:/Assets/favourite_icon_active.png" : "qrc:/Assets/favourite_icon_normal.png"
             onTransferScreen: {
-                rootItem.typeOfScreen(0)
+                AppEngine.showScreen(Enums.PHO_Favourites)
             }
         }
         IconButton {
@@ -37,9 +35,10 @@ Rectangle {
             Layout.fillHeight: true
             titleIcon: "Recents"
             sourceNormal: "qrc:/Assets/recent_icon_normal.png"
-            sourcePressed: "qrc:/Assets/recent_icon_active.png"
+            sourcePressed: AppEngine.screenActive === Enums.PHO_Recents ? "qrc:/Assets/recent_icon_active.png" : "qrc:/Assets/recent_icon_normal.png"
+
             onTransferScreen: {
-                rootItem.typeOfScreen(1)
+                AppEngine.showScreen(Enums.PHO_Recents)
             }
         }
         IconButton {
@@ -48,9 +47,10 @@ Rectangle {
             Layout.fillHeight: true
             titleIcon: "Contacts"
             sourceNormal: "qrc:/Assets/contact_icon_normal.png"
-            sourcePressed: "qrc:/Assets/contact_icon_active.png"
+            sourcePressed: AppEngine.screenActive === Enums.PHO_Contact ? "qrc:/Assets/contact_icon_active.png" : "qrc:/Assets/contact_icon_normal.png"
+
             onTransferScreen: {
-                rootItem.typeOfScreen(2)
+                AppEngine.showScreen(Enums.PHO_Contact)
             }
         }
         IconButton {
@@ -59,9 +59,9 @@ Rectangle {
             Layout.fillHeight: true
             titleIcon: "Keypad"
             sourceNormal: "qrc:/Assets/keypad_nonactive.png"
-            sourcePressed: "qrc:/Assets/keypad_active.png"
+            sourcePressed: AppEngine.screenActive === Enums.PHO_KeyPad ? "qrc:/Assets/keypad_active.png" : "qrc:/Assets/keypad_nonactive.png"
             onTransferScreen: {
-                rootItem.typeOfScreen(3)
+                AppEngine.showScreen(Enums.PHO_KeyPad)
             }
         }
         IconButton {
@@ -70,9 +70,9 @@ Rectangle {
             Layout.fillHeight: true
             titleIcon: "Voicemail"
             sourceNormal: "qrc:/Assets/voicemail_icon_normal.png"
-            sourcePressed: "qrc:/Assets/voicemail_icon_active.png"
+            sourcePressed: AppEngine.screenActive === Enums.PHO_VoiceMail ? "qrc:/Assets/voicemail_icon_active.png" : "qrc:/Assets/voicemail_icon_normal.png"
             onTransferScreen: {
-                rootItem.typeOfScreen(4)
+                AppEngine.showScreen(Enums.PHO_VoiceMail)
             }
         }
     }

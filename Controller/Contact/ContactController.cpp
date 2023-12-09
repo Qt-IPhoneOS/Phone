@@ -2,23 +2,29 @@
 
 ContactController::ContactController()
 {
-    mContactModel = new PhoneModel;
-    this->setContactListModel(qobject_cast<QAbstractListModel*>(mContactModel));
+    mContactModel = new ContactModel();
+    setDataModel(qobject_cast<QAbstractListModel*>(mContactModel));
 }
 
 ContactController::~ContactController() {
     delete mContactModel;
 }
 
-QAbstractListModel *ContactController::contactListModel() const
+QAbstractListModel *ContactController::dataModel() const
 {
-    return mContactListModel;
+    return mDataModel;
 }
 
-void ContactController::setContactListModel(QAbstractListModel *newContactList)
+void ContactController::setDataModel(QAbstractListModel *model)
 {
-    if (mContactListModel == newContactList)
+    if (mDataModel == model)
         return;
-    mContactListModel = newContactList;
-    emit contactListModelChanged();
+
+    mDataModel = model;
+    emit dataModelChanged();
+}
+
+void ContactController::setContactList(const QVector<ContactInstance*>& list)
+{
+    mContactModel->setContactList(list);
 }

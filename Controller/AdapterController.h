@@ -8,7 +8,6 @@
 #include <Favourite/FavouriteController.h>
 #include <Keypad/KeypadController.h>
 #include <Recent/RecentController.h>
-#include <Common/AbstractController.h>
 #include <PhoneBook/PhoneBookAdapter.h>
 #include <SIM/SIMAdapter.h>
 
@@ -16,27 +15,30 @@ class AdapterController : public QObject
 {
     Q_OBJECT
 
-public:
     AdapterController();
+public:
     ~AdapterController();
+    static AdapterController* instance();
 
-    template<typename T>
-    T* getController(Enums::PhoneType type)
-    {
-        static T* ins = nullptr;
-        if (ins == nullptr)
-        {
-            ins = new T();
-            mControllers.emplace(std::pair<Enums::PhoneType, AbstractController*>(type, ins));
-        }
-        return ins;
-    }
+    ContactController* getContactController() const { return mContactController; }
+    RecentController* getRecentController() const { return mRecentController; }
 
     void initialize();
 
+public slots:
+    void handleUpdateContactList(const std::list<ContactInfo>& list);
+    void handleUpdateHistoryList(const std::list<HistoryInfo>& list);
+
 private:
-    std::unordered_map<Enums::PhoneType, AbstractController*> mControllers;
+    signal::Connect mUpdateConnectList;
+    signal::Connect mUpdateHistoryList;
+
+    ContactController* mContactController;
+    RecentController* mRecentController;
+
     Enums::PhoneType mCurrentType {Enums::ContactType};
+    QVector<ContactInstance*> mContactList;
+    QVector<HistoryInstance*> mHistoryList;
 };
 
 #endif // ADAPTERCONTROLLER_H

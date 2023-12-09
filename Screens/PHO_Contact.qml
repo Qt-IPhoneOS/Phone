@@ -122,7 +122,7 @@ Item {
             id: listContactPhone
             width: parent.width
             height: 535
-            model: ContactModel.contactListModel
+            model: ContactModel.dataModel
 
             anchors {
                 horizontalCenter: parent.horizontalCenter
@@ -137,12 +137,13 @@ Item {
                 Text {
                     id: nameContact
                     color: COLOR.blackColor
-                    text: Name
+                    text: model.formatname
                     font {
                         weight: 500
                     }
 
                 }
+
                 Underline {
                     width: parent.width
                     anchors.top: nameContact.bottom

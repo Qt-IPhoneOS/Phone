@@ -15,13 +15,21 @@ public:
     };
 
     enum ScreenDefine {
-        PHO_Contact,
+        PHO_Contact = 0,
         PHO_Favourites,
         PHO_Recents,
         PHO_KeyPad,
         PHO_VoiceMail
     };
 
+    enum PhoneCallingType {
+        Missed,
+        Outgoing,
+        Incoming,
+        Unknown
+    };
+
     Q_ENUM(PhoneType)
     Q_ENUM(ScreenDefine)
+    Q_ENUM(PhoneCallingType)
 };

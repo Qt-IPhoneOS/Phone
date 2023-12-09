@@ -3,29 +3,29 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-#include <PhoneModel.h>
-#include <QAbstractListModel>
-#include "Common/AbstractController.h"
+#include <ContactModel.h>
 
-class ContactController : public AbstractController
+class ContactController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QAbstractListModel* contactListModel READ contactListModel WRITE setContactListModel NOTIFY contactListModelChanged)
+    Q_PROPERTY(QAbstractListModel* dataModel READ dataModel WRITE setDataModel NOTIFY dataModelChanged)
+
 public:
     explicit ContactController();
     ~ContactController();
 
-public:
+    QAbstractListModel *dataModel() const;
+    void setDataModel(QAbstractListModel *model);
 
-    QAbstractListModel *contactListModel() const;
-    void setContactListModel(QAbstractListModel *newContactList);
+public:
+    void setContactList(const QVector<ContactInstance*>& list);
 
 signals:
-    void contactListModelChanged();
+    void dataModelChanged();
 
 private:
-    PhoneModel* mContactModel {nullptr};
-    QAbstractListModel *mContactListModel {nullptr};
+    ContactModel* mContactModel {nullptr};
+    QAbstractListModel *mDataModel {nullptr};
 };
 
 #endif // CONTACTCONTROLLER_H

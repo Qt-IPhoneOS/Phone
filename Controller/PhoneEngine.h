@@ -7,12 +7,14 @@
 #include <unordered_map>
 #include <ScreenNavigator.h>
 #include "Common/PhoneDefines.h"
-#include "PhoneModel.h"
+#include "ContactModel.h"
 #include "AdapterController.h"
 
 class PhoneEngine : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int screenActive READ screenActive WRITE setScreenActive NOTIFY screenActiveChanged)
+
 public:
     explicit PhoneEngine(QObject* parent = nullptr);
     ~PhoneEngine();
@@ -23,11 +25,19 @@ public:
     void registerContextProperty();
     void registerEnumType();
 
+    Q_INVOKABLE void showScreen(const uchar&);
+
+    int screenActive() const;
+    void setScreenActive(int newScreenActive);
+
+signals:
+    void screenActiveChanged();
+
 private:
     QQuickView* mView {nullptr};
     AdapterController* mAdapterController {nullptr};
     ScreenNagivator* mScreenNavigator;
-    ContactController* mContactController {nullptr};
+    int mScreenActive {0};
 };
 
 #endif // PHONEENGINE_H

@@ -3,15 +3,14 @@
 PhoneEngine::PhoneEngine(QObject* parent)
     : QObject(parent)
 {
-    mAdapterController = new AdapterController();
+    mAdapterController = AdapterController::instance();
     mScreenNavigator = ScreenNagivator::instance();
-    mContactController = mAdapterController->getController<ContactController>(Enums::ContactType);
 
-    mScreenNavigator->registerScreen(Enums::PHO_Contact, "PHO_Contact", CONTACTSCREENSOURCE);
-    mScreenNavigator->registerScreen(Enums::PHO_Favourites, "PHO_Favourites", FAVOURITESCREENSOURCE);
-    mScreenNavigator->registerScreen(Enums::PHO_Recents, "PHO_Recents", RECENTSCREENSOURCE);
-    mScreenNavigator->registerScreen(Enums::PHO_KeyPad, "PHO_KeyPad", KEYPADSCREENSOURCE);
-    mScreenNavigator->registerScreen(Enums::PHO_VoiceMail, "PHO_VoiceMail", VOICEMAILSCREENSOURCE);
+    mScreenNavigator->registerScreen(Enums::PHO_Contact, "PHO_Contact", "qrc:/Resources/Screens/PHO_Contact.qml");
+    mScreenNavigator->registerScreen(Enums::PHO_Favourites, "PHO_Favourites", "qrc:/Resources/Screens/PHO_Favourites.qml");
+    mScreenNavigator->registerScreen(Enums::PHO_Recents, "PHO_Recents", "qrc:/Resources/Screens/PHO_Recents.qml");
+    mScreenNavigator->registerScreen(Enums::PHO_KeyPad, "PHO_KeyPad", "qrc:/Resources/Screens/PHO_KeyPad.qml");
+    mScreenNavigator->registerScreen(Enums::PHO_VoiceMail, "PHO_VoiceMail", "qrc:/Resources/Screens/PHO_VoiceMail.qml");
 }
 
 PhoneEngine::~PhoneEngine()
@@ -23,7 +22,7 @@ void PhoneEngine::initialized()
 {
     if (createWindow())
     {
-        mScreenNavigator->showScreen(Enums::PHO_Contact);
+        showScreen(Enums::PHO_Contact);
 
         mAdapterController->initialize();
     }
@@ -31,7 +30,9 @@ void PhoneEngine::initialized()
 
 void PhoneEngine::registerContextProperty()
 {
-    mScreenNavigator->getViewer()->rootContext()->setContextProperty("ContactModel", mContactController);
+    mScreenNavigator->getViewer()->rootContext()->setContextProperty("AppEngine", this);
+    mScreenNavigator->getViewer()->rootContext()->setContextProperty("ContactModel", mAdapterController->getContactController());
+    mScreenNavigator->getViewer()->rootContext()->setContextProperty("RecentModel", mAdapterController->getRecentController());
 }
 
 bool PhoneEngine::createWindow()
@@ -50,4 +51,23 @@ bool PhoneEngine::createWindow()
 void PhoneEngine::registerEnumType()
 {
     qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
+}
+
+void PhoneEngine::showScreen(const uchar &screen)
+{
+    setScreenActive(screen);
+    mScreenNavigator->showScreen(screen);
+}
+
+int PhoneEngine::screenActive() const
+{
+    return mScreenActive;
+}
+
+void PhoneEngine::setScreenActive(int newScreenActive)
+{
+    if (mScreenActive == newScreenActive)
+        return;
+    mScreenActive = newScreenActive;
+    emit screenActiveChanged();
 }
