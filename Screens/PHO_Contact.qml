@@ -183,7 +183,7 @@ Item {
         id: nameGroupContainer
         width: 10
         height: 400
-        spacing: 3
+        spacing: 5
         anchors {
             right: parent.right
             rightMargin: 10
@@ -201,7 +201,7 @@ Item {
                     height: 10
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: _priCtrlGroupName.convertIntToChar(index)
-                    color: "#0D7FFA"
+                    color: "#0a7cf7"
                     font {
                         pixelSize: 10
                     }
