@@ -7,11 +7,13 @@ import QML.Components
 Item {
     id: rootItem
 
+    property bool switchOn: false
+
     QtObject {
         id: constant
 
         readonly property string listStr: "Lists"
-        readonly property string contactStr: "Recents"
+        readonly property string recentsStr: "Recents"
 
         readonly property int horizontalCenterScreen: 70
         readonly property int imageSize: 65
@@ -22,9 +24,13 @@ Item {
         color: "#f0f2f5"
     }
 
-    HeaderScreen {
-        width: parent.width
-        backBtnText: constant.listStr
+    RecentSwitch {
+        y: 20
+        switchOn: rootItem.switchOn
+        anchors.horizontalCenter: parent.horizontalCenter
+        onSwitchClicked: {
+            switchOn = !switchOn
+        }
     }
 
     Item {
@@ -34,13 +40,14 @@ Item {
 
         Text {
             id: headerContact
-            y: 70
+            y: 80
             color: COLOR.blackColor
             font {
                 pixelSize: 30
                 weight: 600
             }
-            text: constant.contactStr
+            text: constant.recentsStr
+            z: 1
         }
 
         Underline {
@@ -53,8 +60,9 @@ Item {
         ListView {
             id: listContactPhone
             width: parent.width
-            height: 535
+            height: 700
             model: RecentModel.dataModel
+            z: 0
 
             anchors {
                 horizontalCenter: parent.horizontalCenter
@@ -62,42 +70,8 @@ Item {
                 topMargin: 0
             }
 
-            delegate: Rectangle {
-                id: itemPhoneContact
-                width: parent.width
-                height: 50
-                Text {
-                    id: nameContact
-                    color: COLOR.blackColor
-                    text: model.formatname !== "" ? model.formatname : model.number
-                    font {
-                        weight: 500
-                    }
-
-                }
-
-                Underline {
-                    width: parent.width
-                    anchors.top: nameContact.bottom
-                    anchors.topMargin: 10
-                }
-            }
-            section {
-                property: "text"
-                criteria: ViewSection.FirstCharacter
-                delegate: Item {
-                    id: itemPhoneContact
-                    width: parent.width
-                    height: 50
-                    Text {
-                        id: nameContact
-                        color: COLOR.grayTextColor
-                        text: section
-                        font {
-                            weight: 500
-                        }
-                    }
-                }
+            delegate: RecentItem {
+                recentText: model.formatname !== "" ? model.formatname : model.number
             }
         }
     }

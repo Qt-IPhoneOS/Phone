@@ -9,5 +9,7 @@
         <file>Screens/PHO_KeyPad.qml</file>
         <file>Screens/PHO_Recents.qml</file>
         <file>Screens/PHO_VoiceMail.qml</file>
+        <file>Screens/Common/RecentSwitch.qml</file>
+        <file>Screens/Common/RecentItem.qml</file>
     </qresource>
 </RCC>
