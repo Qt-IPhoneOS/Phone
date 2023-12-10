@@ -2,22 +2,18 @@ import QtQuick 2.15
 
 Item {
     id: rootItem
-    property string sourceNormal: ""
-    property string sourcePressed: ""
-
-    property int buttonWidth: 75
-    property int buttonHeight: 25
-
-    property int iconWidth: 30
-    property int iconHeight: 30
-
-    property string titleIcon: ""
-    property string textColor: "#7F7F81"
 
     width: rootItem.buttonWidth
     height: rootItem.buttonHeight
 
     property bool isActive: false
+    property int buttonWidth: 75
+    property int buttonHeight: 25
+    property int iconWidth: 30
+    property int iconHeight: 30
+    property string titleIcon: ""
+    property string sourceIcon: ""
+
     signal transferScreen()
 
     Image {
@@ -26,37 +22,14 @@ Item {
         height: titleIcon.visible ? rootItem.iconHeight : rootItem.buttonWidth
         y: 7
         anchors.horizontalCenter: parent.horizontalCenter
-        source: rootItem.sourceNormal
-        states: [
-            State {
-                name: "pressed"
-                when: rootItem.isActive
-                PropertyChanges {
-                    target: iconImage
-                    source: rootItem.sourcePressed
-                }
-                PropertyChanges {
-                    target: titleIcon
-                    color: "#0D7FFA"
-                }
-            }
-        ]
-    }
-
-    MouseArea {
-        id: iconMouse
-        anchors.fill: parent
-        onReleased: {
-            rootItem.isActive = !rootItem.isActive
-            rootItem.transferScreen()
-        }
+        source: rootItem.sourceIcon
     }
 
     Text {
         id: titleIcon
-        visible: rootItem.titleIcon === "" ? false : true
+        visible: !(rootItem.titleIcon === "")
         text: rootItem.titleIcon
-        color: rootItem.textColor
+        color: rootItem.isActive ? "#0D7FFA" : "#7F7F81"
         font.pixelSize: 10
         anchors.top: iconImage.bottom
         anchors.topMargin: 3
@@ -64,6 +37,14 @@ Item {
         anchors {
             top: iconImage.bottom
             horizontalCenter: iconImage.horizontalCenter
+        }
+    }
+
+    MouseArea {
+        id: iconMouse
+        anchors.fill: parent
+        onReleased: {
+            rootItem.transferScreen()
         }
     }
 }

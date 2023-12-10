@@ -23,8 +23,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             titleIcon: "Favourites"
-            sourceNormal: "qrc:/Assets/favourite_icon_normal.png"
-            sourcePressed: AppEngine.screenActive === Enums.PHO_Favourites ? "qrc:/Assets/favourite_icon_active.png" : "qrc:/Assets/favourite_icon_normal.png"
+            isActive: AppEngine.screenActive === Enums.PHO_Favourites
+            sourceIcon: AppEngine.screenActive === Enums.PHO_Favourites ? "qrc:/Assets/favourite_icon_active.png" : "qrc:/Assets/favourite_icon_normal.png"
             onTransferScreen: {
                 AppEngine.showScreen(Enums.PHO_Favourites)
             }
@@ -34,8 +34,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             titleIcon: "Recents"
-            sourceNormal: "qrc:/Assets/recent_icon_normal.png"
-            sourcePressed: AppEngine.screenActive === Enums.PHO_Recents ? "qrc:/Assets/recent_icon_active.png" : "qrc:/Assets/recent_icon_normal.png"
+            isActive: AppEngine.screenActive === Enums.PHO_Recents
+            sourceIcon: AppEngine.screenActive === Enums.PHO_Recents ? "qrc:/Assets/recent_icon_active.png" : "qrc:/Assets/recent_icon_normal.png"
 
             onTransferScreen: {
                 AppEngine.showScreen(Enums.PHO_Recents)
@@ -46,8 +46,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             titleIcon: "Contacts"
-            sourceNormal: "qrc:/Assets/contact_icon_normal.png"
-            sourcePressed: AppEngine.screenActive === Enums.PHO_Contact ? "qrc:/Assets/contact_icon_active.png" : "qrc:/Assets/contact_icon_normal.png"
+            isActive: AppEngine.screenActive === Enums.PHO_Contact
+            sourceIcon: AppEngine.screenActive === Enums.PHO_Contact ? "qrc:/Assets/contact_icon_active.png" : "qrc:/Assets/contact_icon_normal.png"
 
             onTransferScreen: {
                 AppEngine.showScreen(Enums.PHO_Contact)
@@ -58,8 +58,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             titleIcon: "Keypad"
-            sourceNormal: "qrc:/Assets/keypad_nonactive.png"
-            sourcePressed: AppEngine.screenActive === Enums.PHO_KeyPad ? "qrc:/Assets/keypad_active.png" : "qrc:/Assets/keypad_nonactive.png"
+            isActive: AppEngine.screenActive === Enums.PHO_KeyPad
+            sourceIcon: AppEngine.screenActive === Enums.PHO_KeyPad ? "qrc:/Assets/keypad_active.png" : "qrc:/Assets/keypad_nonactive.png"
             onTransferScreen: {
                 AppEngine.showScreen(Enums.PHO_KeyPad)
             }
@@ -69,8 +69,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             titleIcon: "Voicemail"
-            sourceNormal: "qrc:/Assets/voicemail_icon_normal.png"
-            sourcePressed: AppEngine.screenActive === Enums.PHO_VoiceMail ? "qrc:/Assets/voicemail_icon_active.png" : "qrc:/Assets/voicemail_icon_normal.png"
+            isActive: AppEngine.screenActive === Enums.PHO_VoiceMail
+            sourceIcon: AppEngine.screenActive === Enums.PHO_VoiceMail ? "qrc:/Assets/voicemail_icon_active.png" : "qrc:/Assets/voicemail_icon_normal.png"
             onTransferScreen: {
                 AppEngine.showScreen(Enums.PHO_VoiceMail)
             }
