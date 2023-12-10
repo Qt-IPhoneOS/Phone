@@ -19,6 +19,15 @@ Item {
         readonly property int imageSize: 65
     }
 
+    QtObject {
+        id: _priCtrlGroupName
+
+        function convertIntToChar(integer) {
+            let character = integer + 65
+            return String.fromCharCode(character)
+        }
+    }
+
     Rectangle {
         anchors.fill: parent
         color: "#f0f2f5"
@@ -166,15 +175,6 @@ Item {
                         }
                     }
                 }
-            }
-        }
-
-        QtObject {
-            id: _priCtrlGroupName
-
-            function convertIntToChar(integer) {
-                let character = integer + 65
-                return String.fromCharCode(character)
             }
         }
     }
