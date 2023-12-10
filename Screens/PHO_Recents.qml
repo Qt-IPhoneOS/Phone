@@ -1,8 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import Enums 1.0
+import QML.Components
 import "Common"
 import "JS/def_colors.js" as COLOR
-import QML.Components
 
 Item {
     id: rootItem
@@ -26,11 +27,9 @@ Item {
 
     RecentSwitch {
         y: 20
-        switchOn: rootItem.switchOn
+        switchOn: RecentModel.recentMode === Enums.Recent_Missed
         anchors.horizontalCenter: parent.horizontalCenter
-        onSwitchClicked: {
-            switchOn = !switchOn
-        }
+        onSwitched: RecentModel.recentMode = RecentModel.recentMode === Enums.Recent_Missed ? Enums.Recent_All : Enums.Recent_Missed
     }
 
     Item {
@@ -71,6 +70,9 @@ Item {
             }
 
             delegate: RecentItem {
+                visible: RecentModel.recentMode === Enums.Recent_All ? true : (model.type === Enums.Missed)
+                isMissed: model.type === Enums.Missed
+                height: RecentModel.recentMode === Enums.Recent_All ? 50 : (model.type !== Enums.Missed ? 0 : 50)
                 recentText: model.formatname !== "" ? model.formatname : model.number
             }
         }

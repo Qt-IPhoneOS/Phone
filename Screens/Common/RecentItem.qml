@@ -8,6 +8,7 @@ Item {
     width: parent.width
     height: 50
 
+    property bool isMissed: false
     property string recentText: ""
 
     Text {
@@ -16,7 +17,7 @@ Item {
         height: parent.height - underline.height
         text: recentText
         verticalAlignment: Text.AlignVCenter
-        color: COLOR.blackColor
+        color: isMissed ? "#EE0000" : COLOR.blackColor
         font {
             weight: 500
         }

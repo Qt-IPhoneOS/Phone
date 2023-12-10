@@ -1,3 +1,6 @@
+#ifndef ENUMS_H
+#define ENUMS_H
+
 #include <QObject>
 
 class Enums : public QObject {
@@ -23,13 +26,21 @@ public:
     };
 
     enum PhoneCallingType {
-        Missed,
+        Missed = 0,
         Outgoing,
         Incoming,
         Unknown
     };
 
+    enum RecentsMode {
+        Recent_All = 0,
+        Recent_Missed
+    };
+
     Q_ENUM(PhoneType)
     Q_ENUM(ScreenDefine)
     Q_ENUM(PhoneCallingType)
+    Q_ENUM(RecentsMode)
 };
+
+#endif // ENUMS_H

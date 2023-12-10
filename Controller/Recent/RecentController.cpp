@@ -27,3 +27,16 @@ void RecentController::setRecentsList(const QVector<HistoryInstance*>& list)
 {
     mHistoryModel->setHistoryList(list);
 }
+
+Enums::RecentsMode RecentController::recentMode() const
+{
+    return mRecentMode;
+}
+
+void RecentController::setRecentMode(Enums::RecentsMode newRecentMode)
+{
+    if (mRecentMode == newRecentMode)
+        return;
+    mRecentMode = newRecentMode;
+    emit recentModeChanged();
+}
