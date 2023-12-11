@@ -131,7 +131,7 @@ Item {
             id: listContactPhone
             width: parent.width
             height: 535
-            model: ContactModel.dataModel
+            model: ContactController.dataModel
 
             anchors {
                 horizontalCenter: parent.horizontalCenter

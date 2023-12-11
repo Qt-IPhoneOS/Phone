@@ -22,6 +22,7 @@ public:
 
     ContactController* getContactController() const { return mContactController; }
     RecentController* getRecentController() const { return mRecentController; }
+    KeypadController* getKeypadController() const { return mKeypadController; }
 
     void initialize();
 
@@ -35,6 +36,7 @@ private:
 
     ContactController* mContactController;
     RecentController* mRecentController;
+    KeypadController* mKeypadController;
 
     Enums::PhoneType mCurrentType {Enums::ContactType};
     QVector<ContactInstance*> mContactList;

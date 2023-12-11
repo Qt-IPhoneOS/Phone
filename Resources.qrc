@@ -11,5 +11,6 @@
         <file>Screens/PHO_VoiceMail.qml</file>
         <file>Screens/Common/RecentSwitch.qml</file>
         <file>Screens/Common/RecentItem.qml</file>
+        <file>Screens/Common/KeypadButton.qml</file>
     </qresource>
 </RCC>

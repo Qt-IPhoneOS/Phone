@@ -5,6 +5,7 @@ AdapterController::AdapterController()
 {
     mContactController = new ContactController();
     mRecentController = new RecentController();
+    mKeypadController = new KeypadController();
 
     mUpdateConnectList = PhoneBookAdapter::instance().onContactListChanged.connect([this](const std::list<ContactInfo>& list){
         QMetaObject::invokeMethod(this, "handleUpdateContactList", Qt::QueuedConnection,

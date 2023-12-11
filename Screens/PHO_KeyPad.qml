@@ -19,6 +19,19 @@ Item {
         z: 0
     }
 
+    Text {
+        width: parent.width
+        y: 110
+        horizontalAlignment: Text.AlignHCenter
+        visible: KeypadController.numberSelected !== ""
+        text: KeypadController.numberSelected
+        color: COLOR.blackColor
+        font {
+            pixelSize: 30
+            weight: 400
+        }
+    }
+
     Item {
         y: 100
         width: parent.width
@@ -35,34 +48,81 @@ Item {
             rowSpacing: 20
 
             Repeater {
-                model: 12
-//                Button {
-//                    text: (index + 1).toString()
-//                    width: 25
-//                    height: 25
-//                    font.pixelSize: 20
-//                    onClicked: {
-//                        console.log("Pressed:", text);
-//                    }
-//                }
+                model: ListModel {
+                    ListElement {
+                        number: "1"
+                        desc: ""
+                    }
+                    ListElement {
+                        number: "2"
+                        desc: "A B C"
+                    }
+                    ListElement {
+                        number: "3"
+                        desc: "D E F"
+                    }
+                    ListElement {
+                        number: "4"
+                        desc: "G H I"
+                    }
+                    ListElement {
+                        number: "5"
+                        desc: "J K L"
+                    }
+                    ListElement {
+                        number: "6"
+                        desc: "M N O"
+                    }
+                    ListElement {
+                        number: "7"
+                        desc: "P Q R S"
+                    }
+                    ListElement {
+                        number: "8"
+                        desc: "T U V"
+                    }
+                    ListElement {
+                        number: "9"
+                        desc: "W X Y Z"
+                    }
+                    ListElement {
+                        number: ""
+                        desc: "*"
+                    }
+                    ListElement {
+                        number: "0"
+                        desc: "+"
+                    }
+                    ListElement {
+                        number: ""
+                        desc: "#"
+                    }
+                }
+                KeypadButton {
+                    id: button
+                    number: model.number
+                    desc: model.desc
 
-                Rectangle {
-                    width: 90
-                    height: 90
-                    color: "#CCCCCC"
-                    radius: width / 2
+                    Connections {
+                        target: button
+
+                        function onKeypadClicked(value) {
+                            KeypadController.numberSelected += value
+                        }
+                    }
                 }
             }
         }
 
-        Rectangle {
+        Image {
+            id: userImage
             width: 90
             height: 90
-            color: "#CCCCCC"
-            radius: width / 2
             anchors.top: gridView.bottom
             anchors.topMargin: 20
             anchors.horizontalCenter: parent.horizontalCenter
+
+            source: "qrc:/Assets/phone_call.png"
         }
     }
 

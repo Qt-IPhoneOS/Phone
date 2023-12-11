@@ -8,8 +8,18 @@
 class KeypadController : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString numberSelected READ numberSelected WRITE setNumberSelected NOTIFY numberSelectedChanged)
+
 public:
     KeypadController();
+    QString numberSelected() const;
+    void setNumberSelected(const QString &newNumberSelected);
+
+signals:
+    void numberSelectedChanged();
+
+private:
+    QString mNumberSelected {""};
 };
 
 #endif // KEYPADCONTROLLER_H

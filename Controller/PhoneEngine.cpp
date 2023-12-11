@@ -31,8 +31,9 @@ void PhoneEngine::initialized()
 void PhoneEngine::registerContextProperty()
 {
     mScreenNavigator->getViewer()->rootContext()->setContextProperty("AppEngine", this);
-    mScreenNavigator->getViewer()->rootContext()->setContextProperty("ContactModel", mAdapterController->getContactController());
-    mScreenNavigator->getViewer()->rootContext()->setContextProperty("RecentModel", mAdapterController->getRecentController());
+    mScreenNavigator->getViewer()->rootContext()->setContextProperty("ContactController", mAdapterController->getContactController());
+    mScreenNavigator->getViewer()->rootContext()->setContextProperty("RecentController", mAdapterController->getRecentController());
+    mScreenNavigator->getViewer()->rootContext()->setContextProperty("KeypadController", mAdapterController->getKeypadController());
 }
 
 bool PhoneEngine::createWindow()

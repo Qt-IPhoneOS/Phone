@@ -27,9 +27,9 @@ Item {
 
     RecentSwitch {
         y: 20
-        switchOn: RecentModel.recentMode === Enums.Recent_Missed
+        switchOn: RecentController.recentMode === Enums.Recent_Missed
         anchors.horizontalCenter: parent.horizontalCenter
-        onSwitched: RecentModel.recentMode = RecentModel.recentMode === Enums.Recent_Missed ? Enums.Recent_All : Enums.Recent_Missed
+        onSwitched: RecentController.recentMode = RecentController.recentMode === Enums.Recent_Missed ? Enums.Recent_All : Enums.Recent_Missed
     }
 
     Item {
@@ -60,7 +60,7 @@ Item {
             id: listContactPhone
             width: parent.width
             height: 700
-            model: RecentModel.dataModel
+            model: RecentController.dataModel
             z: 0
 
             anchors {
@@ -70,9 +70,9 @@ Item {
             }
 
             delegate: RecentItem {
-                visible: RecentModel.recentMode === Enums.Recent_All ? true : (model.type === Enums.Missed)
+                visible: RecentController.recentMode === Enums.Recent_All ? true : (model.type === Enums.Missed)
                 isMissed: model.type === Enums.Missed
-                height: RecentModel.recentMode === Enums.Recent_All ? 50 : (model.type !== Enums.Missed ? 0 : 50)
+                height: RecentController.recentMode === Enums.Recent_All ? 50 : (model.type !== Enums.Missed ? 0 : 50)
                 recentText: model.formatname !== "" ? model.formatname : model.number
             }
         }
