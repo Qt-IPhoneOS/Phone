@@ -36,7 +36,7 @@ signals:
 private:
     QQuickView* mView {nullptr};
     AdapterController* mAdapterController {nullptr};
-    ScreenNagivator* mScreenNavigator;
+    uicommon::ScreenNagivator* mScreenNavigator;
     int mScreenActive {0};
 };
 

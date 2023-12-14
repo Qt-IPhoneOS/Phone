@@ -31,8 +31,8 @@ public slots:
     void handleUpdateHistoryList(const std::list<HistoryInfo>& list);
 
 private:
-    signal::Connect mUpdateConnectList;
-    signal::Connect mUpdateHistoryList;
+    uicommon::Connect mUpdateConnectList;
+    uicommon::Connect mUpdateHistoryList;
 
     ContactController* mContactController;
     RecentController* mRecentController;

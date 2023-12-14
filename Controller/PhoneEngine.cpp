@@ -4,7 +4,7 @@ PhoneEngine::PhoneEngine(QObject* parent)
     : QObject(parent)
 {
     mAdapterController = AdapterController::instance();
-    mScreenNavigator = ScreenNagivator::instance();
+    mScreenNavigator = uicommon::ScreenNagivator::instance();
 
     mScreenNavigator->registerScreen(Enums::PHO_Contact, "PHO_Contact", "qrc:/Resources/Screens/PHO_Contact.qml");
     mScreenNavigator->registerScreen(Enums::PHO_Favourites, "PHO_Favourites", "qrc:/Resources/Screens/PHO_Favourites.qml");
