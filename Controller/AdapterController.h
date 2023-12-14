@@ -27,8 +27,8 @@ public:
     void initialize();
 
 public slots:
-    void handleUpdateContactList(const std::list<ContactInfo>& list);
-    void handleUpdateHistoryList(const std::list<HistoryInfo>& list);
+    void handleUpdateContactList(const std::list<midlayer::ContactInfo>& list);
+    void handleUpdateHistoryList(const std::list<midlayer::HistoryInfo>& list);
 
 private:
     uicommon::Connect mUpdateConnectList;

@@ -7,14 +7,14 @@ AdapterController::AdapterController()
     mRecentController = new RecentController();
     mKeypadController = new KeypadController();
 
-    mUpdateConnectList = PhoneBookAdapter::instance().onContactListChanged.connect([this](const std::list<ContactInfo>& list){
+    mUpdateConnectList = midlayer::PhoneBookAdapter::instance().onContactListChanged.connect([this](const std::list<midlayer::ContactInfo>& list){
         QMetaObject::invokeMethod(this, "handleUpdateContactList", Qt::QueuedConnection,
-                                  Q_ARG(const std::list<ContactInfo>&, list));
+                                  Q_ARG(const std::list<midlayer::ContactInfo>&, list));
     });
 
-    mUpdateHistoryList = PhoneBookAdapter::instance().onHistoryListChanged.connect([this](const std::list<HistoryInfo>& list){
+    mUpdateHistoryList = midlayer::PhoneBookAdapter::instance().onHistoryListChanged.connect([this](const std::list<midlayer::HistoryInfo>& list){
         QMetaObject::invokeMethod(this, "handleUpdateHistoryList", Qt::QueuedConnection,
-                                  Q_ARG(const std::list<HistoryInfo>&, list));
+                                  Q_ARG(const std::list<midlayer::HistoryInfo>&, list));
     });
 }
 
@@ -35,11 +35,11 @@ AdapterController* AdapterController::instance()
 
 void AdapterController::initialize()
 {
-    PhoneBookAdapter::instance().connect();
-    SIMAdapter::instance().connect();
+    midlayer::PhoneBookAdapter::instance().connect();
+    midlayer::SIMAdapter::instance().connect();
 }
 
-void AdapterController::handleUpdateContactList(const std::list<ContactInfo>& list)
+void AdapterController::handleUpdateContactList(const std::list<midlayer::ContactInfo>& list)
 {
     if (mContactController == nullptr)
         return;
@@ -57,7 +57,7 @@ void AdapterController::handleUpdateContactList(const std::list<ContactInfo>& li
     mContactController->setContactList(mContactList);
 }
 
-void AdapterController::handleUpdateHistoryList(const std::list<HistoryInfo>& list)
+void AdapterController::handleUpdateHistoryList(const std::list<midlayer::HistoryInfo>& list)
 {
     if (mContactController == nullptr)
         return;
