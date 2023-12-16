@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QML.Components
-import "../JS/def_colors.js" as COLOR
+import QML.Constants
 
 Item {
     id: itemPhoneContact
@@ -17,7 +17,7 @@ Item {
         height: parent.height - underline.height
         text: recentText
         verticalAlignment: Text.AlignVCenter
-        color: isMissed ? "#EE0000" : COLOR.blackColor
+        color: isMissed ? UIColors.red : UIColors.black
         font {
             weight: 500
         }

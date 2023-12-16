@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "Common"
-import "JS/def_colors.js" as COLOR
+import QML.Constants
 import QML.Components
 
 Item {
@@ -58,7 +58,7 @@ Item {
                 visible: model.favourite
                 Text {
                     id: nameFav
-                    color: COLOR.blackColor
+                    color: UIColors.black
                     text: model.formatname
                     font {
                         weight: 500

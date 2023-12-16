@@ -3,7 +3,6 @@
         <file>Screens/MainView.qml</file>
         <file>Screens/Common/PhoneFooter.qml</file>
         <file>Screens/Common/IconButton.qml</file>
-        <file>Screens/JS/def_colors.js</file>
         <file>Screens/PHO_Contact.qml</file>
         <file>Screens/PHO_Favourites.qml</file>
         <file>Screens/PHO_KeyPad.qml</file>

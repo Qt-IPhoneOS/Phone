@@ -2,8 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import Enums 1.0
 import QML.Components
+import QML.Constants
 import "Common"
-import "JS/def_colors.js" as COLOR
 
 Item {
     id: rootItem
@@ -40,7 +40,7 @@ Item {
         Text {
             id: headerContact
             y: 80
-            color: COLOR.blackColor
+            color: UIColors.black
             font {
                 pixelSize: 30
                 weight: 600

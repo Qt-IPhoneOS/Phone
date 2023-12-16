@@ -1,8 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import "Common"
-import "JS/def_colors.js" as COLOR
 import QML.Components
+import QML.Constants
+import "Common"
 
 Item {
     id: rootItem
@@ -10,31 +10,25 @@ Item {
     QtObject {
         id: constant
 
-        readonly property int horizontalCenterScreen: 70
-        readonly property string voiceMail: "Voicemail"
-        readonly property string voiceMailBtn: "Call Voicemail"
+        readonly property int x_title: 25
+        readonly property int y_title: 70
+        readonly property int width_btn: 140
+        readonly property int height_btn: 30
+        readonly property int rounded_btn: 4
+        readonly property string voice_mail: "Voicemail"
+        readonly property string voice_mail_btn: "Call Voicemail"
     }
 
     Rectangle {
         anchors.fill: parent
-        color: "#f0f2f5"
+        color: UIColors.screen_background
     }
 
-    Item {
+    HeaderTitle {
         id: content
-        width: parent.width - constant.horizontalCenterScreen
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        Text {
-            id: headerContact
-            y: 70
-            color: COLOR.blackColor
-            font {
-                pixelSize: 30
-                weight: 600
-            }
-            text: constant.voiceMail
-        }
+        x: constant.x_title
+        y: constant.y_title
+        textStr: constant.voice_mail
     }
 
     Item {
@@ -42,40 +36,26 @@ Item {
         height: parent.height - content.height
 
         anchors.top: content.bottom
-        anchors.topMargin: 0
 
         Rectangle {
             id: button
-            width: 140
-            height: 30
+            width: constant.width_btn
+            height: constant.height_btn
             anchors.centerIn: parent
-            radius: 4
-            color: "#f0f2f5"
-            border.color: "#808080"
+            radius: constant.rounded_btn
+            color: UIColors.screen_background
+            border.color: mouseArea.pressed ? UIColors.light_grey : UIColors.dark_grey
 
-            Text {
+            CustomText {
                 id: text
-                color: "#808080"
-                font {
-                    pixelSize: 12
-                }
+                color: mouseArea.pressed ? UIColors.light_grey : UIColors.dark_grey
                 anchors.centerIn: parent
-                text: constant.voiceMailBtn
+                textStr: constant.voice_mail_btn
             }
 
             MouseArea {
                 id: mouseArea
                 anchors.fill: parent
-
-                onPressed: {
-                    button.border.color = "#CCCCCC"
-                    text.color = "#CCCCCC"
-                }
-
-                onReleased: {
-                    button.border.color = "#808080"
-                    text.color = "#808080"
-                }
             }
         }
     }

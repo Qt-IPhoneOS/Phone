@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "Common"
-import "JS/def_colors.js" as COLOR
+import QML.Constants
 import QML.Components
 
 Item {
@@ -46,7 +46,7 @@ Item {
         Text {
             id: headerContact
             y: 70
-            color: COLOR.blackColor
+            color: UIColors.black
             font {
                 pixelSize: 30
                 weight: 600
@@ -98,7 +98,7 @@ Item {
             Text {
                 id: userName
                 text: constant.meStr
-                color: COLOR.blackColor
+                color: UIColors.black
                 font {
                     pixelSize: 20
                     weight: 500
@@ -145,7 +145,7 @@ Item {
                 height: 50
                 Text {
                     id: nameContact
-                    color: COLOR.blackColor
+                    color: UIColors.black
                     text: model.formatname
                     font {
                         weight: 500
@@ -168,7 +168,7 @@ Item {
                     height: 50
                     Text {
                         id: nameContact
-                        color: COLOR.grayTextColor
+                        color: UIColors.grey
                         text: section
                         font {
                             weight: 500

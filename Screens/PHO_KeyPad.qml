@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import "Common"
-import "JS/def_colors.js" as COLOR
+import QML.Constants
 import QML.Components
 
 Item {
@@ -25,7 +25,7 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         visible: KeypadController.numberSelected !== ""
         text: KeypadController.numberSelected
-        color: COLOR.blackColor
+        color: UIColors.black
         font {
             pixelSize: 30
             weight: 400

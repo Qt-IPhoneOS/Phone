@@ -1,8 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import "../JS/def_colors.js" as COLOR
 import QML.Components
+import QML.Constants
 
 Rectangle {
     id: root
@@ -41,7 +41,7 @@ Rectangle {
             width: parent.width
             visible: root.number !== ""
             horizontalAlignment: Text.AlignHCenter
-            color: COLOR.blackColor
+            color: UIColors.black
             font {
                 pixelSize: 35
                 weight: 300
@@ -54,7 +54,7 @@ Rectangle {
             width: parent.width
             y: 45
             horizontalAlignment: Text.AlignHCenter
-            color: COLOR.blackColor
+            color: UIColors.black
             font {
                 pixelSize: root.number === "" ? 30 : (root.number === "0" ? 15 : 12)
                 weight: 400
@@ -71,7 +71,7 @@ Rectangle {
         Text {
             text: root.desc
             anchors.centerIn: parent
-            color: COLOR.blackColor
+            color: UIColors.black
             font {
                 pixelSize: 30
                 weight: 400
