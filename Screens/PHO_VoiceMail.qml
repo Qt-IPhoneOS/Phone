@@ -34,7 +34,6 @@ Item {
     Item {
         width: parent.width
         height: parent.height - content.height
-
         anchors.top: content.bottom
 
         Rectangle {
@@ -48,6 +47,7 @@ Item {
 
             CustomText {
                 id: text
+                fontSize: UIConstants.smallest_pixel
                 color: mouseArea.pressed ? UIColors.light_grey : UIColors.dark_grey
                 anchors.centerIn: parent
                 textStr: constant.voice_mail_btn

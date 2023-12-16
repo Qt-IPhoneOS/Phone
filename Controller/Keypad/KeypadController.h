@@ -15,6 +15,8 @@ public:
     QString numberSelected() const;
     void setNumberSelected(const QString &newNumberSelected);
 
+    Q_INVOKABLE void popNumber();
+
 signals:
     void numberSelectedChanged();
 

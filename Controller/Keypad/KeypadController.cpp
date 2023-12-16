@@ -17,3 +17,9 @@ void KeypadController::setNumberSelected(const QString &newNumberSelected)
     mNumberSelected = newNumberSelected;
     emit numberSelectedChanged();
 }
+
+void KeypadController::popNumber()
+{
+    mNumberSelected.chop(1);
+    emit numberSelectedChanged();
+}

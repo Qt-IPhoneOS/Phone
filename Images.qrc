@@ -17,5 +17,6 @@
         <file>Assets/delete_icon.png</file>
         <file>Assets/search_icon.png</file>
         <file>Assets/phone_call.png</file>
+        <file>Assets/close_btn.png</file>
     </qresource>
 </RCC>

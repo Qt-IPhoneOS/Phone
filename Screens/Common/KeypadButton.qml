@@ -6,9 +6,9 @@ import QML.Constants
 
 Rectangle {
     id: root
-    width: 90
-    height: 90
-    color: "#DDDDDD"
+    width: constant.keypad_width
+    height: constant.keypad_height
+    color: mouseArea.pressed ? UIColors.light_grey : UIColors.greyish
     radius: width / 2
 
     property string number: ""
@@ -16,49 +16,44 @@ Rectangle {
 
     signal keypadClicked(var value)
 
-    MouseArea {
-        anchors.fill: parent
+    QtObject {
+        id: constant
 
-        onPressed: {
-            keypadClicked(root.number !== "" ? root.number : root.desc)
-            root.color = "#CCCCCC"
-        }
+        readonly property int keypad_width: 90
+        readonly property int keypad_height: 90
 
-        onReleased: {
-            root.color = "#DDDDDD"
-        }
+        readonly property int align_value: 25
+        readonly property int number_size: 35
+        readonly property int desc_y: 45
+
+        readonly property int special_pixel: 40
     }
 
     Item {
         width: parent.width
-        height: parent.height - 25
+        height: parent.height - constant.align_value
         anchors.centerIn: parent
         visible: root.number !== ""
 
-        Text {
+        CustomText {
             id: number
             text: root.number
             width: parent.width
             visible: root.number !== ""
             horizontalAlignment: Text.AlignHCenter
             color: UIColors.black
-            font {
-                pixelSize: 35
-                weight: 300
-            }
+            fontSize: constant.number_size
         }
 
-        Text {
-            id: number2
+        CustomText {
+            id: description
             text: root.desc
             width: parent.width
-            y: 45
+            y: constant.desc_y
             horizontalAlignment: Text.AlignHCenter
             color: UIColors.black
-            font {
-                pixelSize: root.number === "" ? 30 : (root.number === "0" ? 15 : 12)
-                weight: 400
-            }
+            fontSize: root.number === "" ? UIConstants.biggest_pixel : UIConstants.smallest_pixel
+            fontWeight: UIConstants.medium_weight
         }
     }
 
@@ -68,14 +63,21 @@ Rectangle {
         anchors.centerIn: parent
         visible: root.number === ""
 
-        Text {
+        CustomText {
             text: root.desc
             anchors.centerIn: parent
             color: UIColors.black
-            font {
-                pixelSize: 30
-                weight: 400
-            }
+            fontSize: UIConstants.biggest_pixel
+            fontWeight: UIConstants.medium_weight
+        }
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+
+        onClicked: {
+            keypadClicked(root.number !== "" ? root.number : root.desc)
         }
     }
 }
