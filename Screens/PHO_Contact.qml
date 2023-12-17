@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "Common"
+import "Common/Items"
 import QML.Constants
 import QML.Components
 
@@ -10,17 +11,28 @@ Item {
     QtObject {
         id: constant
 
-        readonly property string listStr: "Lists"
-        readonly property string contactStr: "Contacts"
-        readonly property string myCardStr: "My Card"
-        readonly property string meStr: "Me"
+        readonly property int header_y: 30
+        readonly property string header_text: "Lists"
+        readonly property string title_screen_text: "Contacts"
+        readonly property string my_card_text: "My Card"
+        readonly property string name_card_text: "Me"
 
-        readonly property int horizontalCenterScreen: 70
-        readonly property int imageSize: 65
+        readonly property int horizontal_align: 70
+        readonly property int image_size: 65
+        readonly property int title_y: 70
+
+        readonly property int contact_list_height: 535
+
+        readonly property int group_width: 10
+        readonly property int group_height: 400
+        readonly property int group_spacing: 5
+        readonly property int group_margin: 250
+        readonly property int group_model: 26
+        readonly property int item_height: 10
     }
 
     QtObject {
-        id: _priCtrlGroupName
+        id: algorithm
 
         function convertIntToChar(integer) {
             let character = integer + 65
@@ -30,39 +42,37 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: "#f0f2f5"
+        color: UIColors.screen_background
     }
 
     HeaderScreen {
         width: parent.width
-        backBtnText: constant.listStr
+        backBtnText: constant.header_text
+        y: constant.header_y
     }
 
     Item {
         id: content
-        width: parent.width - constant.horizontalCenterScreen
+        width: parent.width - constant.horizontal_align
         anchors.horizontalCenter: parent.horizontalCenter
 
-        Text {
+        TitleScreen {
             id: headerContact
-            y: 70
-            color: UIColors.black
-            font {
-                pixelSize: 30
-                weight: 600
-            }
-            text: constant.contactStr
+            y: constant.title_y
+            textStr: constant.title_screen_text
         }
 
         SearchInput {
             id: searchContainer
+            anchors.top: headerContact.bottom
+            anchors.topMargin: UIAligns.margin_50
         }
 
         Underline {
             id: underline
             width: parent.width
             anchors.top: searchContainer.bottom
-            anchors.topMargin: 10
+            anchors.topMargin: UIAligns.margin_10
         }
 
         Item {
@@ -70,14 +80,14 @@ Item {
             width: parent.width
             anchors {
                 top: underline.bottom
-                topMargin: 15
+                topMargin: UIAligns.margin_15
                 horizontalCenter: parent.horizontalCenter
             }
             Image {
                 id: userImage
                 property bool rounded: true
-                width: constant.imageSize
-                height: constant.imageSize
+                width: constant.image_size
+                height: constant.image_size
 
                 source: "qrc:/Assets/user_image.jpg"
 
@@ -95,116 +105,88 @@ Item {
     //                }
     //            }
             }
-            Text {
+
+            CustomText {
                 id: userName
-                text: constant.meStr
+                textStr: constant.name_card_text
                 color: UIColors.black
-                font {
-                    pixelSize: 20
-                    weight: 500
-                }
+                fontSize: UIFonts.medium_pixel
+                fontWeight: UIFonts.medium_weight
+
                 anchors {
                     left: userImage.right
-                    leftMargin: 25
+                    leftMargin: UIAligns.margin_25
                     top: parent.top
-                    topMargin: 10
+                    topMargin: UIAligns.margin_10
                 }
             }
-            Text {
-                id: subUserName
-                text: constant.myCardStr
-                color: "#8E8E8E"
-                font {
-                    pixelSize: 13
-                    weight: 380
-                }
+
+            CustomText {
+                text: constant.my_card_text
+                color: UIColors.dark_grey
+                fontSize: UIFonts.smallest_pixel
+
+
                 anchors {
                     top: userName.bottom
-                    topMargin: 10
+                    topMargin: UIAligns.margin_10
                     left: userImage.right
-                    leftMargin: 25
+                    leftMargin: UIAligns.margin_25
                 }
+            }
+        }
+
+        Underline {
+            id: contact_underline
+            width: parent.width
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                top: userInforContainer.bottom
+                topMargin: UIAligns.margin_100
             }
         }
 
         ListView {
             id: listContactPhone
             width: parent.width
-            height: 535
+            height: constant.contact_list_height
             model: ContactController.dataModel
 
             anchors {
                 horizontalCenter: parent.horizontalCenter
-                top: userInforContainer.bottom
-                topMargin: 100
+                top: contact_underline.bottom
             }
 
-            delegate: Item {
-                id: itemPhoneContact
-                width: parent.width
-                height: 50
-                Text {
-                    id: nameContact
-                    color: UIColors.black
-                    text: model.formatname
-                    font {
-                        weight: 500
-                    }
-
-                }
-
-                Underline {
-                    width: parent.width
-                    anchors.top: nameContact.bottom
-                    anchors.topMargin: 10
-                }
-            }
-            section {
-                property: "text"
-                criteria: ViewSection.FirstCharacter
-                delegate: Item {
-                    id: itemPhoneContact
-                    width: parent.width
-                    height: 50
-                    Text {
-                        id: nameContact
-                        color: UIColors.grey
-                        text: section
-                        font {
-                            weight: 500
-                        }
-                    }
-                }
+            delegate: ContactItem {
+                textStr: model.formatname
             }
         }
     }
 
     Column {
         id: nameGroupContainer
-        width: 10
-        height: 400
-        spacing: 5
+        width: constant.group_width
+        height: constant.group_height
+        spacing: constant.group_spacing
         anchors {
             right: parent.right
-            rightMargin: 10
+            rightMargin: UIAligns.margin_10
             top: parent.top
-            topMargin: 250
+            topMargin: constant.group_margin
         }
         Repeater {
             id: repeaterCharacter
-            model: 26
+            model: constant.group_model
             Item {
                 width: parent.width
-                height: 10
-                Text {
+                height: constant.item_height
+                CustomText {
                     id: groupName
-                    height: 10
+                    height: parent.height
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: _priCtrlGroupName.convertIntToChar(index)
-                    color: "#0a7cf7"
-                    font {
-                        pixelSize: 10
-                    }
+                    textStr: algorithm.convertIntToChar(index)
+                    color: UIColors.blue
+                    fontSize: UIFonts.smallest_pixel
                 }
                 MouseArea {
                     anchors.fill: parent

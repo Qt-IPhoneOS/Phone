@@ -98,7 +98,7 @@ Item {
             width: parent.width
             height: constant.phone_call_height
             anchors.top: gridView.bottom
-            anchors.topMargin: UIAligns.margin_top_20
+            anchors.topMargin: UIAligns.margin_20
 
             Image {
                 id: phoneCall
