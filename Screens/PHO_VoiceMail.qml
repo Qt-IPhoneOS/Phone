@@ -47,7 +47,7 @@ Item {
 
             CustomText {
                 id: text
-                fontSize: UIConstants.smallest_pixel
+                fontSize: UIFonts.smallest_pixel
                 color: mouseArea.pressed ? UIColors.light_grey : UIColors.dark_grey
                 anchors.centerIn: parent
                 textStr: constant.voice_mail_btn

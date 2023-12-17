@@ -52,8 +52,8 @@ Rectangle {
             y: constant.desc_y
             horizontalAlignment: Text.AlignHCenter
             color: UIColors.black
-            fontSize: root.number === "" ? UIConstants.biggest_pixel : UIConstants.smallest_pixel
-            fontWeight: UIConstants.medium_weight
+            fontSize: root.number === "" ? UIFonts.biggest_pixel : UIFonts.smallest_pixel
+            fontWeight: UIFonts.medium_weight
         }
     }
 
@@ -67,8 +67,8 @@ Rectangle {
             text: root.desc
             anchors.centerIn: parent
             color: UIColors.black
-            fontSize: UIConstants.biggest_pixel
-            fontWeight: UIConstants.medium_weight
+            fontSize: UIFonts.biggest_pixel
+            fontWeight: UIFonts.medium_weight
         }
     }
 

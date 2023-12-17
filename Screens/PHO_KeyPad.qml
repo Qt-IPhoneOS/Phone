@@ -45,8 +45,8 @@ Item {
         visible: KeypadController.numberSelected !== ""
         text: KeypadController.numberSelected
         color: UIColors.black
-        fontSize: UIConstants.biggest_pixel
-        fontWeight: UIConstants.medium_weight
+        fontSize: UIFonts.biggest_pixel
+        fontWeight: UIFonts.medium_weight
     }
 
     CustomText {
@@ -56,7 +56,7 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         text: constant.add_number
         color: UIColors.blue
-        fontWeight: UIConstants.light_weight
+        fontWeight: UIFonts.light_weight
         opacity: KeypadController.numberSelected !== ""
         enableAnimation: true
         visibleAnimation: KeypadController.numberSelected !== ""
@@ -98,7 +98,7 @@ Item {
             width: parent.width
             height: constant.phone_call_height
             anchors.top: gridView.bottom
-            anchors.topMargin: UIConstants.margin_top_20
+            anchors.topMargin: UIAligns.margin_top_20
 
             Image {
                 id: phoneCall
@@ -131,18 +131,18 @@ Item {
                     id: fadeInAnimation
                     target: closeBtn
                     property: "opacity"
-                    from: UIConstants.opacity_0
-                    to: UIConstants.opacity_1
-                    duration: UIConstants.duration_400
+                    from: UIAligns.opacity_0
+                    to: UIAligns.opacity_1
+                    duration: UIAligns.duration_400
                 }
 
                 PropertyAnimation {
                     id: fadeOutAnimation
                     target: closeBtn
                     property: "opacity"
-                    from: UIConstants.opacity_1
-                    to: UIConstants.opacity_0
-                    duration: UIConstants.duration_400
+                    from: UIAligns.opacity_1
+                    to: UIAligns.opacity_0
+                    duration: UIAligns.duration_400
                 }
 
                 onEnableAnimationChanged: {
