@@ -24,7 +24,7 @@ Item {
         color: UIColors.screen_background
     }
 
-    HeaderTitle {
+    TitleScreen {
         id: content
         x: constant.x_title
         y: constant.y_title
