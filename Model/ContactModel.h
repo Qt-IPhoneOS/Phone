@@ -8,6 +8,7 @@
 
 class ContactModel : public QAbstractListModel {
     Q_OBJECT
+    Q_PROPERTY(size_t count READ count WRITE setCount NOTIFY countChanged)
 
 public:
     ContactModel(QObject* parent = nullptr);
@@ -18,6 +19,12 @@ public:
 
     void setContactList(const QVector<ContactInstance*>& list);
     void appendContact(ContactInstance* contact);
+
+    size_t count() const;
+    void setCount(size_t newCount);
+
+signals:
+    void countChanged();
 
 private:
     enum Role {
@@ -31,6 +38,7 @@ private:
     };
 
     QVector<ContactInstance*> mContactList;
+    size_t mCount;
 };
 
 #endif // COMODEL_H

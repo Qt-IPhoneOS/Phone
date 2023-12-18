@@ -29,6 +29,8 @@ Item {
         readonly property int group_margin: 250
         readonly property int group_model: 26
         readonly property int item_height: 10
+
+        readonly property string user_image_source: "qrc:/Assets/user_image.jpg"
     }
 
     QtObject {
@@ -89,7 +91,7 @@ Item {
                 width: constant.image_size
                 height: constant.image_size
 
-                source: "qrc:/Assets/user_image.jpg"
+                source: constant.user_image_source
 
                 //layer.enabled: rounded
     //            layer.effect: OpacityMask {
@@ -136,15 +138,7 @@ Item {
             }
         }
 
-        Underline {
-            id: contact_underline
-            width: parent.width
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                top: userInforContainer.bottom
-                topMargin: UIAligns.margin_100
-            }
-        }
+
 
         ListView {
             id: listContactPhone
@@ -154,11 +148,13 @@ Item {
 
             anchors {
                 horizontalCenter: parent.horizontalCenter
-                top: contact_underline.bottom
+                top: userInforContainer.bottom
+                topMargin: UIAligns.margin_100
             }
 
             delegate: ContactItem {
                 textStr: model.formatname
+                underlineVisible: model.index === ContactController.dataModel.count - 1
             }
         }
     }

@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "Common"
+import "Common/Items"
 import QML.Constants
 import QML.Components
 
@@ -10,66 +11,80 @@ Item {
     QtObject {
         id: constant
 
-        readonly property int horizontalCenterScreen: 70
+        readonly property int title_x: 35
+        readonly property int title_y: 70
+        readonly property string title_screen_text: "Favorites"
+
+        readonly property int empty_item: 0
+        readonly property int favorite_list_height: 715
+
+        readonly property int align_value: 70
+        readonly property int ava_width: 36
+        readonly property int ava_height: 36
     }
 
     Rectangle {
         anchors.fill: parent
-        color: "#f0f2f5"
+        color: UIColors.screen_background
     }
 
-    Item {
-        id: header
-        y: 30
-        width: parent.width
-
-        Text {
-            text: "Favorites"
-            width: parent.width
-            horizontalAlignment: Text.AlignHCenter
-            font {
-                pixelSize: 20
-                weight: Font.Bold
-            }
-        }
+    TitleScreen {
+        id: titleScreen
+        x: constant.title_x
+        y: constant.title_y
+        textStr: constant.title_screen_text
     }
 
     Item {
         id: content
-        width: parent.width - constant.horizontalCenterScreen
-        anchors.horizontalCenter: parent.horizontalCenter
+        width: parent.width
 
         anchors {
             horizontalCenter: parent.horizontalCenter
-            top: parent.top
-            topMargin: 100
+            top: titleScreen.top
+            topMargin: UIAligns.margin_70
         }
 
         ListView {
             id: favoriteList
             width: parent.width
-            height: 535
+            height: constant.favorite_list_height
             model: ContactController.dataModel
 
             delegate: Item {
                 id: itemPhoneFav
-                width: model.favourite ? parent.width : 0
-                height: model.favourite ? 50 : 0
+                width: model.favourite ? parent.width : constant.empty_item
+                height: model.favourite ? item.height : constant.empty_item
                 visible: model.favourite
-                Text {
-                    id: nameFav
-                    color: UIColors.black
-                    text: model.formatname
-                    font {
-                        weight: 500
-                    }
 
+                Item {
+                    width: constant.align_value
+                    height: parent.height
+
+                    Rectangle {
+                        width: constant.ava_width
+                        height: constant.ava_height
+                        color: UIColors.light_grey
+                        anchors.centerIn: parent
+                        radius: width / 2
+
+                        CustomText {
+                            anchors.fill: parent
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            color: UIColors.white
+                            textStr: model.formatname[0]
+                        }
+                    }
                 }
 
-                Underline {
-                    width: parent.width
-                    anchors.top: nameFav.bottom
-                    anchors.topMargin: 10
+                ContactItem {
+                    id: item
+                    width: parent.width - constant.align_value
+                    anchors.right: parent.right
+                    textStr: model.formatname
+                    infoVisible: true
+                    underlineVisible: model.index === ContactController.lastFavIndex
                 }
             }
         }

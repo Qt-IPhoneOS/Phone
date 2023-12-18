@@ -73,6 +73,7 @@ void ContactModel::setContactList(const QVector<ContactInstance*>& list)
 
     beginResetModel();
     mContactList = list;
+    setCount(list.size());
     endResetModel();
 }
 
@@ -86,5 +87,19 @@ void ContactModel::appendContact(ContactInstance *contact)
 
     beginResetModel();
     mContactList.append(contact);
+    setCount(++mCount);
     endResetModel();
+}
+
+size_t ContactModel::count() const
+{
+    return mCount;
+}
+
+void ContactModel::setCount(size_t newCount)
+{
+    if (mCount == newCount)
+        return;
+    mCount = newCount;
+    emit countChanged();
 }
