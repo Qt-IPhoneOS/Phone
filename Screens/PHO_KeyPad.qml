@@ -5,41 +5,11 @@ import "Common"
 import QML.Constants
 import QML.Components
 
-Item {
+PhoneScreen {
     id: rootItem
 
-    QtObject {
-        id: constant
-
-        readonly property int number_text_y: 110
-
-        readonly property int add_number_y: 160
-        readonly property string add_number: "Add Number"
-
-        readonly property int grid_keypad_y: 100
-        readonly property int keypad_columns: 3
-        readonly property int keypad_rows: 4
-        readonly property int columns_spacing: 55
-        readonly property int rows_spacing: 20
-
-        readonly property int phone_call_width: 90
-        readonly property int phone_call_height: 90
-        readonly property string phone_call_img:  "qrc:/Assets/phone_call.png"
-
-        readonly property int close_btn_x: 430
-        readonly property int close_btn_width: 40
-        readonly property int close_btn_height: 40
-        readonly property int close_btn_pixel: 25
-        readonly property int close_btn_radius: 4
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        color: UIColors.screen_background
-    }
-
     CustomText {
-        y: constant.number_text_y
+        y: 110
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
         visible: KeypadController.numberSelected !== ""
@@ -51,11 +21,11 @@ Item {
 
     CustomText {
         id: addNumber
-        y: constant.add_number_y
+        y: 160
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
-        text: constant.add_number
         color: UIColors.blue
+        text: "Add Number"
         fontWeight: UIFonts.light_weight
         opacity: KeypadController.numberSelected !== ""
         enableAnimation: true
@@ -63,18 +33,18 @@ Item {
     }
 
     Item {
-        y: constant.grid_keypad_y
+        y: 100
         width: parent.width
-        height: parent.height - constant.grid_keypad_y
+        height: parent.height - 100
 
         GridLayout {
             id: gridView
-            width: parent.width - (constant.grid_keypad_y * 2)
-            columns: constant.keypad_columns
-            rows: constant.keypad_rows
+            width: parent.width - 200
             anchors.centerIn: parent
-            columnSpacing: constant.columns_spacing
-            rowSpacing: constant.rows_spacing
+            columns: 3
+            rows: 4
+            columnSpacing: 55
+            rowSpacing: 20
 
             Repeater {
                 model: keypadList
@@ -96,35 +66,34 @@ Item {
 
         Item {
             width: parent.width
-            height: constant.phone_call_height
+            height: 90
             anchors.top: gridView.bottom
             anchors.topMargin: UIAligns.margin_20
 
             Image {
                 id: phoneCall
-                width: constant.phone_call_width
+                width: 90
                 height: parent.height
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: constant.phone_call_img
+                source: "qrc:/Assets/phone_call.png"
             }
 
             Rectangle {
                 id: closeBtn
-                x: constant.close_btn_x
-                width: constant.close_btn_width
-                height: constant.close_btn_height
-                color: mouseArea.pressed ? UIColors.light_grey : UIColors.greyish
-                radius: constant.close_btn_radius
+                x: 430
+                width: 40
+                height: 40
+                radius: 4
                 anchors.verticalCenter: parent.verticalCenter
+                color: mouseArea.pressed ? UIColors.light_grey : UIColors.greyish
                 opacity: KeypadController.numberSelected !== ""
 
                 property bool enableAnimation: KeypadController.numberSelected !== ""
 
-                Text {
+                CustomText {
+                    textStr: "X"
                     anchors.centerIn: parent
-                    text: "X"
-                    color: UIColors.black
-                    font.pixelSize: constant.close_btn_pixel
+                    fontSize: 25
                 }
 
                 PropertyAnimation {

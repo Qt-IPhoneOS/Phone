@@ -4,31 +4,14 @@ import QML.Components
 import QML.Constants
 import "Common"
 
-Item {
+PhoneScreen {
     id: rootItem
-
-    QtObject {
-        id: constant
-
-        readonly property int x_title: 25
-        readonly property int y_title: 70
-        readonly property int width_btn: 140
-        readonly property int height_btn: 30
-        readonly property int rounded_btn: 4
-        readonly property string voice_mail: "Voicemail"
-        readonly property string voice_mail_btn: "Call Voicemail"
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        color: UIColors.screen_background
-    }
 
     TitleScreen {
         id: content
-        x: constant.x_title
-        y: constant.y_title
-        textStr: constant.voice_mail
+        x: 25
+        y: 70
+        textStr: "Voicemail"
     }
 
     Item {
@@ -38,10 +21,10 @@ Item {
 
         Rectangle {
             id: button
-            width: constant.width_btn
-            height: constant.height_btn
+            width: 140
+            height: 30
             anchors.centerIn: parent
-            radius: constant.rounded_btn
+            radius: 4
             color: UIColors.screen_background
             border.color: mouseArea.pressed ? UIColors.light_grey : UIColors.dark_grey
 
@@ -50,7 +33,7 @@ Item {
                 fontSize: UIFonts.smallest_pixel
                 color: mouseArea.pressed ? UIColors.light_grey : UIColors.dark_grey
                 anchors.centerIn: parent
-                textStr: constant.voice_mail_btn
+                textStr: "Call Voicemail"
             }
 
             MouseArea {
