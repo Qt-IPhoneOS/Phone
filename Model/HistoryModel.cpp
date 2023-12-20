@@ -65,6 +65,7 @@ void HistoryModel::setHistoryList(const QVector<HistoryInstance*>& list)
 
     beginResetModel();
     mHistoryList = list;
+    setCount(list.size());
     endResetModel();
 }
 
@@ -78,5 +79,19 @@ void HistoryModel::appendHistory(HistoryInstance *history)
 
     beginResetModel();
     mHistoryList.append(history);
+    setCount(++mCount);
     endResetModel();
+}
+
+size_t HistoryModel::count() const
+{
+    return mCount;
+}
+
+void HistoryModel::setCount(size_t newCount)
+{
+    if (mCount == newCount)
+        return;
+    mCount = newCount;
+    emit countChanged();
 }

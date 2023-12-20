@@ -4,6 +4,7 @@ import Enums 1.0
 import QML.Components
 import QML.Constants
 import "Common"
+import "Common/Items"
 
 Item {
     id: rootItem
@@ -13,67 +14,75 @@ Item {
     QtObject {
         id: constant
 
-        readonly property string listStr: "Lists"
-        readonly property string recentsStr: "Recents"
+        readonly property string title_screen_text: "Recents"
 
-        readonly property int horizontalCenterScreen: 70
-        readonly property int imageSize: 65
+        readonly property int title_x: 70
+        readonly property int title_y: 70
+        readonly property int empty_item: 0
+        readonly property int recent_switch_y: 20
+        readonly property int recent_list_height: 700
     }
 
     Rectangle {
         anchors.fill: parent
-        color: "#f0f2f5"
+        color: UIColors.screen_background
     }
 
     RecentSwitch {
-        y: 20
+        y: constant.recent_switch_y
         switchOn: RecentController.recentMode === Enums.Recent_Missed
         anchors.horizontalCenter: parent.horizontalCenter
         onSwitched: RecentController.recentMode = RecentController.recentMode === Enums.Recent_Missed ? Enums.Recent_All : Enums.Recent_Missed
     }
 
+    TitleScreen {
+        id: titleScreen
+        x: constant.title_x
+        y: constant.title_y
+        textStr: constant.title_screen_text
+    }
+
     Item {
         id: content
-        width: parent.width - constant.horizontalCenterScreen
-        anchors.horizontalCenter: parent.horizontalCenter
+        width: parent.width
 
-        Text {
-            id: headerContact
-            y: 80
-            color: UIColors.black
-            font {
-                pixelSize: 30
-                weight: 600
-            }
-            text: constant.recentsStr
-            z: 1
-        }
-
-        Underline {
-            id: underline
-            width: parent.width
-            anchors.top: headerContact.bottom
-            anchors.topMargin: 10
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            top: titleScreen.top
+            topMargin: UIAligns.margin_70
         }
 
         ListView {
             id: listContactPhone
             width: parent.width
-            height: 700
+            height: constant.recent_list_height
             model: RecentController.dataModel
-            z: 0
 
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                top: underline.bottom
-                topMargin: 0
-            }
+            delegate: Item {
+                width: parent.width
+                height: RecentController.recentMode === Enums.Recent_All ? itemRecent.height : (model.type !== Enums.Missed ? constant.empty_item : itemRecent.height)
 
-            delegate: RecentItem {
-                visible: RecentController.recentMode === Enums.Recent_All ? true : (model.type === Enums.Missed)
-                isMissed: model.type === Enums.Missed
-                height: RecentController.recentMode === Enums.Recent_All ? 50 : (model.type !== Enums.Missed ? 0 : 50)
-                recentText: model.formatname !== "" ? model.formatname : model.number
+                Item {
+                    width: constant.title_x
+                    height: parent.height
+
+                    AvatarImg {
+                        avatarName: model.formatname[0] ? model.formatname[0] : ""
+                    }
+                }
+
+                RecentItem {
+                    id: itemRecent
+                    width: parent.width - constant.title_x
+                    anchors.right: parent.right
+                    visible: RecentController.recentMode === Enums.Recent_All ? true : (model.type === Enums.Missed)
+                    isMissed: model.type === Enums.Missed
+                    infoVisible: true
+                    recentName: model.formatname !== "" ? model.formatname : model.number
+                    recentType: model.type === Enums.Missed ? "Missed" : (model.type === Enums.Outgoing ? "Outgoing" : "Incoming")
+                    underlineVisible: RecentController.recentMode === Enums.Recent_All ? model.index === RecentController.dataModel.count - 1
+                                                                                       : model.index === RecentController.lastHistoryIndex
+                }
             }
         }
     }

@@ -25,6 +25,17 @@ void RecentController::setDataModel(QAbstractListModel *model)
 
 void RecentController::setRecentsList(const QVector<HistoryInstance*>& list)
 {
+    auto index = -1;
+    int count = 0;
+    for (auto item : list)
+    {
+        if (item->getType() == (int)Enums::Missed)
+        {
+            index = count;
+        }
+        ++count;
+    }
+    setLastHistoryIndex(index);
     mHistoryModel->setHistoryList(list);
 }
 
@@ -39,4 +50,17 @@ void RecentController::setRecentMode(Enums::RecentsMode newRecentMode)
         return;
     mRecentMode = newRecentMode;
     emit recentModeChanged();
+}
+
+int RecentController::lastHistoryIndex() const
+{
+    return mLastHistoryIndex;
+}
+
+void RecentController::setLastHistoryIndex(int newLastHistoryIndex)
+{
+    if (mLastHistoryIndex == newLastHistoryIndex)
+        return;
+    mLastHistoryIndex = newLastHistoryIndex;
+    emit lastHistoryIndexChanged();
 }

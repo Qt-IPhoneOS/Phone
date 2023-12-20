@@ -61,20 +61,8 @@ Item {
                     width: constant.align_value
                     height: parent.height
 
-                    Rectangle {
-                        width: constant.ava_width
-                        height: constant.ava_height
-                        color: UIColors.light_grey
-                        anchors.centerIn: parent
-                        radius: width / 2
-
-                        CustomText {
-                            anchors.fill: parent
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            color: UIColors.white
-                            textStr: model.formatname[0]
-                        }
+                    AvatarImg {
+                        avatarName: model.formatname[0]
                     }
                 }
 
