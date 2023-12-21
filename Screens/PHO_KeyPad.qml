@@ -8,6 +8,12 @@ import QML.Components
 PhoneScreen {
     id: rootItem
 
+    QtObject {
+        id: constant
+
+        readonly property int grid_view_position: 100
+    }
+
     CustomText {
         y: 110
         width: parent.width
@@ -27,15 +33,13 @@ PhoneScreen {
         color: UIColors.blue
         text: "Add Number"
         fontWeight: UIFonts.light_weight
-        opacity: KeypadController.numberSelected !== ""
-        enableAnimation: true
-        visibleAnimation: KeypadController.numberSelected !== ""
+        visible: KeypadController.numberSelected !== ""
     }
 
     Item {
-        y: 100
+        y: constant.grid_view_position
         width: parent.width
-        height: parent.height - 100
+        height: parent.height - constant.grid_view_position
 
         GridLayout {
             id: gridView
@@ -86,36 +90,12 @@ PhoneScreen {
                 radius: 4
                 anchors.verticalCenter: parent.verticalCenter
                 color: mouseArea.pressed ? UIColors.light_grey : UIColors.greyish
-                opacity: KeypadController.numberSelected !== ""
-
-                property bool enableAnimation: KeypadController.numberSelected !== ""
+                visible: KeypadController.numberSelected !== ""
 
                 CustomText {
                     textStr: "X"
                     anchors.centerIn: parent
                     fontSize: 25
-                }
-
-                PropertyAnimation {
-                    id: fadeInAnimation
-                    target: closeBtn
-                    property: "opacity"
-                    from: UIAligns.opacity_0
-                    to: UIAligns.opacity_1
-                    duration: UIAligns.duration_400
-                }
-
-                PropertyAnimation {
-                    id: fadeOutAnimation
-                    target: closeBtn
-                    property: "opacity"
-                    from: UIAligns.opacity_1
-                    to: UIAligns.opacity_0
-                    duration: UIAligns.duration_400
-                }
-
-                onEnableAnimationChanged: {
-                    enableAnimation ? fadeInAnimation.start() : fadeOutAnimation.start()
                 }
 
                 MouseArea {

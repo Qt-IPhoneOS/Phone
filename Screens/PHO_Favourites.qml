@@ -5,34 +5,22 @@ import "Common/Items"
 import QML.Constants
 import QML.Components
 
-Item {
+PhoneScreen {
     id: rootItem
 
     QtObject {
         id: constant
 
-        readonly property int title_x: 35
-        readonly property int title_y: 70
-        readonly property string title_screen_text: "Favorites"
-
-        readonly property int empty_item: 0
+        readonly property int avatar_area: 70
+        readonly property int empty_item: 70
         readonly property int favorite_list_height: 715
-
-        readonly property int align_value: 70
-        readonly property int ava_width: 36
-        readonly property int ava_height: 36
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        color: UIColors.screen_background
     }
 
     TitleScreen {
         id: titleScreen
-        x: constant.title_x
-        y: constant.title_y
-        textStr: constant.title_screen_text
+        x: 35
+        y: 70
+        textStr: "Favorites"
     }
 
     Item {
@@ -58,7 +46,7 @@ Item {
                 visible: model.favourite
 
                 Item {
-                    width: constant.align_value
+                    width: constant.avatar_area
                     height: parent.height
 
                     AvatarImg {
@@ -68,7 +56,7 @@ Item {
 
                 ContactItem {
                     id: item
-                    width: parent.width - constant.align_value
+                    width: parent.width - constant.avatar_area
                     anchors.right: parent.right
                     textStr: model.formatname
                     infoVisible: true
