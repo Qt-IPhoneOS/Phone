@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>Assets/icons8-star-50.png</file>
         <file>Assets/plus_icon.png</file>
-        <file>Assets/user_image.jpg</file>
         <file>Assets/keypad_nonactive.png</file>
         <file>Assets/keypad_active.png</file>
         <file>Assets/recent_icon_normal.png</file>
@@ -18,5 +17,6 @@
         <file>Assets/search_icon.png</file>
         <file>Assets/phone_call.png</file>
         <file>Assets/close_btn.png</file>
+        <file>Assets/avartarUser.jpg</file>
     </qresource>
 </RCC>

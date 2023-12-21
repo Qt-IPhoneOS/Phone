@@ -12,7 +12,6 @@
         <file>Screens/Common/KeypadButton.qml</file>
         <file>Screens/Common/Items/ContactItem.qml</file>
         <file>Screens/Common/Items/RecentItem.qml</file>
-        <file>Screens/Common/AvatarImg.qml</file>
         <file>Screens/Common/PhoneScreen.qml</file>
     </qresource>
 </RCC>

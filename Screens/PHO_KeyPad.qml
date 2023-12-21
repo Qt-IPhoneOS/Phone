@@ -1,9 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import "Common"
 import QML.Constants
 import QML.Components
+import "Common"
 
 PhoneScreen {
     id: rootItem

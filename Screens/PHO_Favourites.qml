@@ -1,9 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import "Common"
-import "Common/Items"
 import QML.Constants
 import QML.Components
+import "Common"
+import "Common/Items"
 
 PhoneScreen {
     id: rootItem
@@ -12,7 +12,7 @@ PhoneScreen {
         id: constant
 
         readonly property int avatar_area: 70
-        readonly property int empty_item: 70
+        readonly property int empty_item: 0
         readonly property int favorite_list_height: 715
     }
 
@@ -49,8 +49,12 @@ PhoneScreen {
                     width: constant.avatar_area
                     height: parent.height
 
-                    AvatarImg {
-                        avatarName: model.formatname[0]
+                    Avatar {
+                        width: 36
+                        height: 36
+                        anchors.centerIn: parent
+                        isNoImage: true
+                        avatarName: model.formatname[0] ? model.formatname[0] : ""
                     }
                 }
 

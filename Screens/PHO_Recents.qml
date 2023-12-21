@@ -65,8 +65,13 @@ Item {
                 Item {
                     width: constant.title_x
                     height: parent.height
+                    visible: RecentController.recentMode === Enums.Recent_All ? true : (model.type === Enums.Missed)
 
-                    AvatarImg {
+                    Avatar {
+                        width: 36
+                        height: 36
+                        anchors.centerIn: parent
+                        isNoImage: true
                         avatarName: model.formatname[0] ? model.formatname[0] : ""
                     }
                 }

@@ -17,6 +17,8 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../../Services/include
                $$PWD/../../Services/include/Common
 
+QML_IMPORT_PATH += $$PWD/../UICommon
+
 
 SOURCES += \
     Controller/AdapterController.cpp \

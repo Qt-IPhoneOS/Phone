@@ -1,37 +1,19 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import Qt5Compat.GraphicalEffects
-import "Common"
-import "Common/Items"
 import QML.Constants
 import QML.Components
+import "Common"
+import "Common/Items"
 
-Item {
+PhoneScreen {
     id: rootItem
 
     QtObject {
         id: constant
 
-        readonly property int header_y: 30
-        readonly property string header_text: "Lists"
-        readonly property string title_screen_text: "Contacts"
-        readonly property string my_card_text: "My Card"
-        readonly property string name_card_text: "Me"
-
         readonly property int horizontal_align: 70
-        readonly property int image_size: 65
-        readonly property int title_y: 70
-
         readonly property int contact_list_height: 535
-
-        readonly property int group_width: 10
-        readonly property int group_height: 400
-        readonly property int group_spacing: 5
-        readonly property int group_margin: 250
-        readonly property int group_model: 26
-        readonly property int item_height: 10
-
-        readonly property string user_image_source: "qrc:/Assets/user_image.jpg"
     }
 
     QtObject {
@@ -43,15 +25,10 @@ Item {
         }
     }
 
-    Rectangle {
-        anchors.fill: parent
-        color: UIColors.screen_background
-    }
-
     HeaderScreen {
+        y: 30
         width: parent.width
-        backBtnText: constant.header_text
-        y: constant.header_y
+        backBtnText: "Lists"
     }
 
     Item {
@@ -61,8 +38,8 @@ Item {
 
         TitleScreen {
             id: headerContact
-            y: constant.title_y
-            textStr: constant.title_screen_text
+            y: 70
+            textStr: "Contacts"
         }
 
         SearchInput {
@@ -86,32 +63,18 @@ Item {
                 topMargin: UIAligns.margin_15
                 horizontalCenter: parent.horizontalCenter
             }
-            Image {
+
+            Avatar {
                 id: userImage
-                property bool rounded: true
-                width: constant.image_size
-                height: constant.image_size
-
-                source: constant.user_image_source
-
-                layer.enabled: rounded
-                layer.effect: OpacityMask {
-                    maskSource: Item {
-                        width: userImage.width
-                        height: userImage.height
-                        Rectangle {
-                            anchors.centerIn: parent
-                            width: userImage.width
-                            height: userImage.height
-                            radius: Math.min(userImage.width, userImage.height)
-                        }
-                    }
-                }
+                width: 65
+                height: 65
+                isImage: true
+                sourceImg: "qrc:/Assets/avartarUser.jpg"
             }
 
             CustomText {
                 id: userName
-                textStr: constant.name_card_text
+                textStr: "Me"
                 color: UIColors.black
                 fontSize: UIFonts.medium_pixel
                 fontWeight: UIFonts.medium_weight
@@ -120,15 +83,14 @@ Item {
                     left: userImage.right
                     leftMargin: UIAligns.margin_25
                     top: parent.top
-                    topMargin: UIAligns.margin_10
+                    topMargin: UIAligns.margin_5
                 }
             }
 
             CustomText {
-                text: constant.my_card_text
+                text: "My Card"
                 color: UIColors.dark_grey
                 fontSize: UIFonts.smallest_pixel
-
 
                 anchors {
                     top: userName.bottom
@@ -162,21 +124,21 @@ Item {
 
     Column {
         id: nameGroupContainer
-        width: constant.group_width
-        height: constant.group_height
-        spacing: constant.group_spacing
+        width: 10
+        height: 400
+        spacing: 5
         anchors {
             right: parent.right
             rightMargin: UIAligns.margin_10
             top: parent.top
-            topMargin: constant.group_margin
+            topMargin: 250
         }
         Repeater {
             id: repeaterCharacter
-            model: constant.group_model
+            model: 26
             Item {
                 width: parent.width
-                height: constant.item_height
+                height: 10
                 CustomText {
                     id: groupName
                     height: parent.height
