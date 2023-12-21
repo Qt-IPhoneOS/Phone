@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import Qt5Compat.GraphicalEffects
 import "Common"
 import "Common/Items"
 import QML.Constants
@@ -93,19 +94,19 @@ Item {
 
                 source: constant.user_image_source
 
-                //layer.enabled: rounded
-    //            layer.effect: OpacityMask {
-    //                maskSource: Item {
-    //                    width: userImage.width
-    //                    height: userImage.height
-    //                    Rectangle {
-    //                        anchors.centerIn: parent
-    //                        width: userImage.width
-    //                        height: userImage.height
-    //                        radius: Math.min(userImage.width, userImage.height)
-    //                    }
-    //                }
-    //            }
+                layer.enabled: rounded
+                layer.effect: OpacityMask {
+                    maskSource: Item {
+                        width: userImage.width
+                        height: userImage.height
+                        Rectangle {
+                            anchors.centerIn: parent
+                            width: userImage.width
+                            height: userImage.height
+                            radius: Math.min(userImage.width, userImage.height)
+                        }
+                    }
+                }
             }
 
             CustomText {
