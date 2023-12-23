@@ -5,8 +5,9 @@ import QML.Components
 import "Common"
 import "Common/Items"
 
-PhoneScreen {
+ScrollScreen {
     id: rootItem
+    contentHeight: content.childrenRect.height + 100
 
     QtObject {
         id: constant
@@ -38,6 +39,7 @@ PhoneScreen {
             width: parent.width
             height: constant.favorite_list_height
             model: ContactController.dataModel
+            interactive: false
 
             delegate: Item {
                 id: itemPhoneFav

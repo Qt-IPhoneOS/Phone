@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QML.Constants
 
-Item {
+Flickable {
     id: rootItem
 
     Rectangle {

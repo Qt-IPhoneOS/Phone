@@ -4,10 +4,11 @@ import QtQuick.Controls 2.15
 import "Common"
 import QML.Constants
 
-Item {
+Rectangle {
     id: rootItem
     width: UIConstants.screen_width
     height: UIConstants.screen_height
+    color: UIColors.screen_background
 
     Loader {
         id: loaderMainScreenPhone
