@@ -5,7 +5,7 @@ import QML.Constants
 import QML.Components
 import "Common"
 
-PhoneScreen {
+RootScreen {
     id: rootItem
 
     QtObject {

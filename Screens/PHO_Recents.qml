@@ -6,8 +6,9 @@ import QML.Constants
 import "Common"
 import "Common/Items"
 
-PhoneScreen {
+RootScreen {
     id: rootItem
+    interactive: false
 
     property bool switchOn: false
 

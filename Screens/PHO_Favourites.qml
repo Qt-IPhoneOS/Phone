@@ -5,7 +5,7 @@ import QML.Components
 import "Common"
 import "Common/Items"
 
-ScrollScreen {
+RootScreen {
     id: rootItem
     contentHeight: content.childrenRect.height + 100
 

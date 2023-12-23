@@ -4,8 +4,9 @@ import QML.Components
 import QML.Constants
 import "Common"
 
-PhoneScreen {
+RootScreen {
     id: rootItem
+    interactive: false
 
     TitleScreen {
         id: content
