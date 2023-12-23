@@ -68,7 +68,6 @@ PhoneScreen {
                 id: userImage
                 width: 65
                 height: 65
-                isImage: true
                 sourceImg: "qrc:/Assets/avartarUser.jpg"
             }
 

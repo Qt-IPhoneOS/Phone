@@ -49,8 +49,13 @@ void AdapterController::handleUpdateContactList(const std::list<midlayer::Contac
 
     for (auto item = list.begin(); item != list.end(); ++item)
     {
+        QString photo = "";
+        if (item->photo != "")
+        {
+            photo.append("data:image/png;base64,").append(QString::fromStdString(item->photo));
+        }
         ContactInstance* contact = new ContactInstance(item->id, QString::fromStdString(item->firstName), QString::fromStdString(item->lastName), QString::fromStdString(item->formatName),
-                                                       QString::fromStdString(item->phoneNumber), QString::fromStdString(item->photo), item->isFav);
+                                                       QString::fromStdString(item->phoneNumber), photo, item->isFav);
         mContactList.emplace_back(contact);
     }
 

@@ -6,7 +6,7 @@ import QML.Constants
 import "Common"
 import "Common/Items"
 
-Item {
+PhoneScreen {
     id: rootItem
 
     property bool switchOn: false
@@ -14,13 +14,9 @@ Item {
     QtObject {
         id: constant
 
-        readonly property string title_screen_text: "Recents"
-
-        readonly property int title_x: 70
-        readonly property int title_y: 70
         readonly property int empty_item: 0
-        readonly property int recent_switch_y: 20
         readonly property int recent_list_height: 700
+        readonly property int avatar_area: 90
     }
 
     Rectangle {
@@ -29,7 +25,7 @@ Item {
     }
 
     RecentSwitch {
-        y: constant.recent_switch_y
+        y: 20
         switchOn: RecentController.recentMode === Enums.Recent_Missed
         anchors.horizontalCenter: parent.horizontalCenter
         onSwitched: RecentController.recentMode = RecentController.recentMode === Enums.Recent_Missed ? Enums.Recent_All : Enums.Recent_Missed
@@ -37,9 +33,9 @@ Item {
 
     TitleScreen {
         id: titleScreen
-        x: constant.title_x
-        y: constant.title_y
-        textStr: constant.title_screen_text
+        x: 70
+        y: 70
+        textStr: "Recents"
     }
 
     Item {
@@ -63,22 +59,22 @@ Item {
                 height: RecentController.recentMode === Enums.Recent_All ? itemRecent.height : (model.type !== Enums.Missed ? constant.empty_item : itemRecent.height)
 
                 Item {
-                    width: constant.title_x
+                    width: constant.avatar_area
                     height: parent.height
                     visible: RecentController.recentMode === Enums.Recent_All ? true : (model.type === Enums.Missed)
 
                     Avatar {
-                        width: 36
-                        height: 36
+                        width: 46
+                        height: 46
                         anchors.centerIn: parent
-                        isNoImage: true
+                        isImage: false
                         avatarName: model.formatname[0] ? model.formatname[0] : ""
                     }
                 }
 
                 RecentItem {
                     id: itemRecent
-                    width: parent.width - constant.title_x
+                    width: parent.width - constant.avatar_area
                     anchors.right: parent.right
                     visible: RecentController.recentMode === Enums.Recent_All ? true : (model.type === Enums.Missed)
                     isMissed: model.type === Enums.Missed

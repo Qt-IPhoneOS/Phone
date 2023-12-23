@@ -11,9 +11,9 @@ PhoneScreen {
     QtObject {
         id: constant
 
-        readonly property int avatar_area: 70
+        readonly property int avatar_area: 90
         readonly property int empty_item: 0
-        readonly property int favorite_list_height: 715
+        readonly property int favorite_list_height: 735
     }
 
     TitleScreen {
@@ -30,7 +30,7 @@ PhoneScreen {
         anchors {
             horizontalCenter: parent.horizontalCenter
             top: titleScreen.top
-            topMargin: UIAligns.margin_70
+            topMargin: UIAligns.margin_50
         }
 
         ListView {
@@ -50,17 +50,19 @@ PhoneScreen {
                     height: parent.height
 
                     Avatar {
-                        width: 36
-                        height: 36
+                        width: 46
+                        height: 46
                         anchors.centerIn: parent
-                        isNoImage: true
-                        avatarName: model.formatname[0] ? model.formatname[0] : ""
+                        isImage: model.avatar !== ""
+                        avatarName: (!isImage && model.formatname[0]) ? model.formatname[0] : ""
+                        sourceImg: model.avatar
                     }
                 }
 
                 ContactItem {
                     id: item
                     width: parent.width - constant.avatar_area
+                    height: 60
                     anchors.right: parent.right
                     textStr: model.formatname
                     infoVisible: true
