@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QML.Constants
+import QML.Components
 
 Rectangle {
     id: rootItem
@@ -8,7 +10,8 @@ Rectangle {
     color: "transparent"
     property bool switchOn: false
 
-    signal switched()
+    signal requestAll()
+    signal requestMissed()
 
     Rectangle {
         width: parent.width
@@ -17,30 +20,42 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         clip: true
-        color: "#E5E5E5"
+        color: UIColors.greyish
 
         Item {
             id: allText
+            z: 1
             width: parent.width / 2
             height: parent.height
-            z: 1
-            Text {
+            CustomText {
                 anchors.centerIn: allText
-                font.pixelSize: 12
-                text: "All"
+                fontSize: 12
+                textStr: "All"
+            }
+
+            MouseArea {
+                width: parent.width
+                height: parent.height
+                onClicked: rootItem.requestAll()
             }
         }
 
         Item {
             id: missedText
-            width: parent.width / 2
-            height: parent.height
             x: parent.width / 2
             z: 1
-            Text {
+            width: parent.width / 2
+            height: parent.height
+            CustomText {
                 anchors.centerIn: missedText
-                font.pixelSize: 12
-                text: "Missed"
+                fontSize: 12
+                textStr: "Missed"
+            }
+
+            MouseArea {
+                width: parent.width
+                height: parent.height
+                onClicked: rootItem.requestMissed()
             }
         }
 
@@ -48,9 +63,8 @@ Rectangle {
             width: parent.width / 2 - 2
             height: parent.height - 2
             radius: 7
-            color: "white"
-            border.color: "#E5E5E5"
-            z: 0
+            color: UIColors.white
+            border.color: UIColors.greyish
             anchors.verticalCenter: parent.verticalCenter
             x: rootItem.switchOn ? parent.width - width - 2 : 2
             Behavior on x {
@@ -58,12 +72,7 @@ Rectangle {
             }
         }
 
-        MouseArea {
-            id: switchArea
-            width: parent.width
-            height: parent.height
-            onClicked: rootItem.switched()
-        }
+
     }
 }
 

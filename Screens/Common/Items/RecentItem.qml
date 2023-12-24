@@ -66,7 +66,7 @@ Item {
         anchors {
             verticalCenter: parent.verticalCenter
             right: parent.right
-            rightMargin: UIAligns.margin_20
+            rightMargin: UIAligns.margin_30
         }
         visible: infoVisible
     }

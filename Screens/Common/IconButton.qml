@@ -1,4 +1,6 @@
 import QtQuick 2.15
+import QML.Components
+import QML.Constants
 
 Item {
     id: rootItem
@@ -25,12 +27,12 @@ Item {
         source: rootItem.sourceIcon
     }
 
-    Text {
+    CustomText {
         id: titleIcon
         visible: !(rootItem.titleIcon === "")
         text: rootItem.titleIcon
-        color: rootItem.isActive ? "#0D7FFA" : "#7F7F81"
-        font.pixelSize: 10
+        color: rootItem.isActive ? UIColors.blue : UIColors.grey
+        fontSize: 10
         anchors.top: iconImage.bottom
         anchors.topMargin: 3
         clip: true

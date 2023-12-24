@@ -6,7 +6,7 @@ import QML.Components
 import "Common"
 import "Common/Items"
 
-RootScreen {
+Item {
     id: rootItem
 
     QtObject {
@@ -31,10 +31,12 @@ RootScreen {
         backBtnText: "Lists"
     }
 
-    Item {
+    RootScreen {
         id: content
         width: parent.width - constant.horizontal_align
+        height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
+        contentHeight: listContactPhone.childrenRect.height + headerContact.height + searchContainer.height + userInforContainer.height + 100
 
         TitleScreen {
             id: headerContact
@@ -107,6 +109,7 @@ RootScreen {
             width: parent.width
             height: constant.contact_list_height
             model: ContactController.dataModel
+            interactive: false
 
             anchors {
                 horizontalCenter: parent.horizontalCenter

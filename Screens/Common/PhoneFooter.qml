@@ -3,13 +3,13 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Enums 1.0
 import QML.Components
+import QML.Constants
 
 Rectangle {
     id: rootItem
-    color: "#e3e3e3"
+    color: UIColors.greyish
 
     Underline {
-        color: "#D3D3D3"
     }
 
     RowLayout {

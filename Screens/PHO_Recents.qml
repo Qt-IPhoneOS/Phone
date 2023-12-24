@@ -6,11 +6,10 @@ import QML.Constants
 import "Common"
 import "Common/Items"
 
-RootScreen {
+Item {
     id: rootItem
-    interactive: false
-
     property bool switchOn: false
+    anchors.fill: parent
 
     QtObject {
         id: constant
@@ -27,33 +26,38 @@ RootScreen {
 
     RecentSwitch {
         y: 20
+        z: 1
         switchOn: RecentController.recentMode === Enums.Recent_Missed
         anchors.horizontalCenter: parent.horizontalCenter
-        onSwitched: RecentController.recentMode = RecentController.recentMode === Enums.Recent_Missed ? Enums.Recent_All : Enums.Recent_Missed
+        onRequestAll: RecentController.recentMode = Enums.Recent_All
+        onRequestMissed: RecentController.recentMode = Enums.Recent_Missed
     }
 
-    TitleScreen {
-        id: titleScreen
-        x: 70
-        y: 70
-        textStr: "Recents"
-    }
-
-    Item {
-        id: content
+    RootScreen {
         width: parent.width
+        height: parent.height
+        contentHeight: listRecent.childrenRect.height + 100
 
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            top: titleScreen.top
-            topMargin: UIAligns.margin_70
+        TitleScreen {
+            x: 70
+            y: 70
+            id: titleScreen
+            textStr: "Recents"
         }
 
+
         ListView {
-            id: listContactPhone
+            id: listRecent
             width: parent.width
             height: constant.recent_list_height
             model: RecentController.dataModel
+            interactive: false
+
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                top: titleScreen.top
+                topMargin: UIAligns.margin_50
+            }
 
             delegate: Item {
                 width: parent.width
@@ -87,5 +91,6 @@ RootScreen {
                 }
             }
         }
+
     }
 }
