@@ -38,6 +38,9 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const
     case Time:
         result = mHistoryList.at(index.row())->getTime();
         break;
+    case Avatar:
+        result = mHistoryList.at(index.row())->getAvatar();
+        break;
     case Type:
         result = mHistoryList.at(index.row())->getType();
     default:
@@ -54,6 +57,7 @@ QHash<int, QByteArray> HistoryModel::roleNames() const
     roles[FormatName] = "formatname";
     roles[PhoneNumber] = "number";
     roles[Time] = "time";
+    roles[Avatar] = "avatar";
     roles[Type] = "type";
     return roles;
 }

@@ -72,8 +72,9 @@ Item {
                         width: 46
                         height: 46
                         anchors.centerIn: parent
-                        isImage: false
-                        avatarName: model.formatname[0] ? model.formatname[0] : ""
+                        isImage: model.avatar !== "" && model.formatname[0] !== ""
+                        sourceImg: model.avatar
+                        avatarName: model.formatname !== "" ? model.formatname[0] : ""
                     }
                 }
 

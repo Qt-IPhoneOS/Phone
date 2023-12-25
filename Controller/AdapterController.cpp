@@ -73,8 +73,23 @@ void AdapterController::handleUpdateHistoryList(const std::list<midlayer::Histor
 
     for (auto item = list.begin(); item != list.end(); ++item)
     {
+        bool hasAvaFlag = false;
+        QString avatar = "";
+        for (auto contact = mContactList.begin(); contact != mContactList.end(); ++contact)
+        {
+            if (QString::fromStdString(item->phoneNumber) == (*contact)->getPhoneNumber())
+            {
+                avatar = (*contact)->getAvatar();
+                hasAvaFlag = true;
+                break;
+            }
+        }
+        if (!hasAvaFlag)
+        {
+            avatar = "qrc:/Assets/contact_icon_normal.png";
+        }
         HistoryInstance* history = new HistoryInstance(item->id, QString::fromStdString(item->formatName), QString::fromStdString(item->phoneNumber),
-                                                       QString::fromStdString(item->time), item->callingType);
+                                                       QString::fromStdString(item->time), avatar, item->callingType);
         mHistoryList.emplace_back(history);
     }
 

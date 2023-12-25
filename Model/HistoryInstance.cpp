@@ -5,12 +5,13 @@ HistoryInstance::HistoryInstance()
 
 }
 
-HistoryInstance::HistoryInstance(const uint32_t &id, const QString &formatName, const QString &phoneNumber, const QString &time, const int &type)
+HistoryInstance::HistoryInstance(const uint32_t &id, const QString &formatName, const QString &phoneNumber, const QString &time, const QString& avatar, const int &type)
 {
     mId = id;
     mFormatName = formatName;
     mPhoneNumber = phoneNumber;
     mTime = time;
+    mAvatar = avatar;
     mType = type;
 }
 
@@ -46,6 +47,14 @@ void HistoryInstance::setTime(const QString &newTime)
         return;
 
     mTime = newTime;
+}
+
+void HistoryInstance::setAvatar(const QString &newAvatar)
+{
+    if (mAvatar == newAvatar)
+        return;
+
+    mAvatar = newAvatar;
 }
 
 void HistoryInstance::setType(const int &newType)

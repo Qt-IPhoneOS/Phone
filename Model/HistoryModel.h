@@ -32,6 +32,7 @@ private:
         FormatName,
         PhoneNumber,
         Time,
+        Avatar,
         Type
     };
 
