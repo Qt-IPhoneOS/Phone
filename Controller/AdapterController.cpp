@@ -88,6 +88,7 @@ void AdapterController::handleUpdateHistoryList(const std::list<midlayer::Histor
         {
             avatar = "qrc:/Assets/contact_icon_normal.png";
         }
+
         HistoryInstance* history = new HistoryInstance(item->id, QString::fromStdString(item->formatName), QString::fromStdString(item->phoneNumber),
                                                        QString::fromStdString(item->time), avatar, item->callingType);
         mHistoryList.emplace_back(history);

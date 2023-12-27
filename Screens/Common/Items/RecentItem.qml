@@ -11,6 +11,7 @@ Item {
     property bool isMissed: false
     property string recentName: ""
     property string recentType: ""
+    property string recentTime: ""
     property bool underlineVisible: false
     property bool infoVisible: false
 
@@ -49,7 +50,7 @@ Item {
 
     CustomText {
         id: timeRecent
-        textStr: "Yesterday"
+        textStr: recentTime
         color: UIColors.grey
         fontWeight: UIFonts.medium_weight
         fontSize: UIFonts.smallest_pixel

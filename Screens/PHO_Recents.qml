@@ -86,6 +86,7 @@ Item {
                     isMissed: model.type === Enums.Missed
                     infoVisible: true
                     recentName: model.formatname !== "" ? model.formatname : model.number
+                    recentTime: model.time
                     recentType: model.type === Enums.Missed ? "Missed" : (model.type === Enums.Outgoing ? "Outgoing" : "Incoming")
                     underlineVisible: RecentController.recentMode === Enums.Recent_All ? model.index === RecentController.dataModel.count - 1
                                                                                        : model.index === RecentController.lastHistoryIndex

@@ -2,6 +2,7 @@
 #define HISTORYINSTANCE_H
 
 #include <QObject>
+#include <QDateTime>
 
 class HistoryInstance {
 public:
@@ -23,6 +24,9 @@ public:
     QString getTime() const { return mTime; }
     QString getAvatar() const { return mAvatar; }
     int getType() const { return mType; }
+
+    QDateTime convertToDateTime(const QString&);
+    QString getTimeForHistoryPhone(const QString&);
 
 private:
     uint32_t mId {0};
