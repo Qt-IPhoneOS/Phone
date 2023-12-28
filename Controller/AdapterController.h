@@ -39,8 +39,8 @@ private:
     KeypadController* mKeypadController;
 
     Enums::PhoneType mCurrentType {Enums::ContactType};
-    QVector<ContactInstance*> mContactList;
-    QVector<HistoryInstance*> mHistoryList;
+    QList<ContactInstance*> mContactList;
+    QList<HistoryInstance*> mHistoryList;
 };
 
 #endif // ADAPTERCONTROLLER_H

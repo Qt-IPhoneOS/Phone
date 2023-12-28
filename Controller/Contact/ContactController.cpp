@@ -1,4 +1,5 @@
 #include "ContactController.h"
+#include <algorithm>
 
 ContactController::ContactController()
 {
@@ -24,31 +25,36 @@ void ContactController::setDataModel(QAbstractListModel *model)
     emit dataModelChanged();
 }
 
-void ContactController::setContactList(const QVector<ContactInstance*>& list)
+void ContactController::setContactList(QList<ContactInstance*>& list)
 {
-    auto index = -1;
+    std::sort(list.begin(), list.end(), [](ContactInstance* ins1, ContactInstance* ins2) {
+        return ins1->getFormatName() < ins2->getFormatName();
+    });
+
+    QString heading = "";
     int count = 0;
-    for (auto item : list)
+    for (auto& item : list)
     {
-        if (item->getIsFav())
+        if (item->getFormatName().at(0) != heading)
         {
-            index = count;
+            item->setIsHeading(true);
+            count++;
         }
-        ++count;
+        heading = item->getFormatName().at(0);
     }
-    setLastFavIndex(index);
+    setHeadingCount(count);
     mContactModel->setContactList(list);
 }
 
-size_t ContactController::lastFavIndex() const
+int ContactController::headingCount() const
 {
-    return mLastFavIndex;
+    return mHeadingCount;
 }
 
-void ContactController::setLastFavIndex(size_t newLastFavIndex)
+void ContactController::setHeadingCount(int newHeadingCount)
 {
-    if (mLastFavIndex == newLastFavIndex)
+    if (mHeadingCount == newHeadingCount)
         return;
-    mLastFavIndex = newLastFavIndex;
-    emit lastFavIndexChanged();
+    mHeadingCount = newHeadingCount;
+    emit headingCountChanged();
 }

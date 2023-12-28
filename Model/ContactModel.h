@@ -34,7 +34,9 @@ private:
         FormatName,
         PhoneNumber,
         Avatar,
-        IsFav
+        IsFav,
+        Section,
+        IsHeading
     };
 
     QVector<ContactInstance*> mContactList;

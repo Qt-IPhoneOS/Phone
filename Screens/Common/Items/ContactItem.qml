@@ -14,7 +14,6 @@ Item {
     width: parent.width
     height: constant.item_height
 
-    property bool underlineVisible: false
     property bool infoVisible: false
     property string textStr: ""
 
@@ -44,6 +43,5 @@ Item {
     Underline {
         width: parent.width
         anchors.top: root.bottom
-        visible: underlineVisible
     }
 }

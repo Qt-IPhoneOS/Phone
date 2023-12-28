@@ -12,7 +12,6 @@ Item {
     property string recentName: ""
     property string recentType: ""
     property string recentTime: ""
-    property bool underlineVisible: false
     property bool infoVisible: false
 
     QtObject {
@@ -75,6 +74,5 @@ Item {
     Underline {
         width: parent.width
         anchors.top: itemRecent.bottom
-        visible: underlineVisible
     }
 }

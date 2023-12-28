@@ -46,6 +46,13 @@ QVariant ContactModel::data(const QModelIndex &index, int role) const
         break;
     case IsFav:
         result = mContactList.at(index.row())->getIsFav();
+        break;
+    case Section:
+        result = mContactList.at(index.row())->getFormatName()[0].toUpper();
+        break;
+    case IsHeading:
+        result = mContactList.at(index.row())->getIsHeading();
+        break;
     default:
         break;
     }
@@ -63,6 +70,8 @@ QHash<int, QByteArray> ContactModel::roleNames() const
     roles[PhoneNumber] = "number";
     roles[Avatar] = "avatar";
     roles[IsFav] = "favourite";
+    roles[Section] = "section";
+    roles[IsHeading] = "isHeading";
     return roles;
 }
 

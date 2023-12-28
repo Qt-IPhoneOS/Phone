@@ -36,7 +36,7 @@ Item {
         width: parent.width - constant.horizontal_align
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
-        contentHeight: listContactPhone.childrenRect.height + headerContact.height + searchContainer.height + userInforContainer.height + 100
+        contentHeight: listContactPhone.height + headerContact.height + searchContainer.height + userInforContainer.height + 280
 
         TitleScreen {
             id: headerContact
@@ -102,25 +102,57 @@ Item {
             }
         }
 
-
-
         ListView {
             id: listContactPhone
             width: parent.width
-            height: constant.contact_list_height
+            height: ContactController.dataModel.count * 50 + ContactController.headingCount * 50
+
             model: ContactController.dataModel
             interactive: false
 
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 top: userInforContainer.bottom
-                topMargin: UIAligns.margin_100
+                topMargin: UIAligns.margin_70
             }
 
-            delegate: ContactItem {
-                textStr: model.formatname
-                underlineVisible: model.index === ContactController.dataModel.count - 1
+            delegate: Item {
+                id: contactItem
+                width: parent.width
+                height: section.height + contact.height
+
+                Item {
+                    id: section
+                    width: parent.width
+                    height: model.isHeading ? 50 : 0
+
+                    CustomText {
+                        x: 2
+                        y: 23
+                        visible: model.isHeading
+                        color: UIColors.grey
+                        text: model.section
+                        fontWeight: UIFonts.medium_weight
+                    }
+                }
+
+                ContactItem {
+                    id: contact
+                    textStr: model.formatname
+                    anchors.top: section.bottom
+                }
             }
+        }
+
+        CustomText {
+            width: parent.width
+            height: 50
+            color: UIColors.black
+            text: ContactController.dataModel.count + " Contacts"
+            fontWeight: UIFonts.medium_weight
+            anchors.top: listContactPhone.bottom
+            anchors.topMargin: 20
+            horizontalAlignment: Text.AlignHCenter
         }
     }
 

@@ -9,7 +9,7 @@ class ContactController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QAbstractListModel* dataModel READ dataModel WRITE setDataModel NOTIFY dataModelChanged)
-    Q_PROPERTY(size_t lastFavIndex READ lastFavIndex WRITE setLastFavIndex NOTIFY lastFavIndexChanged)
+    Q_PROPERTY(int headingCount READ headingCount WRITE setHeadingCount NOTIFY headingCountChanged)
 
 public:
     explicit ContactController();
@@ -19,20 +19,19 @@ public:
     void setDataModel(QAbstractListModel *model);
 
 public:
-    void setContactList(const QVector<ContactInstance*>& list);
+    void setContactList(QList<ContactInstance*>& list);
 
-    size_t lastFavIndex() const;
-    void setLastFavIndex(size_t newLastFavIndex);
+    int headingCount() const;
+    void setHeadingCount(int newHeadingCount);
 
 signals:
     void dataModelChanged();
-
-    void lastFavIndexChanged();
+    void headingCountChanged();
 
 private:
     ContactModel* mContactModel {nullptr};
     QAbstractListModel *mDataModel {nullptr};
-    size_t mLastFavIndex;
+    int mHeadingCount;
 };
 
 #endif // CONTACTCONTROLLER_H

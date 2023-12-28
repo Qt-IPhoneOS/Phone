@@ -17,6 +17,7 @@ public:
     void setPhoneNumber(const QString& newPhoneNumber);
     void setAvartar(const QString& newAva);
     void setIsFav(const bool& newIsFav);
+    void setIsHeading(const bool& newIsHeading);
 
     uint32_t getId() const { return mId; }
     QString getFirstName() const { return mFirstName; }
@@ -25,6 +26,7 @@ public:
     QString getPhoneNumber() const { return mPhoneNumber; }
     QString getAvatar() const { return mAvatar; }
     bool getIsFav() const { return mIsFav; }
+    bool getIsHeading() const { return mIsHeading; }
 
 private:
     uint32_t mId {0};
@@ -34,6 +36,7 @@ private:
     QString mPhoneNumber {""};
     QString mAvatar {""};
     bool mIsFav {false};
+    bool mIsHeading {false};
 };
 
 

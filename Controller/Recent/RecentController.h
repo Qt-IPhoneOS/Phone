@@ -11,7 +11,6 @@ class RecentController : public QObject
     Q_OBJECT
     Q_PROPERTY(QAbstractListModel* dataModel READ dataModel WRITE setDataModel NOTIFY dataModelChanged)
     Q_PROPERTY(Enums::RecentsMode recentMode READ recentMode WRITE setRecentMode NOTIFY recentModeChanged)
-    Q_PROPERTY(int lastHistoryIndex READ lastHistoryIndex WRITE setLastHistoryIndex NOTIFY lastHistoryIndexChanged)
 
 public:
     explicit RecentController();
@@ -26,20 +25,14 @@ public:
     Enums::RecentsMode recentMode() const;
     void setRecentMode(Enums::RecentsMode newRecentMode);
 
-    int lastHistoryIndex() const;
-    void setLastHistoryIndex(int newLastHistoryIndex);
-
 signals:
     void dataModelChanged();
     void recentModeChanged();
-
-    void lastHistoryIndexChanged();
 
 private:
     HistoryModel* mHistoryModel {nullptr};
     QAbstractListModel *mDataModel {nullptr};
     Enums::RecentsMode mRecentMode {Enums::Recent_All};
-    int mLastHistoryIndex;
 };
 
 #endif // RECENTCONTROLLER_H

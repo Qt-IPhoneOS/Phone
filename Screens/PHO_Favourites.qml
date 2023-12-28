@@ -68,7 +68,6 @@ RootScreen {
                     anchors.right: parent.right
                     textStr: model.formatname
                     infoVisible: true
-                    underlineVisible: model.index === ContactController.lastFavIndex
                 }
             }
         }

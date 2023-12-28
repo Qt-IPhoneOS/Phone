@@ -71,3 +71,11 @@ void ContactInstance::setIsFav(const bool &newIsFav)
 
     mIsFav = newIsFav;
 }
+
+void ContactInstance::setIsHeading(const bool &newIsHeading)
+{
+    if (mIsHeading == newIsHeading)
+        return;
+
+    mIsHeading = newIsHeading;
+}
