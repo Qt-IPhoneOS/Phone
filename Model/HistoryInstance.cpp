@@ -1,6 +1,7 @@
 #include "HistoryInstance.h"
 
 #define LimitedToDisplayDate 7
+#define YesterDay 1
 
 HistoryInstance::HistoryInstance()
 {
@@ -110,6 +111,10 @@ QString HistoryInstance::getTimeForHistoryPhone(const QString &timeOfPhone)
             else if (currentDate.day() == datePhone.day())
             {
                 return timePhone.toString("hh:mm");
+            }
+            else if (currentDate.day() - datePhone.day() == YesterDay)
+            {
+                return "Yesterday";
             }
             else if (currentDate.day() - datePhone.day() < LimitedToDisplayDate)
             {

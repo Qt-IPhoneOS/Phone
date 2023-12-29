@@ -17,6 +17,9 @@
         <file>Assets/search_icon.png</file>
         <file>Assets/phone_call.png</file>
         <file>Assets/close_btn.png</file>
-        <file>Assets/avartarUser.jpg</file>
+        <file>Assets/Avatar/lisa.jpg</file>
+        <file>Assets/Avatar/jisso.jpg</file>
+        <file>Assets/Avatar/jason_momoa.jpeg</file>
+        <file>Assets/Avatar/avartarUser.jpg</file>
     </qresource>
 </RCC>

@@ -26,7 +26,7 @@ Item {
     }
 
     HeaderScreen {
-        y: 30
+        id: header
         width: parent.width
         backBtnText: "Lists"
     }
@@ -37,6 +37,13 @@ Item {
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
         contentHeight: listContactPhone.height + headerContact.height + searchContainer.height + userInforContainer.height + 280
+
+        onContentYChanged: {
+            if (contentY > 20)
+                header.enableHeader = true
+            else
+                header.enableHeader = false
+        }
 
         TitleScreen {
             id: headerContact
@@ -70,7 +77,7 @@ Item {
                 id: userImage
                 width: 65
                 height: 65
-                sourceImg: "qrc:/Assets/avartarUser.jpg"
+                sourceImg: "qrc:/Assets/Avatar/avartarUser.jpg"
             }
 
             CustomText {

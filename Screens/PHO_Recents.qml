@@ -24,19 +24,33 @@ Item {
         color: UIColors.screen_background
     }
 
-    RecentSwitch {
-        y: 20
-        z: 1
-        switchOn: RecentController.recentMode === Enums.Recent_Missed
-        anchors.horizontalCenter: parent.horizontalCenter
-        onRequestAll: RecentController.recentMode = Enums.Recent_All
-        onRequestMissed: RecentController.recentMode = Enums.Recent_Missed
+    HeaderScreen {
+        id: header
+        width: parent.width
+        isBackButton: false
+        headerText: "Edit"
+
+        RecentSwitch {
+            y: 20
+            z: 1
+            switchOn: RecentController.recentMode === Enums.Recent_Missed
+            anchors.horizontalCenter: parent.horizontalCenter
+            onRequestAll: RecentController.recentMode = Enums.Recent_All
+            onRequestMissed: RecentController.recentMode = Enums.Recent_Missed
+        }
     }
 
     RootScreen {
         width: parent.width
         height: parent.height
         contentHeight: listRecent.childrenRect.height + 100
+
+        onContentYChanged: {
+            if (contentY > 20)
+                header.enableHeader = true
+            else
+                header.enableHeader = false
+        }
 
         TitleScreen {
             x: 70
