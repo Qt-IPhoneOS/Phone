@@ -28,7 +28,7 @@ Item {
         id: header
         width: parent.width
         isBackButton: false
-        headerText: "Edit"
+        rightText: "Edit"
 
         RecentSwitch {
             y: 20

@@ -29,6 +29,17 @@ Item {
         id: header
         width: parent.width
         backBtnText: "Lists"
+
+        Image {
+            y: 20
+            width: 30
+            height: 30
+            source: "qrc:/Assets/plus_icon.png"
+            anchors {
+                right: parent.right
+                rightMargin: 20
+            }
+        }
     }
 
     RootScreen {
@@ -39,10 +50,14 @@ Item {
         contentHeight: listContactPhone.height + headerContact.height + searchContainer.height + userInforContainer.height + 280
 
         onContentYChanged: {
-            if (contentY > 20)
+            if (contentY > 20) {
                 header.enableHeader = true
-            else
+                header.headerText = "Contacts"
+            }
+            else {
                 header.enableHeader = false
+                header.headerText = ""
+            }
         }
 
         TitleScreen {
