@@ -2,22 +2,22 @@ QT += quick gui core
 TEMPLATE = app
 TARGET = Phone
 
-LIBS += -L$$PWD/../../Executable \
+LIBS += -L$$PWD/../../executable \
         -lmiddlewarelayer \
         -luicommon \
         -lservice
 
-INCLUDEPATH += $$PWD/../../MiddlewareLayer \
-               $$PWD/../../MiddlewareLayer/Common \
-               $$PWD/../UICommon \
-               $$PWD/../UICommon/Feature \
-               $$PWD/../UICommon/ScreenManager \
+INCLUDEPATH += $$PWD/../../libs/MiddlewareLayer \
+               $$PWD/../../libs/MiddlewareLayer/Common \
+               $$PWD/../../libs/UICommon \
+               $$PWD/../../libs/UICommon/Feature \
+               $$PWD/../../libs/UICommon/ScreenManager \
                $$PWD/Controller \
                $$PWD/Model \
-               $$PWD/../../Services/include
-               $$PWD/../../Services/include/Common
+               $$PWD/../../libs/Services/include \
+               $$PWD/../../libs/Services/include/Common
 
-QML_IMPORT_PATH += $$PWD/../UICommon
+QML_IMPORT_PATH += $$PWD/../../libs/UICommon
 
 
 SOURCES += \
