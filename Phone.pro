@@ -1,8 +1,9 @@
-QT += quick gui core
+QT += quick gui core appman_launcher-private
 TEMPLATE = app
 TARGET = Phone
+DESTDIR = $$PWD/../../build/apps/Phone
 
-LIBS += -L$$PWD/../../executable \
+LIBS += -L$$PWD/../../build/executable \
         -lmiddlewarelayer \
         -luicommon \
         -lservice
