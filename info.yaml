@@ -1,0 +1,13 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'Phone'
+icon:     'phone.png'
+code:    'Phone'
+runtime: 'native'
+name:
+  en: 'Phone'
+runtimeParameters:
+  importPaths: [ "." ]
+  environmentVariables:
+    QT_WAYLAND_DISABLE_WINDOWDECORATION: "1"
